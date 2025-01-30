@@ -7,4 +7,5 @@ export type Props = {
   border?: string;
   hover?: string;
   active?: string;
+  additionalClasses?: string;
 };

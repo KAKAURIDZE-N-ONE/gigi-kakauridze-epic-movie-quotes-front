@@ -41,12 +41,3 @@ const LanguageSwitcher = () => {
 };
 
 export default LanguageSwitcher;
-
-// {locales?.map((lng) => (
-//   <button
-//     key={lng}
-//     onClick={() => (window.location.href = `/${lng}${asPath}`)}
-//   >
-//     {lng === locale ? "Current Language" : lng}{" "}
-//   </button>
-// ))}

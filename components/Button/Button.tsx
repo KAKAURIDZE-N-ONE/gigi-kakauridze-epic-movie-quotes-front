@@ -3,13 +3,9 @@ import { Props } from "./types";
 
 const Button: React.FC<Props> = ({
   children,
-  bg,
-  color,
-  width,
   height,
-  border,
-  hover,
-  active,
+  width,
+  additionalClasses,
 }) => {
   return (
     <button
@@ -18,11 +14,7 @@ const Button: React.FC<Props> = ({
         height: height ? `${height}rem` : "auto",
       }}
       className={`
-    ${bg ? bg : ""}
-    ${color ? color : ""}
-    ${border ? border : ""}
-    ${hover ? hover : ""}
-    ${active ? active : ""}
+    ${additionalClasses ? additionalClasses : ""}
     rounded-[0.25rem]
     border 
     transition-all

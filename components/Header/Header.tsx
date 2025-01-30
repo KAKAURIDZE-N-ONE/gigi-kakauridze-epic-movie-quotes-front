@@ -14,22 +14,16 @@ const Header: React.FC = () => {
       <div className="flex items-center justify-center gap-4 bg-red-200">
         <LanguageSwitcher />
         <Button
-          border="border-red"
           height={2.375}
-          hover="hover:bg-red2"
           width={6.8125}
-          bg="bg-red"
-          color="text-white"
-          active="active:bg-red3"
+          additionalClasses="active:bg-red3 text-white bg-red hover:bg-red2 border-red"
         >
           Sign Up
         </Button>
         <Button
-          border="border-white"
           height={2.375}
           width={6}
-          bg="bg-black"
-          color="text-white"
+          additionalClasses="bg-black text-white border-white"
         >
           Log in
         </Button>
