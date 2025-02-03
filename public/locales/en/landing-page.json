@@ -1,0 +1,14 @@
+{
+  "registration": "Sign Up",
+  "autorization": "Log In",
+  "header": "MOVIE QUOTES",
+  "hero_header": "Find any quote in millions of movie lines",
+  "get_started": "Get started",
+  "film_1_quote": "“You have to leave somethig behind to go forward”",
+  "film_1_description": "Interstellar, 2014",
+  "film_2_quote": "“I think we’re just gonna have to be secretly in love with earch other and leave it that“",
+  "film_2_description": "The Royal Tenenbaums, 2001",
+  "film_3_quote": "“It's the job that's never started as takes longest to finish.”",
+  "film_3_description": "The Lord of the Rings, 2002",
+  "footer": "© 2022 movie quotes. All rights reserved."
+}
