@@ -1,20 +1,38 @@
-import { HeroImage } from "@/components/HeroImage";
-import image1 from "@/public/images/image1.png";
-import image2 from "@/public/images/image2.png";
-import image3 from "@/public/images/image3.png";
-import { useTranslation } from "react-i18next";
+import {
+  Footer,
+  Hero,
+  HeroImage,
+  LogInBody,
+  SignUpBody,
+} from "@/components/index";
+import useIndex from "@/components/index/useIndex";
+import { Modal } from "@/components/Modal";
 
 export default function Home() {
-  const images = [image1, image2, image3];
-  const { t } = useTranslation("landingPage");
+  const { imagesData, openedModal, turnOfModal } = useIndex();
+
   return (
-    <div className="relative">
-      <div className="h-[100vh] flex items-center justify-center bg-black text-white">
-        {t("greeting")}
+    <>
+      {openedModal !== null && (
+        <Modal turnOfFn={turnOfModal}>
+          {openedModal === "signUp" && <SignUpBody />}
+          {openedModal === "logIn" && <LogInBody />}
+        </Modal>
+      )}
+      <div className="relative">
+        <Hero />
+        {imagesData.map((dataItem) => (
+          <HeroImage
+            translate={dataItem.translate}
+            key={dataItem.image.src}
+            quote={dataItem.quote}
+            description={dataItem.description}
+            alt="The Royal Tenenbaums"
+            url={dataItem.image}
+          />
+        ))}
+        <Footer />
       </div>
-      {images.map((image) => (
-        <HeroImage key={image.src} alt="The Royal Tenenbaums" url={image} />
-      ))}
-    </div>
+    </>
   );
 }

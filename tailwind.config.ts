@@ -9,6 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        white1: "#D9D9D9",
         skin: "#DDCCAA",
         red: "#E31221",
         red2: "#CC0E10",

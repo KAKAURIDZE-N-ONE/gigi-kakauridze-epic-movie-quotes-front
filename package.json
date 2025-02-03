@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.1",
     "i18next": "^24.2.2",
     "lodash": "^4.17.21",
     "next": "15.1.6",
@@ -16,7 +17,8 @@
     "ni18n": "^1.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.0"
+    "react-i18next": "^15.4.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
