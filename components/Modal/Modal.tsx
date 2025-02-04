@@ -20,7 +20,7 @@ const Modal: React.FC<Props> = ({ children, turnOfFn }) => {
           bg-[#0000008A]  
           pointer-events-none"
           ></div>
-          <div className="relative z-[62] h-full flex items-center justify-center ">
+          <div className="relative z-[62] h-full flex items-center justify-center w-full">
             <div onClick={(e) => e.stopPropagation()} className="text-white">
               {children}
             </div>

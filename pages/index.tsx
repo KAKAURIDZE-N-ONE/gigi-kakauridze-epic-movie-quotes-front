@@ -1,4 +1,5 @@
 import {
+  EmailVerifyMessage,
   Footer,
   Hero,
   HeroImage,
@@ -17,6 +18,7 @@ export default function Home() {
         <Modal turnOfFn={turnOfModal}>
           {openedModal === "signUp" && <SignUpBody />}
           {openedModal === "logIn" && <LogInBody />}
+          {openedModal === "verifyEmail" && <EmailVerifyMessage />}
         </Modal>
       )}
       <div className="relative">

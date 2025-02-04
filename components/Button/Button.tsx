@@ -7,6 +7,8 @@ const Button: React.FC<Props> = ({
   color,
   size,
   clickFn,
+  type,
+  disabled = false,
 }) => {
   let addColors;
   if (color === "red")
@@ -20,6 +22,8 @@ const Button: React.FC<Props> = ({
 
   return (
     <button
+      disabled={disabled}
+      type={type ? type : "button"}
       onClick={clickFn}
       className={`
     ${additionalClasses ? additionalClasses : ""}

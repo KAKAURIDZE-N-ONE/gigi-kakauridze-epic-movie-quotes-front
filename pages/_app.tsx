@@ -5,13 +5,18 @@ import { appWithI18Next } from "ni18n";
 import { ni18nConfig } from "@/next-i18next.config";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const App = function ({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </QueryClientProvider>
     </Provider>
   );
 };
