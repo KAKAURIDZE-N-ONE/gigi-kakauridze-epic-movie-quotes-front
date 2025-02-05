@@ -1,3 +1,11 @@
 export type ModalState = {
-  openedModal: "signUp" | "logIn" | "forgotPassword" | "resetPassword" | null;
+  openedModal:
+    | "signUp"
+    | "logIn"
+    | "forgotPassword"
+    | "resetPassword"
+    | "verifyEmail"
+    | null;
+
+  currentUserNotficationEmail: string;
 };

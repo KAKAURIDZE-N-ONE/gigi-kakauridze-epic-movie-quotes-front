@@ -4,6 +4,7 @@ import { RootState } from "@/store/store";
 
 const initialState: ModalState = {
   openedModal: null,
+  currentUserNotficationEmail: "",
 };
 
 const modalSlice = createSlice({
@@ -16,11 +17,17 @@ const modalSlice = createSlice({
     ) => {
       state.openedModal = action.payload;
     },
+    updateCurrentUserNotficationEmail(state, action) {
+      state.currentUserNotficationEmail = action.payload;
+    },
   },
 });
 
 export const selectOpenedModal = (state: RootState) => state.modal.openedModal;
+export const selectCurrentUserNotficationEmail = (state: RootState) =>
+  state.modal.currentUserNotficationEmail;
 
-export const { updateOpenedModal } = modalSlice.actions;
+export const { updateOpenedModal, updateCurrentUserNotficationEmail } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

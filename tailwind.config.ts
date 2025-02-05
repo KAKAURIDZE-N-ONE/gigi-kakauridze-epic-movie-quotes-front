@@ -10,10 +10,14 @@ export default {
     extend: {
       colors: {
         white1: "#D9D9D9",
+        white2: "#CED4DA",
         skin: "#DDCCAA",
+        gray: "#6C757D",
         red: "#E31221",
         red2: "#CC0E10",
         red3: "#B80D0F",
+        blue: "#0D6EFD",
+        darkBlue: "#222030",
       },
     },
   },
