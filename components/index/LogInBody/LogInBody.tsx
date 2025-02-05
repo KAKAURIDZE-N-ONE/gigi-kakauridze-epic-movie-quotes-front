@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import useLoginBody from "./useLoginBody";
 import { updateOpenedModal } from "@/store/slices/modalSlice";
 import { Input } from "@/components/Input";
-import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/emailValidationPatternValue";
+import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
 
 const LogInBody: React.FC = () => {
   const {

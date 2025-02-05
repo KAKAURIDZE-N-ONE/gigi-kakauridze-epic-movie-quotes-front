@@ -4,7 +4,7 @@ import useSignUpBody from "./useSignUpBody";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { updateOpenedModal } from "@/store/slices/modalSlice";
-import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/emailValidationPatternValue";
+import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
 
 const SignUpBody: React.FC = () => {
   const {
@@ -105,10 +105,6 @@ const SignUpBody: React.FC = () => {
           required: "Password is required",
           validate: (value) =>
             value === watch("password") || "Passwords do not match",
-          pattern: {
-            value: /^[a-z]+$/,
-            message: "Only lowercase letters are allowed",
-          },
         })}
         autoComplete="new-password"
       >

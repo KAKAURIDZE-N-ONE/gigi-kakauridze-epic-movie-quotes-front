@@ -17,7 +17,6 @@ const EmailVerifyMessage: React.FC = () => {
             type="submit"
             size="small"
             clickFn={() => {
-              console.log(userEmail, EMAIL_SENDER);
               const gmailSearchUrl = `https://mail.google.com/mail/u/${userEmail}/#search/from:${EMAIL_SENDER}`;
               window.open(gmailSearchUrl, "_blank");
             }}

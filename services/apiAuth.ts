@@ -6,7 +6,6 @@ export async function signUp(data: FormFieldsSignUp) {
 
   const response = await authInstace.post("/api/sign-up", data);
 
-  console.log(response.data);
   return response.data;
 }
 
