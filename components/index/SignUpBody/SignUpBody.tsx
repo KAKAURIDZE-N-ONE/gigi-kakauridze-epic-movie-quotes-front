@@ -4,6 +4,7 @@ import useSignUpBody from "./useSignUpBody";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { updateOpenedModal } from "@/store/slices/modalSlice";
+import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/emailValidationPatternValue";
 
 const SignUpBody: React.FC = () => {
   const {
@@ -68,7 +69,7 @@ const SignUpBody: React.FC = () => {
         {...register("email", {
           required: "Email is required",
           pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            value: EMAIL_VALIDATION_PATTERN_VALUE,
             message: "Please enter a valid email address",
           },
         })}

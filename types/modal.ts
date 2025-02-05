@@ -6,4 +6,6 @@ export type ModalState = {
     | "resetPassword"
     | "verifyEmail"
     | null;
+
+  currentUserNotficationEmail: string;
 };

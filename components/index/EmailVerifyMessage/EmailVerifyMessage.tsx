@@ -1,9 +1,13 @@
 import React from "react";
 import { MessageLayout } from "../MessageLayout";
-import Post from "../svgs/Post";
 import { Button } from "@/components/Button";
+import { useAppSelector } from "@/store/store";
+import { selectCurrentUserNotficationEmail } from "@/store/slices/modalSlice";
+import { EMAIL_SENDER } from "@/config/emailSender";
 
 const EmailVerifyMessage: React.FC = () => {
+  const userEmail = useAppSelector(selectCurrentUserNotficationEmail);
+
   return (
     <div>
       <MessageLayout
@@ -13,7 +17,9 @@ const EmailVerifyMessage: React.FC = () => {
             type="submit"
             size="small"
             clickFn={() => {
-              window.open("https://mail.google.com", "_blank");
+              console.log(userEmail, EMAIL_SENDER);
+              const gmailSearchUrl = `https://mail.google.com/mail/u/${userEmail}/#search/from:${EMAIL_SENDER}`;
+              window.open(gmailSearchUrl, "_blank");
             }}
             color="red"
           >

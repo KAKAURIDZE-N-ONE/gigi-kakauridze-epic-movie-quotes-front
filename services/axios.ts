@@ -10,7 +10,7 @@ export const authInstace = axios.create({
   withXSRFToken: true,
 });
 
-export const normalInstace = axios.create({
+export const nonAuthInstace = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
