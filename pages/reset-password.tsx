@@ -1,6 +1,6 @@
 import React from "react";
 import Home from ".";
-import useResetPasswordPage from "@/components/ResetPasswordPage/useResetPasswordPage";
+import { useResetPasswordPage } from "@/components/ResetPasswordPage";
 
 const resetPassword: React.FC = () => {
   useResetPasswordPage();

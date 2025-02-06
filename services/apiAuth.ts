@@ -7,8 +7,12 @@ import {
 } from "@/types/auth";
 import { authInstace } from "./axios";
 
-export async function signUp(data: FormFieldsSignUp) {
+async function getCsrfCookie() {
   await authInstace.get(`/sanctum/csrf-cookie`);
+}
+
+export async function signUp(data: FormFieldsSignUp) {
+  await getCsrfCookie();
 
   const response = await authInstace.post("/api/sign-up", data);
 
@@ -16,7 +20,7 @@ export async function signUp(data: FormFieldsSignUp) {
 }
 
 export async function logIn(data: FormFieldsLogIn) {
-  await authInstace.get(`/sanctum/csrf-cookie`);
+  await getCsrfCookie();
 
   const response = await authInstace.post("/api/log-in", data);
 
@@ -30,7 +34,7 @@ export async function logOut() {
 }
 
 export async function forgotPassword(data: FormFieldForgotPassword) {
-  await authInstace.get(`/sanctum/csrf-cookie`);
+  await getCsrfCookie();
 
   const response = await authInstace.post("/api/forgot-password", data);
 
@@ -38,7 +42,7 @@ export async function forgotPassword(data: FormFieldForgotPassword) {
 }
 
 export async function resetPassword(data: FormFieldResetPasswordApi) {
-  await authInstace.get(`/sanctum/csrf-cookie`);
+  await getCsrfCookie();
 
   const response = await authInstace.post("/api/reset-password", data);
 
@@ -47,9 +51,10 @@ export async function resetPassword(data: FormFieldResetPasswordApi) {
 
 export async function verifyUser(data: VerifyUser) {
   const { id, hash, expires, signature } = data;
-  const response = await authInstace.get(
-    `/api/email/verify/${id}/${hash}?expires=${expires}&signature=${signature}`
-  );
+
+  const response = await authInstace.get(`/api/email/verify/${id}/${hash}`, {
+    params: { expires, signature },
+  });
 
   return response.data;
 }

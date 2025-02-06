@@ -1,6 +1,6 @@
 import React from "react";
 import Home from ".";
-import useForgotPasswordPage from "@/components/ForgotPasswordPage/useForgotPasswordPage";
+import useForgotPasswordPage from "@/components/ForgotPasswordPage";
 
 const forgotPassword: React.FC = () => {
   useForgotPasswordPage();
