@@ -4,6 +4,6 @@ export type Props = {
   color?: string;
   size: "small" | "medium" | "smaller" | "normal";
   clickFn: () => void;
-  type: "button" | "submit";
+  type?: "button" | "submit";
   disabled?: boolean;
 };

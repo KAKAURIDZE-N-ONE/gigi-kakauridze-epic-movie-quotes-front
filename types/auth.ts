@@ -6,7 +6,30 @@ export type FormFieldsSignUp = {
 };
 
 export type FormFieldsLogIn = {
-  name: string;
+  emailOrName: string;
+  password: string;
+  remember: boolean;
+};
+
+export type FormFieldForgotPassword = {
   email: string;
-  rememberMe: boolean;
+};
+
+export type FormFieldResetPassword = {
+  password: string;
+  password_confirmation: string;
+};
+
+export type FormFieldResetPasswordApi = {
+  password: string;
+  password_confirmation: string;
+  email: string;
+  token: string;
+};
+
+export type VerifyUser = {
+  id: string;
+  hash: string;
+  expires: string;
+  signature: string;
 };

@@ -1,11 +1,13 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import useSignUp from "./useSignUp";
-import { ApiError } from "@/types/errors";
 import { useDispatch } from "react-redux";
-import { FormFieldsSignUp } from "@/types/auth";
+import { FormFieldsLogIn, FormFieldsSignUp } from "@/types/auth";
+import { ApiError } from "@/types/errors";
+import { useRouter } from "next/router";
+import useSignUp from "./useSignUp";
 
 export default function useSignUpBody() {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const {
     watch,
@@ -24,13 +26,13 @@ export default function useSignUpBody() {
 
   return {
     watch,
+    router,
     onSubmit,
     register,
-    handleSubmit,
     errors,
-    serverErrors: apiError?.response?.data?.errors,
-    mutate,
     isPending,
+    handleSubmit,
+    serverErrors: apiError?.response?.data?.errors,
     dispatch,
   };
 }

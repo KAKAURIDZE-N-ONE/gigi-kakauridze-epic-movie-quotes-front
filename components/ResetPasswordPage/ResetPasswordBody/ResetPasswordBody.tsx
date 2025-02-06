@@ -1,26 +1,25 @@
-import { Button } from "@/components/Button";
-import { FormLayout } from "@/components/FormLayout";
-import { Input } from "@/components/Input";
 import React from "react";
-import useSignUpBody from "./useSignUpBody";
-import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
+import useResetPasswordBody from "./useResetPasswordBody";
+import { FormLayout } from "@/components/FormLayout";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
 
-const SignUpBody: React.FC = () => {
+const ResetPasswordBody: React.FC = () => {
   const {
     watch,
-    router,
-    onSubmit,
     register,
-    handleSubmit,
     isPending,
-    serverErrors,
+    handleSubmit,
+    onSubmit,
     errors,
-  } = useSignUpBody();
+    router,
+    serverErrors,
+  } = useResetPasswordBody();
 
   return (
     <FormLayout
-      title="Create an account"
-      subtitle="Start your journey!"
+      title="Create new password"
+      subtitle="Your new password must be different from previous used passwords"
       onSubmit={handleSubmit(onSubmit)}
       actionBtn={
         <Button
@@ -30,51 +29,19 @@ const SignUpBody: React.FC = () => {
           disabled={isPending}
           color="red"
         >
-          Get started
+          Reset password
         </Button>
       }
       link={{
-        text: "Already have an account?",
-        name: "Log in",
+        type: "resetPassword",
+        text: "Back to log in",
         action: () => router.push("/log-in"),
       }}
     >
       <Input
-        error={errors.name?.message}
-        serverError={serverErrors?.name?.at(0)}
-        placeholder="At least 3 & max.15 lower case characters"
-        {...register("name", {
-          required: "Username is required",
-          minLength: {
-            value: 3,
-            message: "Minimum length must be 3.",
-          },
-          maxLength: {
-            value: 15,
-            message: "Minimum length should be 3.",
-          },
-        })}
-      >
-        Name
-      </Input>
-      <Input
-        error={errors.email?.message}
-        serverError={serverErrors?.email?.at(0)}
-        placeholder="Enter your email"
-        {...register("email", {
-          required: "Email or username is required",
-          pattern: {
-            value: EMAIL_VALIDATION_PATTERN_VALUE,
-            message: "invalid email address",
-          },
-        })}
-      >
-        Email
-      </Input>
-      <Input
         type="password"
         error={errors.password?.message}
-        serverError={serverErrors?.password?.at(0)}
+        serverError={serverErrors?.email?.at(0)}
         placeholder="At least 8 & max.15 lower case characters"
         {...register("password", {
           required: "Password is required",
@@ -107,4 +74,4 @@ const SignUpBody: React.FC = () => {
   );
 };
 
-export default SignUpBody;
+export default ResetPasswordBody;

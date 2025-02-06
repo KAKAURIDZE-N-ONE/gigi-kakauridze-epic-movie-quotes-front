@@ -1,5 +1,6 @@
 import React from "react";
 import { Props } from "./types";
+import ArrowLeft from "@/svgs/ArrowLeft";
 
 const FormLayout: React.FC<Props> = ({
   children,
@@ -9,6 +10,8 @@ const FormLayout: React.FC<Props> = ({
   actionBtn,
   link,
 }) => {
+  const needArrow =
+    link.type === "forgotPassword" || link.type === "resetPassword";
   return (
     <div className="w-full max-w-[37.5625rem] bg-darkBlue py-[3.3125rem] px-[7rem] rounded-[0.625rem]">
       <div className=" w-[22.5rem]">
@@ -23,7 +26,17 @@ const FormLayout: React.FC<Props> = ({
         </form>
         {link && (
           <div className="flex items-center justify-center gap-1 mt-7">
-            <p className="text-gray">{link.text}</p>
+            <div
+              onClick={() => {
+                if (needArrow) {
+                  link.action();
+                } else return;
+              }}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              {needArrow && <ArrowLeft />}
+              <p className="text-gray">{link.text}</p>
+            </div>
             <p
               onClick={link.action}
               className="text-blue underline cursor-pointer"

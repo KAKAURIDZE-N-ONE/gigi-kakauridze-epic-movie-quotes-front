@@ -1,14 +1,12 @@
 import React from "react";
-import { FormLayout } from "../FormLayout";
+import { FormLayout } from "../../FormLayout";
 import { Button } from "@/components/Button";
 import useLoginBody from "./useLoginBody";
-import { updateOpenedModal } from "@/store/slices/modalSlice";
 import { Input } from "@/components/Input";
-import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
 
 const LogInBody: React.FC = () => {
   const {
-    dispatch,
+    router,
     onSubmit,
     register,
     handleSubmit,
@@ -21,6 +19,7 @@ const LogInBody: React.FC = () => {
     <FormLayout
       title="Log in to your account"
       subtitle="Welcome back! Please enter your details."
+      onSubmit={handleSubmit(onSubmit)}
       actionBtn={
         <Button
           type="submit"
@@ -35,38 +34,47 @@ const LogInBody: React.FC = () => {
       link={{
         text: "Already have an account?",
         name: "Sign Up",
-        action: () => dispatch(updateOpenedModal("signUp")),
+        action: () => router.push("/sign-up"),
       }}
     >
       <Input
-        error={errors.email?.message}
-        // serverError={serverErrors?.email?.at(0)}
-        placeholder="Enter your email"
-        {...register("email", {
-          required: "Email is required",
-          pattern: {
-            value: EMAIL_VALIDATION_PATTERN_VALUE,
-            message: "Please enter a valid email address",
-          },
+        error={errors.emailOrName?.message}
+        serverError={serverErrors?.emailOrName?.at(0)}
+        placeholder="Enter your email or username"
+        {...register("emailOrName", {
+          required: "Email or username is required",
         })}
       >
-        Email
+        Email or username
       </Input>
       <Input
         type="password"
         error={errors.password?.message}
-        // serverError={serverErrors?.password?.at(0)}
+        serverError={serverErrors?.password?.at(0)}
         placeholder="Password"
         {...register("password", {
           required: "Password is required",
-          minLength: {
-            value: 3,
-            message: "Name must be at least 3 characters long",
-          },
         })}
       >
         Password
       </Input>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <input
+            className="rounded w-5 h-4"
+            id="remember"
+            {...register("remember")}
+            type="checkbox"
+          />
+          <label htmlFor="remember">Remember me</label>
+        </div>
+        <p
+          onClick={() => router.push("/forgot-password")}
+          className="text-blue underline cursor-pointer"
+        >
+          Forgot password
+        </p>
+      </div>
     </FormLayout>
   );
 };

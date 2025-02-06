@@ -6,15 +6,18 @@ import {
   updateOpenedModal,
 } from "@/store/slices/modalSlice";
 import { useAppSelector } from "@/store/store";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 export default function useIndex() {
+  const router = useRouter();
   const { t } = useTranslation("landing-page");
   const openedModal = useAppSelector(selectOpenedModal);
   const dispatch = useDispatch();
 
   function turnOfModal() {
+    router.push("/");
     dispatch(updateOpenedModal(null));
   }
 
