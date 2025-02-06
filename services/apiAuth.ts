@@ -7,21 +7,17 @@ import {
 } from "@/types/auth";
 import { authInstace } from "./axios";
 
-async function getCsrfCookie() {
+export async function getCsrfCookie() {
   await authInstace.get(`/sanctum/csrf-cookie`);
 }
 
 export async function signUp(data: FormFieldsSignUp) {
-  await getCsrfCookie();
-
   const response = await authInstace.post("/api/sign-up", data);
 
   return response.data;
 }
 
 export async function logIn(data: FormFieldsLogIn) {
-  await getCsrfCookie();
-
   const response = await authInstace.post("/api/log-in", data);
 
   return response.data;
@@ -34,16 +30,12 @@ export async function logOut() {
 }
 
 export async function forgotPassword(data: FormFieldForgotPassword) {
-  await getCsrfCookie();
-
   const response = await authInstace.post("/api/forgot-password", data);
 
   return response.data;
 }
 
 export async function resetPassword(data: FormFieldResetPasswordApi) {
-  await getCsrfCookie();
-
   const response = await authInstace.post("/api/reset-password", data);
 
   return response.data;

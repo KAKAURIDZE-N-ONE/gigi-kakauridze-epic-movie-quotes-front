@@ -3,6 +3,7 @@ import useResetPassword from "./useResetPassword";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
+import { getCsrfCookie } from "@/services/apiAuth";
 
 export default function useResetPasswordBody() {
   const { mutate, isPending, error } = useResetPassword();
@@ -20,6 +21,7 @@ export default function useResetPasswordBody() {
 
   const onSubmit: SubmitHandler<FormFieldResetPassword> = async (data) => {
     if (query?.token && query.email) {
+      await getCsrfCookie();
       mutate({
         ...data,
         token: String(query.token),

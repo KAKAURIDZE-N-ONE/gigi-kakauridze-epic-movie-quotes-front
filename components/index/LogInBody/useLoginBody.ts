@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { FormFieldsLogIn } from "@/types/auth";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
+import { getCsrfCookie } from "@/services/apiAuth";
 
 export default function useLoginBody() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function useLoginBody() {
   const apiError = error as ApiError;
 
   const onSubmit: SubmitHandler<FormFieldsLogIn> = async (data) => {
+    await getCsrfCookie();
     mutate(data);
   };
 

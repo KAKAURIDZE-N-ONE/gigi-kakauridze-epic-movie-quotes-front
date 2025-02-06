@@ -1,4 +1,4 @@
-import { logIn, signUp } from "@/services/apiAuth";
+import { signUp } from "@/services/apiAuth";
 import { updateOpenedModal } from "@/store/slices/modalSlice";
 import { FormFieldsSignUp } from "@/types/auth";
 import { useMutation } from "@tanstack/react-query";

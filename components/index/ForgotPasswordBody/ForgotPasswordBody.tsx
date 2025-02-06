@@ -4,7 +4,6 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import useForgotPasswordBody from "./useForgotPasswordBody";
 import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
-import { updateOpenedModal } from "@/store/slices/modalSlice";
 
 const ForgotPasswordBody: React.FC = () => {
   const {

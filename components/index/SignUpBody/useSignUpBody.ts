@@ -1,9 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { FormFieldsLogIn, FormFieldsSignUp } from "@/types/auth";
+import { FormFieldsSignUp } from "@/types/auth";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
 import useSignUp from "./useSignUp";
+import { getCsrfCookie } from "@/services/apiAuth";
 
 export default function useSignUpBody() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function useSignUpBody() {
   const apiError = error as ApiError;
 
   const onSubmit: SubmitHandler<FormFieldsSignUp> = async (data) => {
+    await getCsrfCookie();
     mutate(data);
   };
 

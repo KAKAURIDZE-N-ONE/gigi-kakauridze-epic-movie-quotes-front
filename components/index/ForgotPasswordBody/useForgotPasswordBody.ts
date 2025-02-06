@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import useForgotPassword from "./useForgotPassword";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
+import { getCsrfCookie } from "@/services/apiAuth";
 
 export default function useForgotPasswordBody() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function useForgotPasswordBody() {
   } = useForm<FormFieldForgotPassword>();
 
   const onSubmit: SubmitHandler<FormFieldForgotPassword> = async (data) => {
+    await getCsrfCookie();
     mutate(data);
   };
 
