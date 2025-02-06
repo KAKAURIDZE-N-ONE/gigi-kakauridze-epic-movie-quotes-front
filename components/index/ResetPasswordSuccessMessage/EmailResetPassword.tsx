@@ -1,17 +1,18 @@
 import React from "react";
 import { Button } from "@/components/Button";
-import { useAppSelector } from "@/store/store";
-import { selectCurrentUserNotficationEmail } from "@/store/slices/modalSlice";
+import { useDispatch } from "react-redux";
+import { updateOpenedModal } from "@/store/slices/modalSlice";
 import { EMAIL_SENDER } from "@/config/emailSender";
+import useEmailResetPassword from "./useEmailResetPassword";
 import { MessageLayout } from "@/components/MessageLayout";
 
-const EmailVerifyMessage: React.FC = () => {
-  const userEmail = useAppSelector(selectCurrentUserNotficationEmail);
+const EmailResetPassword: React.FC = () => {
+  const { userEmail, dispatch, router } = useEmailResetPassword();
 
   return (
     <div>
       <MessageLayout
-        title="Thank you!"
+        title="Check your email"
         actionBtn={
           <Button
             type="submit"
@@ -25,12 +26,18 @@ const EmailVerifyMessage: React.FC = () => {
             Go to my email
           </Button>
         }
+        action={{
+          text: "Skip, I'll confirm later",
+          fn: () => {
+            dispatch(updateOpenedModal(null));
+            router.push("/");
+          },
+        }}
       >
-        Please check your email and follow the instructions to activate your
-        account.
+        We have sent a password recover instructions to your email
       </MessageLayout>
     </div>
   );
 };
 
-export default EmailVerifyMessage;
+export default EmailResetPassword;

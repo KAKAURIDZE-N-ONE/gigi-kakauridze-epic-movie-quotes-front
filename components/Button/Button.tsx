@@ -7,7 +7,7 @@ const Button: React.FC<Props> = ({
   color,
   size,
   clickFn,
-  type,
+  type = "button",
   disabled = false,
 }) => {
   let addColors;
@@ -23,7 +23,7 @@ const Button: React.FC<Props> = ({
   return (
     <button
       disabled={disabled}
-      type={type ? type : "button"}
+      type={type}
       onClick={clickFn}
       className={`
     ${additionalClasses ? additionalClasses : ""}

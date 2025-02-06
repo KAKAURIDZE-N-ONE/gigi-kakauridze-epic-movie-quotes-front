@@ -7,8 +7,9 @@ export type Props = {
   subtitle: string;
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   link: {
+    type?: "forgotPassword" | "resetPassword";
     text: string;
-    name: string;
+    name?: string;
     action: () => void;
   };
 };

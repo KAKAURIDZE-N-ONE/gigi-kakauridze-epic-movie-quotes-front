@@ -1,9 +1,14 @@
+import { useAuthentication } from "@/hooks/useAuthentication";
+import useLogOut from "@/hooks/useLogOut";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 
 export default function useHeader() {
-  const dispatch = useDispatch();
+  const router = useRouter();
   const { t } = useTranslation("landing-page");
+  const { isAuthenticated } = useAuthentication();
 
-  return { dispatch, t };
+  const { logOut } = useLogOut();
+
+  return { t, isAuthenticated, logOut, router };
 }

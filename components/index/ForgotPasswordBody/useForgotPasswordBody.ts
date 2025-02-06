@@ -1,40 +1,37 @@
+import { FormFieldForgotPassword } from "@/types/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { FormFieldsSignUp } from "@/types/auth";
+import useForgotPassword from "./useForgotPassword";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
-import useSignUp from "./useSignUp";
 import { getCsrfCookie } from "@/services/apiAuth";
 
-export default function useSignUpBody() {
-  const dispatch = useDispatch();
+export default function useForgotPasswordBody() {
   const router = useRouter();
 
-  const {
-    watch,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormFieldsSignUp>();
-
-  const { mutate, isPending, error } = useSignUp();
+  const { mutate, isPending, error } = useForgotPassword();
 
   const apiError = error as ApiError;
 
-  const onSubmit: SubmitHandler<FormFieldsSignUp> = async (data) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFieldForgotPassword>();
+
+  const onSubmit: SubmitHandler<FormFieldForgotPassword> = async (data) => {
     await getCsrfCookie();
     mutate(data);
   };
 
   return {
-    watch,
-    router,
-    onSubmit,
     register,
-    errors,
-    isPending,
     handleSubmit,
+    onSubmit,
+    router,
+    errors,
+    mutate,
+    isPending,
     serverErrors: apiError?.response?.data?.errors,
-    dispatch,
   };
 }
