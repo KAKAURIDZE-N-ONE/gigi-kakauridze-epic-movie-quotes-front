@@ -9,6 +9,7 @@ const LogInBody: React.FC = () => {
   const {
     t,
     t2,
+    navigateGoogleAuth,
     router,
     onSubmit,
     register,
@@ -41,7 +42,7 @@ const LogInBody: React.FC = () => {
           type="button"
           size="small"
           clickFn={() => {
-            window.location.href = "http://127.0.0.1:8000/api/auth/google";
+            navigateGoogleAuth();
           }}
           disabled={isPending}
         >

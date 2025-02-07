@@ -4,7 +4,7 @@ import { FormFieldsSignUp } from "@/types/auth";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
 import useSignUp from "./useSignUp";
-import { getCsrfCookie } from "@/services/apiAuth";
+import { getCsrfCookie, getGoogleVerifyUrl } from "@/services/apiAuth";
 import { useTranslation } from "react-i18next";
 
 export default function useSignUpBody() {
@@ -29,6 +29,11 @@ export default function useSignUpBody() {
     mutate(data);
   };
 
+  async function navigateGoogleAuth() {
+    const data = await getGoogleVerifyUrl();
+    window.location.href = data?.url;
+  }
+
   return {
     t,
     t2,
@@ -41,5 +46,6 @@ export default function useSignUpBody() {
     handleSubmit,
     serverErrors: apiError?.response?.data?.errors,
     dispatch,
+    navigateGoogleAuth,
   };
 }

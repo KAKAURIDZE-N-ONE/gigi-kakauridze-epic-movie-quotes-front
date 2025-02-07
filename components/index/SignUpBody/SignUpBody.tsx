@@ -18,6 +18,7 @@ const SignUpBody: React.FC = () => {
     isPending,
     serverErrors,
     errors,
+    navigateGoogleAuth,
   } = useSignUpBody();
 
   return (
@@ -42,7 +43,7 @@ const SignUpBody: React.FC = () => {
           type="button"
           size="small"
           clickFn={() => {
-            window.location.href = "http://127.0.0.1:8000/api/auth/google";
+            navigateGoogleAuth();
           }}
           disabled={isPending}
         >
