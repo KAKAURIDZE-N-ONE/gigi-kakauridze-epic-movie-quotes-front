@@ -4,9 +4,12 @@ import { useDispatch } from "react-redux";
 import { FormFieldsLogIn } from "@/types/auth";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
-import { getCsrfCookie } from "@/services/apiAuth";
+import { getCsrfCookie, getGoogleVerifyUrl } from "@/services/apiAuth";
+import { useTranslation } from "react-i18next";
 
 export default function useLoginBody() {
+  const { t } = useTranslation("log-in-modal");
+  const { t: t2 } = useTranslation("errors");
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -25,9 +28,17 @@ export default function useLoginBody() {
     mutate(data);
   };
 
+  async function navigateGoogleAuth() {
+    const data = await getGoogleVerifyUrl();
+    window.location.href = data?.url;
+  }
+
   const invalidCredentials = apiError?.response?.data?.message;
 
   return {
+    t,
+    t2,
+    navigateGoogleAuth,
     router,
     onSubmit,
     register,
@@ -35,8 +46,8 @@ export default function useLoginBody() {
     isPending,
     handleSubmit,
     serverErrors: apiError?.response?.data?.errors || {
-      emailOrName: [invalidCredentials],
-      password: [invalidCredentials],
+      emailOrName: [invalidCredentials ? t2("invalid_credentials") : ""],
+      password: [invalidCredentials ? t2("invalid_credentials") : ""],
     },
     dispatch,
   };

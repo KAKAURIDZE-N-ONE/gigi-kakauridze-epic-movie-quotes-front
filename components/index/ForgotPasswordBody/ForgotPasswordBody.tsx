@@ -7,6 +7,8 @@ import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
 
 const ForgotPasswordBody: React.FC = () => {
   const {
+    t,
+    t2,
     register,
     isPending,
     handleSubmit,
@@ -18,8 +20,8 @@ const ForgotPasswordBody: React.FC = () => {
 
   return (
     <FormLayout
-      title="Forgot password?"
-      subtitle="Enter the email and we’ll send an email with instructions to reset your password"
+      title={t("title")}
+      subtitle={t("sub_title")}
       onSubmit={handleSubmit(onSubmit)}
       actionBtn={
         <Button
@@ -29,28 +31,28 @@ const ForgotPasswordBody: React.FC = () => {
           disabled={isPending}
           color="red"
         >
-          Send instructions
+          {t("send_instructions")}
         </Button>
       }
       link={{
         type: "forgotPassword",
-        text: "Back to log in",
+        text: t("link_text"),
         action: () => router.push("/log-in"),
       }}
     >
       <Input
         error={errors.email?.message}
         serverError={serverErrors?.email?.at(0)}
-        placeholder="Enter your email"
+        placeholder={t("email_placeholder")}
         {...register("email", {
-          required: "Email is required",
+          required: t("email_label") + " " + t2("required"),
           pattern: {
             value: EMAIL_VALIDATION_PATTERN_VALUE,
-            message: "Please enter a valid email address",
+            message: t2("invalid_email"),
           },
         })}
       >
-        Email
+        {t("email_label")}
       </Input>
     </FormLayout>
   );

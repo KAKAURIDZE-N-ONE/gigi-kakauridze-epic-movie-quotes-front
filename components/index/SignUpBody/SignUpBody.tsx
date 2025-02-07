@@ -4,9 +4,12 @@ import { Input } from "@/components/Input";
 import React from "react";
 import useSignUpBody from "./useSignUpBody";
 import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
+import Google from "@/svgs/Google";
 
 const SignUpBody: React.FC = () => {
   const {
+    t,
+    t2,
     watch,
     router,
     onSubmit,
@@ -15,12 +18,13 @@ const SignUpBody: React.FC = () => {
     isPending,
     serverErrors,
     errors,
+    navigateGoogleAuth,
   } = useSignUpBody();
 
   return (
     <FormLayout
-      title="Create an account"
-      subtitle="Start your journey!"
+      title={t("title")}
+      subtitle={t("sub_title")}
       onSubmit={handleSubmit(onSubmit)}
       actionBtn={
         <Button
@@ -30,78 +34,95 @@ const SignUpBody: React.FC = () => {
           disabled={isPending}
           color="red"
         >
-          Get started
+          {t("sign_up")}
+        </Button>
+      }
+      googleAuthBtn={
+        <Button
+          icon={<Google />}
+          type="button"
+          size="small"
+          clickFn={() => {
+            navigateGoogleAuth();
+          }}
+          disabled={isPending}
+        >
+          {t("sign_up_google")}
         </Button>
       }
       link={{
-        text: "Already have an account?",
-        name: "Log in",
+        text: t("link_text"),
+        name: t("link_name"),
         action: () => router.push("/log-in"),
       }}
     >
       <Input
         error={errors.name?.message}
         serverError={serverErrors?.name?.at(0)}
-        placeholder="At least 3 & max.15 lower case characters"
+        placeholder={t("name_placeholder")}
         {...register("name", {
-          required: "Username is required",
+          required: t("name_label") + " " + t2("required"),
           minLength: {
             value: 3,
-            message: "Minimum length must be 3.",
+            message: t2("min_length") + "3.",
           },
           maxLength: {
             value: 15,
-            message: "Minimum length should be 3.",
+            message: t2("max_length") + "15.",
+          },
+          pattern: {
+            value: /^[a-z0-9]+$/,
+            message: "Only lowercase letters and numbers are allowed.",
           },
         })}
       >
-        Name
+        {t("name_label")}
       </Input>
       <Input
         error={errors.email?.message}
         serverError={serverErrors?.email?.at(0)}
-        placeholder="Enter your email"
+        placeholder={t("email_placeholder")}
         {...register("email", {
-          required: "Email or username is required",
+          required: t("email_label") + " " + t2("required"),
           pattern: {
             value: EMAIL_VALIDATION_PATTERN_VALUE,
-            message: "invalid email address",
+            message: t2("invalid_email"),
           },
         })}
       >
-        Email
+        {t("email_label")}
       </Input>
       <Input
         type="password"
         error={errors.password?.message}
         serverError={serverErrors?.password?.at(0)}
-        placeholder="At least 8 & max.15 lower case characters"
+        placeholder={t("password_placeholder")}
         {...register("password", {
-          required: "Password is required",
+          required: t("password_label") + " " + t2("required"),
           minLength: {
             value: 8,
-            message: "Password must be at least 8 characters long",
+            message: t2("min_length") + "8.",
           },
           maxLength: {
             value: 15,
-            message: "Password must be at most 15 characters long.",
+            message: t2("max_length") + "15.",
           },
         })}
         autoComplete="new-password"
       >
-        Password
+        {t("password_label")}
       </Input>
       <Input
         type="password"
         error={errors.password_confirmation?.message}
         serverError={serverErrors?.password?.at(0)}
-        placeholder="Confirm password"
+        placeholder={t("confirm_password_placeholder")}
         {...register("password_confirmation", {
           validate: (value) =>
-            value === watch("password") || "Passwords do not match",
+            value === watch("password") || t2("password_not_match"),
         })}
       >
-        Confirm password
+        {t("confirm_password_label")}
       </Input>
     </FormLayout>
   );

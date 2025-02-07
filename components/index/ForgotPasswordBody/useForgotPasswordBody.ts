@@ -5,8 +5,12 @@ import useForgotPassword from "./useForgotPassword";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
 import { getCsrfCookie } from "@/services/apiAuth";
+import { useTranslation } from "react-i18next";
 
 export default function useForgotPasswordBody() {
+  const { t } = useTranslation("forgot-password-modal");
+  const { t: t2 } = useTranslation("errors");
+
   const router = useRouter();
 
   const { mutate, isPending, error } = useForgotPassword();
@@ -25,6 +29,8 @@ export default function useForgotPasswordBody() {
   };
 
   return {
+    t,
+    t2,
     register,
     handleSubmit,
     onSubmit,

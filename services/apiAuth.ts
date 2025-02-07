@@ -5,7 +5,7 @@ import {
   FormFieldsSignUp,
   VerifyUser,
 } from "@/types/auth";
-import { authInstace } from "./axios";
+import { authInstace, nonAuthInstace } from "./axios";
 
 export async function getCsrfCookie() {
   await authInstace.get(`/sanctum/csrf-cookie`);
@@ -53,6 +53,12 @@ export async function verifyUser(data: VerifyUser) {
 
 export async function getUser() {
   const response = await authInstace.get("/api/user");
+
+  return response.data;
+}
+
+export async function getGoogleVerifyUrl() {
+  const response = await nonAuthInstace.get("/api/auth/google");
 
   return response.data;
 }

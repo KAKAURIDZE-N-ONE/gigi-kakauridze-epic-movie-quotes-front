@@ -1,18 +1,17 @@
 import React from "react";
 import { Button } from "@/components/Button";
-import { useDispatch } from "react-redux";
 import { updateOpenedModal } from "@/store/slices/modalSlice";
 import { EMAIL_SENDER } from "@/config/emailSender";
 import useEmailResetPassword from "./useEmailResetPassword";
 import { MessageLayout } from "@/components/MessageLayout";
 
 const EmailResetPassword: React.FC = () => {
-  const { userEmail, dispatch, router } = useEmailResetPassword();
+  const { userEmail, dispatch, router, t } = useEmailResetPassword();
 
   return (
     <div>
       <MessageLayout
-        title="Check your email"
+        title={t("title")}
         actionBtn={
           <Button
             type="submit"
@@ -23,18 +22,18 @@ const EmailResetPassword: React.FC = () => {
             }}
             color="red"
           >
-            Go to my email
+            {t("button")}
           </Button>
         }
         action={{
-          text: "Skip, I'll confirm later",
+          text: t("close"),
           fn: () => {
             dispatch(updateOpenedModal(null));
             router.push("/");
           },
         }}
       >
-        We have sent a password recover instructions to your email
+        {t("description")}
       </MessageLayout>
     </div>
   );

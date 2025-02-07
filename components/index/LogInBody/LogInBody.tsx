@@ -3,9 +3,13 @@ import { FormLayout } from "../../FormLayout";
 import { Button } from "@/components/Button";
 import useLoginBody from "./useLoginBody";
 import { Input } from "@/components/Input";
+import Google from "@/svgs/Google";
 
 const LogInBody: React.FC = () => {
   const {
+    t,
+    t2,
+    navigateGoogleAuth,
     router,
     onSubmit,
     register,
@@ -17,9 +21,10 @@ const LogInBody: React.FC = () => {
 
   return (
     <FormLayout
-      title="Log in to your account"
-      subtitle="Welcome back! Please enter your details."
+      title={t("title")}
+      subtitle={t("sub_title")}
       onSubmit={handleSubmit(onSubmit)}
+      name="log-in"
       actionBtn={
         <Button
           type="submit"
@@ -28,35 +33,48 @@ const LogInBody: React.FC = () => {
           disabled={isPending}
           color="red"
         >
-          Sign in
+          {t("sign_in")}
+        </Button>
+      }
+      googleAuthBtn={
+        <Button
+          icon={<Google />}
+          type="button"
+          size="small"
+          clickFn={() => {
+            navigateGoogleAuth();
+          }}
+          disabled={isPending}
+        >
+          {t("sign_in_google")}
         </Button>
       }
       link={{
-        text: "Already have an account?",
-        name: "Sign Up",
+        text: t("link_text"),
+        name: t("link_name"),
         action: () => router.push("/sign-up"),
       }}
     >
       <Input
         error={errors.emailOrName?.message}
         serverError={serverErrors?.emailOrName?.at(0)}
-        placeholder="Enter your email or username"
+        placeholder={t("email_placeholder")}
         {...register("emailOrName", {
-          required: "Email or username is required",
+          required: t("email_label") + " " + t2("required"),
         })}
       >
-        Email or username
+        {t("email_label")}
       </Input>
       <Input
         type="password"
         error={errors.password?.message}
         serverError={serverErrors?.password?.at(0)}
-        placeholder="Password"
+        placeholder={t("password_placeholder")}
         {...register("password", {
-          required: "Password is required",
+          required: t("password_label") + " " + t2("required"),
         })}
       >
-        Password
+        {t("password_label")}
       </Input>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -66,13 +84,13 @@ const LogInBody: React.FC = () => {
             {...register("remember")}
             type="checkbox"
           />
-          <label htmlFor="remember">Remember me</label>
+          <label htmlFor="remember">{t("remember_me")}</label>
         </div>
         <p
           onClick={() => router.push("/forgot-password")}
           className="text-blue underline cursor-pointer"
         >
-          Forgot password
+          {t("forgot_password")}
         </p>
       </div>
     </FormLayout>

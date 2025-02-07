@@ -1,0 +1,8 @@
+{
+  "required": "is required",
+  "invalid_credentials": "invalid credentials",
+  "invalid_email": "Please enter a valid email address",
+  "min_length": "Minimum length must be ",
+  "max_length": "Maximum length must be ",
+  "password_not_match": "Passwords do not match"
+}

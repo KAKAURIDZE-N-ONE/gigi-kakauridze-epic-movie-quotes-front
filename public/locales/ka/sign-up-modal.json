@@ -1,0 +1,16 @@
+{
+  "title": "ანგარიშის შექმნა",
+  "sub_title": "დაიწყეთ თქვენი მოგზაურობა!",
+  "name_label": "სახელი",
+  "name_placeholder": "მინიმუმ 8 და მაქსიმუმ 15 პატარა ასო",
+  "email_label": "მეილი",
+  "email_placeholder": "შეიყვანეთ თქვენი მეილი",
+  "password_label": "პაროლი",
+  "password_placeholder": "მინიმუმ 8 და მაქსიმუმ 15 პატარა ასო",
+  "confirm_password_label": "დაადასტურეთ პაროლი",
+  "confirm_password_placeholder": "დაადასტურეთ პაროლი",
+  "sign_up_google": "შესვლა Google-ით",
+  "sign_up": "რეგისტრაცია",
+  "link_text": "გაქვთ უკვე ანგარიში?",
+  "link_name": "შესვლა"
+}

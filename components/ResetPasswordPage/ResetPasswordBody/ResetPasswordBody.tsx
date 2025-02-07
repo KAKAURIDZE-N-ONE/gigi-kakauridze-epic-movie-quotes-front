@@ -6,6 +6,8 @@ import { Input } from "@/components/Input";
 
 const ResetPasswordBody: React.FC = () => {
   const {
+    t,
+    t2,
     watch,
     register,
     isPending,
@@ -18,8 +20,8 @@ const ResetPasswordBody: React.FC = () => {
 
   return (
     <FormLayout
-      title="Create new password"
-      subtitle="Your new password must be different from previous used passwords"
+      title={t("title")}
+      subtitle={t("sub_title")}
       onSubmit={handleSubmit(onSubmit)}
       actionBtn={
         <Button
@@ -29,12 +31,12 @@ const ResetPasswordBody: React.FC = () => {
           disabled={isPending}
           color="red"
         >
-          Reset password
+          {t("reset_password")}
         </Button>
       }
       link={{
         type: "resetPassword",
-        text: "Back to log in",
+        text: t("link_text"),
         action: () => router.push("/log-in"),
       }}
     >
@@ -42,33 +44,33 @@ const ResetPasswordBody: React.FC = () => {
         type="password"
         error={errors.password?.message}
         serverError={serverErrors?.email?.at(0)}
-        placeholder="At least 8 & max.15 lower case characters"
+        placeholder={t("password_placeholder")}
         {...register("password", {
-          required: "Password is required",
+          required: t("password_label") + " " + t2("required"),
           minLength: {
             value: 8,
-            message: "Password must be at least 8 characters long",
+            message: t2("min_length") + "8.",
           },
           maxLength: {
             value: 15,
-            message: "Password must be at most 15 characters long.",
+            message: t2("max_length") + "15.",
           },
         })}
         autoComplete="new-password"
       >
-        Password
+        {t("password_label")}
       </Input>
       <Input
         type="password"
         error={errors.password_confirmation?.message}
         serverError={serverErrors?.password?.at(0)}
-        placeholder="Confirm password"
+        placeholder={t("confirm_password_placeholder")}
         {...register("password_confirmation", {
           validate: (value) =>
-            value === watch("password") || "Passwords do not match",
+            value === watch("password") || t2("password_not_match"),
         })}
       >
-        Confirm password
+        {t("confirm_password_label")}
       </Input>
     </FormLayout>
   );
