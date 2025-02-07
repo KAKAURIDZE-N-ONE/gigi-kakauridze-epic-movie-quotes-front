@@ -6,6 +6,7 @@ const Button: React.FC<Props> = ({
   additionalClasses,
   color,
   size,
+  icon,
   clickFn,
   type = "button",
   disabled = false,
@@ -34,7 +35,10 @@ const Button: React.FC<Props> = ({
     duration-300
   `}
     >
-      {children}
+      <span className="flex items-center justify-center gap-2">
+        {icon && <span className="-translate-y-[0.08rem]">{icon}</span>}
+        {children}
+      </span>
     </button>
   );
 };

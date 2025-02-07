@@ -2,14 +2,16 @@ import { Button } from "@/components/Button";
 import { MessageLayout } from "@/components/MessageLayout";
 import { useRouter } from "next/router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const PasswordResetSuccessMessage: React.FC = () => {
   const router = useRouter();
+  const { t } = useTranslation("password-reset-success");
 
   return (
     <div>
       <MessageLayout
-        title="Success"
+        title={t("title")}
         actionBtn={
           <Button
             type="submit"
@@ -17,11 +19,11 @@ const PasswordResetSuccessMessage: React.FC = () => {
             clickFn={() => router.push("/log-in")}
             color="red"
           >
-            Log in
+            {t("button")}
           </Button>
         }
       >
-        Your Password changed successfully
+        {t("description")}
       </MessageLayout>
     </div>
   );

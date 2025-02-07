@@ -1,0 +1,14 @@
+{
+  "title": "Log in to your account",
+  "sub_title": "Welcome back! Please enter your details.",
+  "email_label": "Email or username",
+  "email_placeholder": "Enter your email or username",
+  "password_label": "Password",
+  "password_placeholder": "Password",
+  "remember_me": "Remember me",
+  "forgot_password": "Forgot password",
+  "sign_in": "Sign in",
+  "sign_in_google": "Sign in with Google",
+  "link_text": "Don't have an account yet?",
+  "link_name": "Sign Up"
+}

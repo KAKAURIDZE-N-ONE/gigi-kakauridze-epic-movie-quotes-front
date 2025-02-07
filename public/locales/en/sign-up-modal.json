@@ -1,0 +1,16 @@
+{
+  "title": "Create an account",
+  "sub_title": "Start your journey!",
+  "name_label": "Name",
+  "name_placeholder": "At least 8 & max.15 lower case characters",
+  "email_label": "Email",
+  "email_placeholder": "Enter your email",
+  "password_label": "Password",
+  "password_placeholder": "At least 8 & max.15 lower case characters",
+  "confirm_password_label": "Confirm password",
+  "confirm_password_placeholder": "Confirm password",
+  "sign_up_google": "Sign in with Google",
+  "sign_up": "Sign in",
+  "link_text": "Already have an account?",
+  "link_name": "Log in"
+}

@@ -5,8 +5,11 @@ import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";
 import useSignUp from "./useSignUp";
 import { getCsrfCookie } from "@/services/apiAuth";
+import { useTranslation } from "react-i18next";
 
 export default function useSignUpBody() {
+  const { t } = useTranslation("sign-up-modal");
+  const { t: t2 } = useTranslation("errors");
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -27,6 +30,8 @@ export default function useSignUpBody() {
   };
 
   return {
+    t,
+    t2,
     watch,
     router,
     onSubmit,

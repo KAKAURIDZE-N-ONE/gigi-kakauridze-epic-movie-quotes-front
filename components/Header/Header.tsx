@@ -59,7 +59,7 @@ const Header: React.FC = () => {
                 size="smaller"
                 additionalClasses="text-white border-white"
               >
-                Log out
+                {t("log_out")}
               </Button>
             </div>
             <div className="hidden lg:inline-block">
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
                 size="small"
                 additionalClasses="text-white border-white"
               >
-                Log out
+                {t("log_out")}
               </Button>
             </div>
           </>

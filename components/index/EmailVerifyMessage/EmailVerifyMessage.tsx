@@ -4,14 +4,14 @@ import { useAppSelector } from "@/store/store";
 import { selectCurrentUserNotficationEmail } from "@/store/slices/modalSlice";
 import { EMAIL_SENDER } from "@/config/emailSender";
 import { MessageLayout } from "@/components/MessageLayout";
+import useEmailVerifyMessage from "./useEmailVerifyMessage";
 
 const EmailVerifyMessage: React.FC = () => {
-  const userEmail = useAppSelector(selectCurrentUserNotficationEmail);
-
+  const { t, userEmail } = useEmailVerifyMessage();
   return (
     <div>
       <MessageLayout
-        title="Thank you!"
+        title={t("title")}
         actionBtn={
           <Button
             type="submit"
@@ -22,12 +22,11 @@ const EmailVerifyMessage: React.FC = () => {
             }}
             color="red"
           >
-            Go to my email
+            {t("button")}
           </Button>
         }
       >
-        Please check your email and follow the instructions to activate your
-        account.
+        {t("description")}
       </MessageLayout>
     </div>
   );
