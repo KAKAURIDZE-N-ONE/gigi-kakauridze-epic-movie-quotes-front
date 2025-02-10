@@ -12,5 +12,6 @@
   "sign_up_google": "Sign in with Google",
   "sign_up": "Sign in",
   "link_text": "Already have an account?",
-  "link_name": "Log in"
+  "link_name": "Log in",
+  "name_label2": "Enter new username"
 }

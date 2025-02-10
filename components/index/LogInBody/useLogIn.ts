@@ -16,7 +16,7 @@ export default function useLogIn() {
     onSuccess: () => {
       queryClient.removeQueries({ queryKey: [USER] });
       dispatch(updateOpenedModal(null));
-      router.push("/");
+      router.push("/news-feed");
     },
     onError: (error) => {
       console.log(error.message);

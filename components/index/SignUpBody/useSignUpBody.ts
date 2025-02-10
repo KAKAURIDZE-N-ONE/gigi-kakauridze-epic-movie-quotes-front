@@ -31,7 +31,7 @@ export default function useSignUpBody() {
 
   async function navigateGoogleAuth() {
     const data = await getGoogleVerifyUrl();
-    window.location.href = data?.url;
+    window.location.href = data.url;
   }
 
   return {

@@ -1,4 +1,5 @@
 export type ModalState = {
+  burgerMenuIsOpen: boolean;
   openedModal:
     | "signUp"
     | "logIn"
@@ -8,6 +9,8 @@ export type ModalState = {
     | "verifySuccess"
     | "resetPasswordSuccess"
     | "resetPasswordLink"
+    | "makeChangesUsername"
+    | "makeChangesPassword"
     | null;
 
   currentUserNotficationEmail: string;

@@ -6,12 +6,22 @@ import { Props } from "./types";
 
 const Input = React.forwardRef<HTMLInputElement, Props>(
   (
-    { children, autoComplete, error, serverError, type, placeholder, ...rest },
+    {
+      children,
+      autoComplete,
+      error,
+      serverError,
+      type,
+      placeholder,
+      size,
+      value,
+      ...rest
+    },
     ref
   ) => {
     const [passwordIsOpen, setPasswordIsOpen] = useState<boolean>(false);
-
     const hasError = error || serverError;
+
     return (
       <div className="flex flex-col gap-[0.375rem]">
         <label htmlFor={children} className="text-white">
@@ -20,6 +30,8 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
         <div className="w-full relative">
           <input
             ref={ref}
+            {...(value ? { value } : {})}
+            disabled={value ? true : false}
             autoComplete={autoComplete || ""}
             type={
               type
@@ -30,14 +42,16 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
                   : type
                 : "text"
             }
-            className="placeholder:text-gray h-[2.375rem] rounded-[0.25rem]
+            className={`${
+              size === "big" ? "h-[3.0625rem]" : "h-[2.375rem]"
+            } placeholder:text-gray rounded-[0.25rem]
           border border-white3 pl-3 pr-[4.2rem]
-          focus:outline-none w-full bg-white2 text-black"
+          focus:outline-none w-full bg-white2 text-black`}
             id={children}
             placeholder={placeholder}
             {...rest}
           />
-          {type === "password" && (
+          {type === "password" && !value && (
             <div
               className="absolute right-4 top-1/2
             -translate-y-1/2 cursor-pointer"
@@ -72,5 +86,5 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
   }
 );
 
-Input.displayName = "Input"; // Add a displayName for better debugging in React DevTools
+Input.displayName = "Input";
 export default Input;

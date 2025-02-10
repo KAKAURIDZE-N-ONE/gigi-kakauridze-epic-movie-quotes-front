@@ -58,7 +58,15 @@ export async function getUser() {
 }
 
 export async function getGoogleVerifyUrl() {
-  const response = await nonAuthInstace.get("/api/auth/google");
+  const response = await authInstace.get("/api/auth/google");
+
+  return response.data;
+}
+
+export async function googleVerify(data: Record<string, string>) {
+  const response = await authInstace.get("/api/auth/google/callback", {
+    params: data,
+  });
 
   return response.data;
 }

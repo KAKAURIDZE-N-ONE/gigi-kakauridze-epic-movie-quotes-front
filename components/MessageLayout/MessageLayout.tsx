@@ -19,6 +19,7 @@ const MessageLayout: React.FC<Props> = ({
     >
       <div
         className="bg-[linear-gradient(to_bottom_right,_#191725_5%,_#222030_100%)]
+        lg:bg-[linear-gradient(to_bottom_right,_#191725_0%,_#222030_0%)]
        rounded-[0.625rem]  bg-darkBlue px-10 py-16 lg:px-0 lg:py-0 lg:bg-transparent max-w-[22.5rem] lg:w-[22.5rem] flex flex-col gap-6 text-center relative"
       >
         <div
