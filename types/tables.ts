@@ -7,4 +7,6 @@ export type UserTable = {
   remember_token: string | null;
   created_at: string | null;
   updated_at: string | null;
+  google_id: string;
+  avatar: string;
 };

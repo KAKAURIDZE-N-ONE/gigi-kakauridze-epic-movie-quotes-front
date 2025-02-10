@@ -1,9 +1,12 @@
 import { Button } from "@/components/Button";
+import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import useHero from "./useHero";
 
 const Hero: React.FC = () => {
-  const { t } = useTranslation("landing-page");
+  const { t, getStarted } = useHero();
+
   return (
     <div
       className="flex  h-[80vh] items-center justify-center 
@@ -17,12 +20,12 @@ const Hero: React.FC = () => {
           {t("hero_header")}
         </h1>
         <div className="hidden lg:inline-block">
-          <Button size="medium" color="red">
+          <Button clickFn={getStarted} size="medium" color="red">
             {t("get_started")}
           </Button>
         </div>
         <div className="lg:hidden">
-          <Button size="normal" color="red">
+          <Button clickFn={getStarted} size="normal" color="red">
             {t("get_started")}
           </Button>
         </div>

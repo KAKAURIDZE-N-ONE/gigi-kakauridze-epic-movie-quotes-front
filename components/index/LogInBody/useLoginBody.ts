@@ -30,7 +30,7 @@ export default function useLoginBody() {
 
   async function navigateGoogleAuth() {
     const data = await getGoogleVerifyUrl();
-    window.location.href = data?.url;
+    window.location.href = data.url;
   }
 
   const invalidCredentials = apiError?.response?.data?.message;

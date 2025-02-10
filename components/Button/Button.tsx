@@ -10,6 +10,7 @@ const Button: React.FC<Props> = ({
   clickFn,
   type = "button",
   disabled = false,
+  form,
 }) => {
   let addColors;
   if (color === "red")
@@ -23,6 +24,7 @@ const Button: React.FC<Props> = ({
 
   return (
     <button
+      {...(form ? { form } : {})}
       disabled={disabled}
       type={type}
       onClick={clickFn}

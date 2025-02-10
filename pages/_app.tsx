@@ -6,6 +6,7 @@ import { ni18nConfig } from "@/next-i18next.config";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,7 @@ const App = function ({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
+        <ToastContainer />
       </QueryClientProvider>
     </Provider>
   );

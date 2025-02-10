@@ -16,3 +16,12 @@ export const nonAuthInstace = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+export const fileInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+  withCredentials: true,
+  withXSRFToken: true,
+});

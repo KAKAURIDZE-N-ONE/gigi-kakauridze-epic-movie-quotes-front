@@ -9,4 +9,5 @@ export type Props = {
   type?: "button" | "submit";
   disabled?: boolean;
   icon?: ReactNode;
+  form?: "form";
 };

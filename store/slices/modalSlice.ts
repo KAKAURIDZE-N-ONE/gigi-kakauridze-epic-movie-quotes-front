@@ -4,6 +4,7 @@ import { RootState } from "@/store/store";
 
 const initialState: ModalState = {
   openedModal: null,
+  burgerMenuIsOpen: false,
   currentUserNotficationEmail: "",
 };
 
@@ -11,6 +12,9 @@ const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
+    updateBurgerMenuIsOpen(state, action) {
+      state.burgerMenuIsOpen = action.payload;
+    },
     updateOpenedModal: (
       state,
       action: PayloadAction<ModalState["openedModal"]>
@@ -26,8 +30,13 @@ const modalSlice = createSlice({
 export const selectOpenedModal = (state: RootState) => state.modal.openedModal;
 export const selectCurrentUserNotficationEmail = (state: RootState) =>
   state.modal.currentUserNotficationEmail;
+export const selectBurgerMenuIsOpen = (state: RootState) =>
+  state.modal.burgerMenuIsOpen;
 
-export const { updateOpenedModal, updateCurrentUserNotficationEmail } =
-  modalSlice.actions;
+export const {
+  updateOpenedModal,
+  updateCurrentUserNotficationEmail,
+  updateBurgerMenuIsOpen,
+} = modalSlice.actions;
 
 export default modalSlice.reducer;
