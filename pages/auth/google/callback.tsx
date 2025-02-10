@@ -1,20 +1,21 @@
 import { googleVerify } from "@/services/apiAuth";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
 const GoogleAuthCallBack: React.FC = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const verifyGoogleAuth = async () => {
       if (!router.isReady) return;
 
       try {
-        const queryParams = router.query;
         const data: Record<string, string> = {};
 
-        Object.keys(queryParams).forEach((key) => {
-          data[key] = String(queryParams[key]);
+        searchParams.forEach((value, key) => {
+          data[key] = decodeURIComponent(value);
         });
 
         await googleVerify(data);
@@ -25,7 +26,7 @@ const GoogleAuthCallBack: React.FC = () => {
     };
 
     verifyGoogleAuth();
-  }, [router.isReady, router.query]);
+  }, [router.isReady, searchParams]);
 
   return <div>Processing Google login...</div>;
 };
