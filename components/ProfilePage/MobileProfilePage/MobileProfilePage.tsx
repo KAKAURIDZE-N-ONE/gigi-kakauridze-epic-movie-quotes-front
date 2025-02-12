@@ -59,7 +59,6 @@ const MobileProfilePage: React.FC = () => {
             {activeEdit === "username" && openedModal === null && (
               <EditMobileLayout
                 handleConfirm={handleConfirmUsername}
-                setFormData={setFormDataUsername}
                 setActiveEdit={setActiveEdit}
               >
                 <EditUsernameBody setFormDataUsername={setFormDataUsername} />
@@ -69,7 +68,6 @@ const MobileProfilePage: React.FC = () => {
               <EditMobileLayout
                 activeEdit={activeEdit}
                 handleConfirm={handleConfirmPassword}
-                setFormData={setFormDataPassword}
                 setActiveEdit={setActiveEdit}
               >
                 <EditPasswordBody setFormDataPassword={setFormDataPassword} />

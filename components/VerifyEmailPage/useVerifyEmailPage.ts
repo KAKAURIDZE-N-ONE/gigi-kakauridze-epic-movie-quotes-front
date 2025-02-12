@@ -6,7 +6,7 @@ export default function useVerifyEmailPage() {
   const router = useRouter();
   const { userId, token, expires, signature } = router.query;
 
-  const { mutate, isPending, error } = useVerifyEmail();
+  const { mutate, isPending } = useVerifyEmail();
 
   useEffect(() => {
     function verifyEmail() {
@@ -20,7 +20,7 @@ export default function useVerifyEmailPage() {
     if (userId && token && expires && signature) {
       verifyEmail();
     }
-  }, [userId, token, expires, signature]);
+  }, [userId, token, expires, signature, mutate]);
 
-  return { isPending, error };
+  return { isPending };
 }

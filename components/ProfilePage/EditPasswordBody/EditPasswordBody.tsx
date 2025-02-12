@@ -2,7 +2,6 @@ import React from "react";
 import useEditPasswordBody from "./useEditPasswordBody";
 import { Props } from "./types";
 import { Input } from "@/components/Input";
-import { Button } from "@/components/Button";
 
 const EditPasswordBody: React.FC<Props> = ({ setFormDataPassword }) => {
   const { register, handleSubmit, errors, onSubmit, t, t2, watch } =

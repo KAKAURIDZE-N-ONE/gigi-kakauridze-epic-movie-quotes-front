@@ -1,5 +1,5 @@
-import { UserTable } from "@/types/tables";
+import { UserResponse } from "@/types/respones";
 
 export type Props = {
-  user: UserTable;
+  user: UserResponse;
 };

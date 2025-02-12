@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import { Props } from "./props";
 import useModal from "./useModal";
 import ReactDOM from "react-dom";
@@ -13,7 +11,7 @@ const Modal: React.FC<Props> = ({ children, turnOfFn }) => {
 
   return ReactDOM.createPortal(
     <div
-      onClick={turnOfFn}
+      onClick={turnOfFn ? turnOfFn : () => {}}
       className="fixed left-0 top-0 w-full h-full z-[60] blurAnime "
     >
       <div className="fixed inset-0  backdrop-blur-[0.305rem] "></div>

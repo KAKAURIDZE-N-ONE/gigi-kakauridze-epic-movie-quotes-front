@@ -7,5 +7,5 @@ export default function useForgotPasswordPage() {
 
   useLayoutEffect(() => {
     dispatch(updateOpenedModal("forgotPassword"));
-  }, []);
+  }, [dispatch]);
 }

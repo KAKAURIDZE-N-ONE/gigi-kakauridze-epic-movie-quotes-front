@@ -1,17 +1,16 @@
-import { changePassword, changeUsername } from "@/services/apiUser";
 import {
   selectOpenedModal,
   updateOpenedModal,
 } from "@/store/slices/modalSlice";
 import { useAppSelector } from "@/store/store";
 import { FormValueEditUserName } from "@/types/user";
-import { showErrorToast, showSuccessToast } from "@/utils/toast";
-import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { FormFieldResetPassword } from "@/types/auth";
 import { getCsrfCookie } from "@/services/apiAuth";
+import useChangeUsername from "../hooks/useChangeUsername";
+import useChangePassword from "../hooks/useChangePassword";
 
 export default function useMobileProfilePage() {
   const [activeEdit, setActiveEdit] = useState<"username" | "password" | null>(
@@ -26,27 +25,8 @@ export default function useMobileProfilePage() {
 
   const dispatch = useDispatch();
 
-  const { mutate: mutateUsername } = useMutation({
-    mutationFn: changeUsername,
-    onSuccess: (data) => {
-      setActiveEdit(null);
-      showSuccessToast(data.status);
-    },
-    onError: (error) => {
-      showErrorToast(error.message);
-    },
-  });
-
-  const { mutate: mutatePassword } = useMutation({
-    mutationFn: changePassword,
-    onSuccess: (data) => {
-      setActiveEdit(null);
-      showSuccessToast(data.status);
-    },
-    onError: (error) => {
-      showErrorToast(error.message);
-    },
-  });
+  const { mutate: mutateUsername } = useChangeUsername({ setActiveEdit });
+  const { mutate: mutatePassword } = useChangePassword({ setActiveEdit });
 
   function closeModal() {
     dispatch(updateOpenedModal(null));

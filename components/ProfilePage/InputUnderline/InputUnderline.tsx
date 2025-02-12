@@ -2,7 +2,6 @@ import React from "react";
 import { Props } from "./types";
 
 const InputUnderline: React.FC<Props> = ({
-  type,
   value,
   editable,
   children,

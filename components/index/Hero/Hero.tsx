@@ -1,7 +1,5 @@
 import { Button } from "@/components/Button";
-import { useRouter } from "next/router";
 import React from "react";
-import { useTranslation } from "react-i18next";
 import useHero from "./useHero";
 
 const Hero: React.FC = () => {

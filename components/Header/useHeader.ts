@@ -17,11 +17,17 @@ export default function useHeader() {
   const { t } = useTranslation("landing-page");
   const { isAuthenticated } = useAuthentication();
 
-  const { logOut } = useLogOut();
+  const { mutate: logOut } = useLogOut();
 
   const burgerMenuIsOpen = useAppSelector(selectBurgerMenuIsOpen);
 
-  const isHomePage = router.pathname === "/";
+  const isColored =
+    router.pathname === "/" ||
+    router.pathname === "/log-in" ||
+    router.pathname === "/sign-up" ||
+    router.pathname === "/forgot-password" ||
+    router.pathname === "/reset-password";
+
   const isNewsFeedPage = router.pathname === "/news-feed";
 
   function toggleBurgerMenuIsOpen() {
@@ -29,7 +35,7 @@ export default function useHeader() {
   }
 
   return {
-    isHomePage,
+    isColored,
     isNewsFeedPage,
     t,
     mounted,

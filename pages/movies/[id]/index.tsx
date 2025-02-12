@@ -1,18 +1,18 @@
 import { DesktopInnerLayout } from "@/components/DesktopInnerLayout";
 import { Layout } from "@/components/Layout";
+import { MovieDescription } from "@/components/MovieDetailsPage";
 import React from "react";
 
-const Movies: React.FC = () => {
+const index: React.FC = () => {
   return (
     <Layout>
-      <div className="hidden lg:block">
+      <div className="hidden lg:inline-block">
         <DesktopInnerLayout>
-          <div className="text-white">Movies</div>
+          <MovieDescription />
         </DesktopInnerLayout>
       </div>
-      <div className="lg:hidden block text-white">Movies</div>
     </Layout>
   );
 };
 
-export default Movies;
+export default index;

@@ -10,7 +10,6 @@ import {
   ForgotPasswordBody,
   useIndex,
 } from "@/components/index";
-import defaultProfileImage from "@/public/images/defaultProfileImage.png";
 import { Layout } from "@/components/Layout";
 import { Modal } from "@/components/Modal";
 import { PasswordResetSuccessMessage } from "@/components/ResetPasswordPage";

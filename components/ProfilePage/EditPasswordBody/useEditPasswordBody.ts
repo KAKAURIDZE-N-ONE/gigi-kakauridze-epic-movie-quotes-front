@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { HookProps } from "./types";
 import { updateOpenedModal } from "@/store/slices/modalSlice";
 import { useTranslation } from "react-i18next";
-import { ApiError } from "next/dist/server/api-utils";
 import { useLayoutEffect } from "react";
 
 export default function useEditPasswordBody({

@@ -1,7 +1,5 @@
 import React from "react";
 import { Button } from "@/components/Button";
-import { useAppSelector } from "@/store/store";
-import { selectCurrentUserNotficationEmail } from "@/store/slices/modalSlice";
 import { EMAIL_SENDER } from "@/config/emailSender";
 import { MessageLayout } from "@/components/MessageLayout";
 import useEmailVerifyMessage from "./useEmailVerifyMessage";

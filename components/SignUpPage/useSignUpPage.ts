@@ -7,5 +7,5 @@ export default function useSignUpPage() {
 
   useLayoutEffect(() => {
     dispatch(updateOpenedModal("signUp"));
-  }, []);
+  }, [dispatch]);
 }

@@ -1,20 +1,15 @@
-import React from "react";
 import useProfileImage from "./useProfileImage";
 import defaultProfileImage from "@/public/images/defaultProfileImage.png";
-import Confirm from "@/svgs/Confirm";
-import Close from "@/svgs/Close";
 
 const ProfileImage: React.FC = () => {
   const {
     user,
     preview,
     handleImageChange,
-    file,
-    discardUpload,
-    handleUploadImage,
-    isPending,
+    imageUploadIsPending,
+    userIsPending,
   } = useProfileImage();
-  console.log(file);
+
   return (
     <div className="flex flex-col gap-2 items-center pt-8">
       <label className="rounded-full relative" htmlFor="profileImage">
@@ -27,9 +22,12 @@ const ProfileImage: React.FC = () => {
                 ? `url(${user?.avatar})`
                 : `url(${defaultProfileImage.src})`,
             }}
-            className="bg-center bg-no-repeat bg-cover rounded-full w-[11.75rem] h-[11.75rem]"
+            className={`
+              ${userIsPending ? "opacity-0" : ""}
+              bg-center bg-no-repeat bg-cover rounded-full w-[11.75rem] h-[11.75rem] `}
           ></div>
-          {isPending && (
+
+          {(imageUploadIsPending || userIsPending) && (
             <>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-black rounded-full opacity-50"></div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -38,24 +36,6 @@ const ProfileImage: React.FC = () => {
             </>
           )}
         </div>
-        {file !== null && (
-          <>
-            <button
-              onClick={handleUploadImage}
-              className="absolute top-0 -right-8
-          text-white"
-            >
-              <Confirm />
-            </button>
-            <button
-              onClick={discardUpload}
-              className="absolute top-0 -left-8
-          text-white opacity-90"
-            >
-              <Close />
-            </button>
-          </>
-        )}
       </label>
       <input
         onChange={handleImageChange}

@@ -64,9 +64,18 @@ export async function getGoogleVerifyUrl() {
 }
 
 export async function googleVerify(data: Record<string, string>) {
-  const response = await authInstace.get("/api/auth/google/callback", {
-    params: data,
-  });
+  try {
+    const response = await authInstace.get("/api/auth/google/callback", {
+      params: data,
+    });
 
-  return response.data;
+    return response.data;
+  } catch (error: any) {
+    if (error.response?.status === 403) {
+      return {
+        error: "User already registered. Please log in with your password.",
+      };
+    }
+    throw error;
+  }
 }
