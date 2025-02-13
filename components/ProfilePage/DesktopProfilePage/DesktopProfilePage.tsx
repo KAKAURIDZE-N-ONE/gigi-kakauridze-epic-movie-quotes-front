@@ -17,8 +17,8 @@ const DesktopProfilePage: React.FC = () => {
     errorsPassword,
     handleSubmitPassword,
     registerPassword,
-    watchPassword,
-    watchUsername,
+    passwordValue,
+    usernameValue,
     user,
     setActiveEdit,
     activeEdit,
@@ -74,18 +74,18 @@ const DesktopProfilePage: React.FC = () => {
                         <li className="flex items-center gap-2">
                           <div
                             className={`w-1 h-1 rounded-full ${
-                              watchUsername("name")?.length <= 0
+                              usernameValue?.length <= 0
                                 ? "bg-gray2"
-                                : watchUsername("name")?.length < 3
+                                : usernameValue?.length < 3
                                 ? "bg-red"
                                 : "bg-green"
                             }`}
                           ></div>
                           <p
                             className={`${
-                              watchUsername("name")?.length <= 0
+                              usernameValue?.length <= 0
                                 ? "text-gray2"
-                                : watchUsername("name")?.length < 3
+                                : usernameValue?.length < 3
                                 ? "text-red"
                                 : "text-white"
                             } text-sm text-gray2`}
@@ -96,18 +96,18 @@ const DesktopProfilePage: React.FC = () => {
                         <li className="flex items-center gap-2">
                           <div
                             className={`w-1 h-1 rounded-full ${
-                              watchUsername("name")?.length <= 0
+                              usernameValue?.length <= 0
                                 ? "bg-gray2"
-                                : watchUsername("name")?.length <= 15
+                                : usernameValue?.length <= 15
                                 ? "bg-green"
                                 : "bg-red"
                             } `}
                           ></div>
                           <p
                             className={`text-sm  ${
-                              watchUsername("name")?.length <= 0
+                              usernameValue?.length <= 0
                                 ? "text-gray2"
-                                : watchUsername("name")?.length <= 15
+                                : usernameValue?.length <= 15
                                 ? "text-white"
                                 : "text-red"
                             }`}
@@ -118,20 +118,18 @@ const DesktopProfilePage: React.FC = () => {
                         <li className="flex items-center gap-2">
                           <div
                             className={`w-1 h-1 rounded-full ${
-                              watchUsername("name")?.length <= 0
+                              usernameValue?.length <= 0
                                 ? "bg-gray2"
-                                : watchUsername("name") ===
-                                  watchUsername("name")?.toLowerCase()
+                                : usernameValue === usernameValue?.toLowerCase()
                                 ? "bg-green"
                                 : "bg-red"
                             } `}
                           ></div>
                           <p
                             className={`text-sm  ${
-                              watchUsername("name")?.length === 0
+                              usernameValue?.length === 0
                                 ? "text-gray2"
-                                : watchUsername("name") ===
-                                  watchUsername("name")?.toLowerCase()
+                                : usernameValue === usernameValue?.toLowerCase()
                                 ? "text-white"
                                 : "text-red"
                             }`}
@@ -210,18 +208,18 @@ const DesktopProfilePage: React.FC = () => {
                           <li className="flex items-center gap-2">
                             <div
                               className={`w-1 h-1 rounded-full ${
-                                watchPassword("password")?.length <= 0
+                                passwordValue?.length <= 0
                                   ? "bg-gray2"
-                                  : watchPassword("password")?.length < 8
+                                  : passwordValue?.length < 8
                                   ? "bg-red"
                                   : "bg-green"
                               }`}
                             ></div>
                             <p
                               className={`${
-                                watchPassword("password")?.length <= 0
+                                passwordValue?.length <= 0
                                   ? "text-gray2"
-                                  : watchPassword("password")?.length < 8
+                                  : passwordValue?.length < 8
                                   ? "text-red"
                                   : "text-white"
                               } text-sm text-gray2`}
@@ -232,18 +230,18 @@ const DesktopProfilePage: React.FC = () => {
                           <li className="flex items-center gap-2">
                             <div
                               className={`w-1 h-1 rounded-full ${
-                                watchPassword("password")?.length <= 0
+                                passwordValue?.length <= 0
                                   ? "bg-gray2"
-                                  : watchPassword("password")?.length <= 15
+                                  : passwordValue?.length <= 15
                                   ? "bg-green"
                                   : "bg-red"
                               } `}
                             ></div>
                             <p
                               className={`text-sm  ${
-                                watchPassword("password")?.length <= 0
+                                passwordValue?.length <= 0
                                   ? "text-gray2"
-                                  : watchPassword("password")?.length <= 15
+                                  : passwordValue?.length <= 15
                                   ? "text-white"
                                   : "text-red"
                               }`}
@@ -287,7 +285,7 @@ const DesktopProfilePage: React.FC = () => {
                           error={errorsPassword?.password_confirmation?.message}
                           {...registerPassword("password_confirmation", {
                             validate: (value) =>
-                              value === watchPassword("password") ||
+                              value === passwordValue ||
                               t3("password_not_match"),
                           })}
                         >

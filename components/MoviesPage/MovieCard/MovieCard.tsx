@@ -19,7 +19,7 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
       ></Link>
       <div>
         <h2 className="font-medium text-2xl cursor-pointer">
-          {JSON.parse(movie.name)[i18n.language]} ({movie.year})
+          {movie.name[i18n.language]} ({movie.year})
         </h2>
       </div>
       <div className="flex items-center gap-3">

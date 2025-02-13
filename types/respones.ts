@@ -8,12 +8,12 @@ export type UserResponse = {
   created_at: string | null;
   updated_at: string | null;
   google_id: string;
-  avatar: string;
+  avatar: string | null;
 };
 
 export type MoviesResponse = {
   id: number;
-  name: string;
+  name: Record<string, string>;
   year: number;
   quotes_count: number;
   image: string;
@@ -26,7 +26,7 @@ type Category = {
 
 export type MovieResponse = {
   id: number;
-  name: string;
+  name: Record<string, string>;
   year: number;
   image: string;
   categories: Category[];

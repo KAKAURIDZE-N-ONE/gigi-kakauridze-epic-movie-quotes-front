@@ -14,7 +14,7 @@ const MovieDescription: React.FC = () => {
           <div className="flex flex-col">
             <div className="flex items-center justify-between w-full ">
               <h2 className="text-skin text-2xl font-medium">
-                {JSON.parse(movie?.name)[language]} ({movie?.year})
+                {movie?.name[language]} ({movie?.year})
               </h2>
               <div className="flex items-center justify-between bg-normalBlue px-6 py-2 rounded-[0.625rem] h-[2.5rem] w-36">
                 <Pencil />

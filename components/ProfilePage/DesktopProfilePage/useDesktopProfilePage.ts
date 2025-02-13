@@ -1,7 +1,7 @@
 import { useAuthentication } from "@/hooks/useAuthentication";
 import { FormValueEditUserName } from "@/types/user";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import useChangeUsername from "../hooks/useChangeUsername";
 import { getCsrfCookie } from "@/services/apiAuth";
@@ -27,8 +27,13 @@ export default function useDesktopProfilePage() {
     handleSubmit: handleSubmitUsername,
     setFocus: setFocusUsername,
     reset: resetUsername,
-    watch: watchUsername,
+    control: controlUsername,
   } = useForm<FormValueEditUserName>();
+
+  const usernameValue = useWatch({
+    control: controlUsername,
+    name: "name",
+  });
 
   const {
     register: registerPassword,
@@ -36,8 +41,13 @@ export default function useDesktopProfilePage() {
     formState: { errors: errorsPassword },
     setFocus: setFocusPassword,
     reset: resetPassword,
-    watch: watchPassword,
+    control: controlPassword,
   } = useForm<FormFieldResetPassword>();
+
+  const passwordValue = useWatch({
+    control: controlPassword,
+    name: "password",
+  });
 
   useEffect(() => {
     if (activeEdit === "username") {
@@ -74,7 +84,7 @@ export default function useDesktopProfilePage() {
     errorsPassword,
     handleSubmitPassword,
     registerPassword,
-    watchPassword,
-    watchUsername,
+    passwordValue,
+    usernameValue,
   };
 }
