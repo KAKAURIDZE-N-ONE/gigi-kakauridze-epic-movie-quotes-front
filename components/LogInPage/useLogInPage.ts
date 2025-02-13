@@ -7,5 +7,5 @@ export default function useLogInPage() {
 
   useLayoutEffect(() => {
     dispatch(updateOpenedModal("logIn"));
-  }, []);
+  }, [dispatch]);
 }

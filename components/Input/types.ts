@@ -1,6 +1,8 @@
+import { RegisterOptions } from "react-hook-form";
+
 export type Props = {
   children: string;
-  register?: any;
+  register?: (options?: RegisterOptions) => void;
   type?: "password" | "email";
   error?: string | undefined;
   serverError?: string | undefined;

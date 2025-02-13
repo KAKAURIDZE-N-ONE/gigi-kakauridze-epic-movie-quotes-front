@@ -1,5 +1,4 @@
 import { FormFieldResetPassword } from "@/types/auth";
-import { FormValueEditUserName } from "@/types/user";
 import { Dispatch, SetStateAction } from "react";
 
 export type Props = {

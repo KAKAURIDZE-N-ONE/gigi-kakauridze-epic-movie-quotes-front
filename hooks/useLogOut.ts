@@ -7,7 +7,7 @@ export default function useLogOut() {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const { mutate } = useMutation({
+  return useMutation({
     mutationFn: logOut,
     onSuccess: () => {
       queryClient.removeQueries({ queryKey: [USER] });
@@ -17,6 +17,4 @@ export default function useLogOut() {
       console.error("Error logging out:", error);
     },
   });
-
-  return { logOut: mutate };
 }

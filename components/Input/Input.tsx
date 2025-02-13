@@ -30,7 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
         <div className="w-full relative">
           <input
             ref={ref}
-            {...(value ? { value } : {})}
+            {...(value ? { defaultValue: value } : {})}
             disabled={value ? true : false}
             autoComplete={autoComplete || ""}
             type={

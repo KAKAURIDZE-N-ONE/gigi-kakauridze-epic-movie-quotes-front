@@ -2,6 +2,7 @@ import { googleVerify } from "@/services/apiAuth";
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
+import { showErrorToast, showSuccessToast } from "@/utils/toast";
 
 const GoogleAuthCallBack: React.FC = () => {
   const router = useRouter();
@@ -18,17 +19,26 @@ const GoogleAuthCallBack: React.FC = () => {
           data[key] = decodeURIComponent(value);
         });
 
-        await googleVerify(data);
+        const response = await googleVerify(data);
+        if (response?.error) {
+          router.push("/log-in");
+          showErrorToast(response?.error);
+        }
         router.push("/news-feed");
+        showSuccessToast(response?.status);
       } catch (error) {
-        console.error("Error:", error);
+        console.error(error);
       }
     };
 
     verifyGoogleAuth();
-  }, [router.isReady, searchParams]);
+  }, [router, searchParams]);
 
-  return <div>Processing Google login...</div>;
+  return (
+    <div className="w-full h-[100vh] flex items-center justify-center">
+      <div className="loader"></div>
+    </div>
+  );
 };
 
 export default GoogleAuthCallBack;

@@ -1,6 +1,6 @@
 import { USER } from "@/config/queryKeys";
 import { getUser } from "@/services/apiAuth";
-import { UserTable } from "@/types/tables";
+import { UserResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 
 export const useAuthentication = () => {
@@ -8,7 +8,7 @@ export const useAuthentication = () => {
     data: user,
     isPending,
     error,
-  } = useQuery<UserTable>({
+  } = useQuery<UserResponse>({
     queryKey: [USER],
     queryFn: getUser,
   });

@@ -7,5 +7,5 @@ export default function useResetPasswordPage() {
 
   useLayoutEffect(() => {
     dispatch(updateOpenedModal("resetPassword"));
-  }, []);
+  }, [dispatch]);
 }

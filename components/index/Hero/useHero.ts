@@ -8,7 +8,11 @@ export default function useHero() {
   const { isAuthenticated } = useAuthentication();
 
   function getStarted() {
-    isAuthenticated ? router.push("/news-feed") : router.push("/log-in");
+    if (isAuthenticated) {
+      router.push("/news-feed");
+    } else {
+      router.push("/log-in");
+    }
   }
 
   return { t, getStarted };

@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "../Button";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import useHeader from "./useHeader";
-import Link from "next/link";
 import Bell from "@/svgs/Bell";
 import { createPortal } from "react-dom";
 import { BurgerMenu } from "../BurgerMenu";
@@ -18,7 +17,7 @@ const Header: React.FC = () => {
     toggleBurgerMenuIsOpen,
     burgerMenuIsOpen,
     mounted,
-    isHomePage,
+    isColored,
     isNewsFeedPage,
   } = useHeader();
 
@@ -33,13 +32,13 @@ const Header: React.FC = () => {
         />,
         document.body
       )}
-      {!isHomePage && <div className="h-[5.375rem]"></div>}
+      {!isColored && <div className="h-[5.375rem]"></div>}
       <div
         className={`${
-          !isHomePage ? "bg-normalBlue top-0 h-[5.375rem]" : "top-7"
+          !isColored ? "bg-normalBlue top-0 h-[5.375rem]" : "top-7"
         } flex fixed left-0 w-full   px-[2.1875rem] lg:px-[4.375rem] items-center justify-between z-50`}
       >
-        {isHomePage ? (
+        {isColored ? (
           <h2 className="font-medium text-skin select-none">{t("header")}</h2>
         ) : (
           <h2 className="hidden lg:inline-block font-medium text-skin cursor-pointer select-none">
@@ -47,7 +46,7 @@ const Header: React.FC = () => {
           </h2>
         )}
 
-        {!isHomePage && (
+        {!isColored && (
           <div
             onClick={toggleBurgerMenuIsOpen}
             className="cursor-pointer inline-block lg:hidden"
@@ -74,7 +73,7 @@ const Header: React.FC = () => {
                 <Bell />
               </div>
             )}
-            {isHomePage && (
+            {isColored && (
               <div
                 onClick={toggleBurgerMenuIsOpen}
                 className="cursor-pointer inline-block lg:hidden"
@@ -90,14 +89,14 @@ const Header: React.FC = () => {
           {!isAuthenticated && (
             <div className="hidden lg:flex items-center justify-center gap-4">
               <Button
-                clickFn={() => router.push("sign-up")}
+                clickFn={() => router.push("/sign-up")}
                 size="small"
                 color="red"
               >
                 {t("registration")}
               </Button>
               <Button
-                clickFn={() => router.push("log-in")}
+                clickFn={() => router.push("/log-in")}
                 size="small"
                 additionalClasses="bg-black text-white border-white"
               >

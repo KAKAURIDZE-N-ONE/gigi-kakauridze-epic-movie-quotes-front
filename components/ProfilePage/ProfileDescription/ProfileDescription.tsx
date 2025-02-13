@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { InputUnderline } from "@/components/ProfilePage";
 import { useAuthentication } from "@/hooks/useAuthentication";
 import { Props } from "./types";
@@ -12,11 +12,10 @@ const ProfileDescription: React.FC<Props> = ({ setActiveEdit }) => {
         editClickFn={() => setActiveEdit("username")}
         editable={true}
         value={user?.name}
-        type="text"
       >
         Username
       </InputUnderline>
-      <InputUnderline value={user?.email} editable={false} type="text">
+      <InputUnderline value={user?.email} editable={false}>
         Email
       </InputUnderline>
       {!user?.google_id && (
@@ -24,7 +23,6 @@ const ProfileDescription: React.FC<Props> = ({ setActiveEdit }) => {
           editClickFn={() => setActiveEdit("password")}
           value={"************"}
           editable={true}
-          type="password"
         >
           Password
         </InputUnderline>

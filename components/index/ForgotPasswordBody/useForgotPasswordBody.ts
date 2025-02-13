@@ -1,6 +1,5 @@
 import { FormFieldForgotPassword } from "@/types/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import useForgotPassword from "./useForgotPassword";
 import { ApiError } from "@/types/errors";
 import { useRouter } from "next/router";

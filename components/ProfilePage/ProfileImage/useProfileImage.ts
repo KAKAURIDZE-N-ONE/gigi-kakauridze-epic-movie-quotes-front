@@ -1,14 +1,21 @@
 import { useAuthentication } from "@/hooks/useAuthentication";
 import useUploadProfileImage from "@/hooks/useUploadProfileImage";
 import { getCsrfCookie } from "@/services/apiAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useProfileImage() {
-  const { user } = useAuthentication();
+  const { user, isPending: userIsPending } = useAuthentication();
   const [preview, setPreview] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
 
-  const { mutate, isPending } = useUploadProfileImage();
+  function clearUpload() {
+    setPreview("");
+    setFile(null);
+  }
+
+  const { mutate, isPending: imageUploadIsPending } = useUploadProfileImage({
+    clearUpload,
+  });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -18,27 +25,23 @@ export default function useProfileImage() {
     }
   };
 
-  function discardUpload() {
-    setPreview("");
-    setFile(null);
-  }
+  useEffect(() => {
+    async function uploadImage(file: File | null) {
+      await getCsrfCookie();
+      if (file) {
+        mutate(file);
+      }
+    }
 
-  async function handleUploadImage() {
-    if (!file) return;
-
-    await getCsrfCookie();
-    mutate(file);
-    setPreview("");
-    setFile(null);
-  }
+    if (file) uploadImage(file);
+  }, [file, mutate]);
 
   return {
     user,
     preview,
     handleImageChange,
     file,
-    discardUpload,
-    handleUploadImage,
-    isPending,
+    imageUploadIsPending,
+    userIsPending,
   };
 }

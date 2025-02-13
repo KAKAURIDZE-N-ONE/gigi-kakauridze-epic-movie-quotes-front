@@ -2,7 +2,7 @@ import useVerifyEmailPage from "@/components/VerifyEmailPage/useVerifyEmailPage"
 import React from "react";
 
 const VerifyEmail: React.FC = () => {
-  const { isPending, error } = useVerifyEmailPage();
+  const { isPending } = useVerifyEmailPage();
 
   return (
     <div className="flex h-[100vh] items-center justify-center">

@@ -2,7 +2,6 @@ import React from "react";
 import useEditUsernameBody from "./useEditUsernameBody";
 import { Props } from "./types";
 import { Input } from "@/components/Input";
-import { Button } from "@/components/Button";
 
 const EditUsernameBody: React.FC<Props> = ({ setFormDataUsername }) => {
   const { register, handleSubmit, errors, onSubmit, t, t2 } =

@@ -9,8 +9,7 @@ const BurgerMenu: React.FC<Props> = ({
   toggleBurgerMenuIsOpen,
   burgerMenuIsOpen,
 }) => {
-  const { router, isAuthenticated, t, user, dispatch, logOut } =
-    useBurgerMenu();
+  const { router, isAuthenticated, t, user, logOut } = useBurgerMenu();
   return (
     <div>
       <div
@@ -44,7 +43,7 @@ const BurgerMenu: React.FC<Props> = ({
                   <InnerNavigation user={user} />
                 </div>
               )}
-              <div className=" w-20 mx-auto h-[2rem] mt-auto">
+              <div className=" w-20 h-[2rem] ml-32">
                 <LanguageSwitcher />
               </div>
               <div className="w-full flex flex-col mt-auto px-8">
@@ -67,7 +66,7 @@ const BurgerMenu: React.FC<Props> = ({
               <Button
                 clickFn={() => {
                   toggleBurgerMenuIsOpen();
-                  router.push("log-in");
+                  router.push("/log-in");
                 }}
                 size="small"
                 color="red"
@@ -78,7 +77,7 @@ const BurgerMenu: React.FC<Props> = ({
               <Button
                 clickFn={() => {
                   toggleBurgerMenuIsOpen();
-                  router.push("sign-up");
+                  router.push("/sign-up");
                 }}
                 size="small"
                 additionalClasses="w-full bg-black text-white border-white"
