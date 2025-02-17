@@ -1,7 +1,5 @@
 import { useAddQuotePage } from "@/components/AddQuotePage";
 import DarkModalLayout from "@/components/DarkModalLayout/DarkModalLayout";
-import { InnerInput } from "@/components/InnerInput";
-import { Input } from "@/components/Input";
 import { Modal } from "@/components/Modal";
 import React from "react";
 

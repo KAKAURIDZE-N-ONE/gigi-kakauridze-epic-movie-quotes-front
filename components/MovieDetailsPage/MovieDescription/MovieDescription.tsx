@@ -40,7 +40,7 @@ const MovieDescription: React.FC = () => {
                 </div>
               </div>
               <div className="mt-5 -ml-1">
-                {movie?.categories?.map((category, i) => {
+                {movie?.categories?.map((category) => {
                   return (
                     <div
                       className="font-bold text-lg bg-gray rounded-[0.25rem] px-3 py-1 inline-block mx-1 my-1"

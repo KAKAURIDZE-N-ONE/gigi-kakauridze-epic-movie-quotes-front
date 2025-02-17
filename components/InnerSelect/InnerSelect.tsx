@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Props } from "./types";
 import useInnerSelect from "./useInnerSelect";
 import SmallXIcon from "@/svgs/SmallXIcon";

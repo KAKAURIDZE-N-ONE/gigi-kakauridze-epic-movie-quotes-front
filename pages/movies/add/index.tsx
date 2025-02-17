@@ -5,9 +5,8 @@ import { InnerInput } from "@/components/InnerInput";
 import { Modal } from "@/components/Modal";
 import React from "react";
 import { InnerTextarea } from "@/components/InnerTextarea";
-import { InnerFile } from "@/components/InnerFile";
 
-const index: React.FC = () => {
+const AddMoviePage: React.FC = () => {
   const {
     categories,
     register,
@@ -106,4 +105,4 @@ const index: React.FC = () => {
   );
 };
 
-export default index;
+export default AddMoviePage;

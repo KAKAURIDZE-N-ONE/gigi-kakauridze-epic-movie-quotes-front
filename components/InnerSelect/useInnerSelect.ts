@@ -1,5 +1,5 @@
 import useOutsideClick from "@/hooks/useOutsideClick";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HookProps } from "./types";
 import { Category } from "@/types/respones";
