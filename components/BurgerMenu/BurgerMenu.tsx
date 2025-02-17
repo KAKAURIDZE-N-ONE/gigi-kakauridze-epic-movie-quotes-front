@@ -2,7 +2,6 @@ import { Props } from "./types";
 import { Button } from "../Button";
 import useBurgerMenu from "./useBurgerMenu";
 import XIcon from "@/svgs/XIcon";
-import { LanguageSwitcher } from "../LanguageSwitcher";
 import { InnerNavigation } from "../InnerNavigation";
 
 const BurgerMenu: React.FC<Props> = ({
