@@ -99,6 +99,7 @@ const AddMoviePage: React.FC = () => {
         <h1>Gela Barkalaia</h1>
         <h1>Gela Barkalaia</h1>
         <h1>Gela Barkalaia</h1>
+        <h1>Gela Barkalaia</h1>
       </DarkModalLayout>
     </Modal>
   );
