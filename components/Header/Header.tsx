@@ -23,8 +23,6 @@ const Header: React.FC = () => {
 
   if (!mounted) return null;
 
-  console.log(isColored);
-
   return (
     <>
       {createPortal(
