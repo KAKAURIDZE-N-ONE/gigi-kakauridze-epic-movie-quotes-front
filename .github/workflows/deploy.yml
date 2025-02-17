@@ -1,6 +1,8 @@
 name: Deploy on server
 on:
   push:
+    branches:
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -29,5 +31,5 @@ jobs:
             git pull
             npm install
             npm run build
-            pm2 restart nextjs-example
+            pm2 restart
           EOF
