@@ -19,15 +19,26 @@ export type MoviesResponse = {
   image: string;
 };
 
-type Category = {
+export type Category = {
   id: number;
-  name: string;
+  name: Record<string, string>;
+};
+
+export type Quote = {
+  id: number;
+  image: string;
+  quote: Record<string, string>;
+  likes_count: number;
+  comments_count: number;
 };
 
 export type MovieResponse = {
   id: number;
   name: Record<string, string>;
+  description: Record<string, string>;
+  director: Record<string, string>;
   year: number;
   image: string;
   categories: Category[];
+  quotes: Quote[];
 };

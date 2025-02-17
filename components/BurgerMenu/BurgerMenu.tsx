@@ -43,9 +43,6 @@ const BurgerMenu: React.FC<Props> = ({
                   <InnerNavigation user={user} />
                 </div>
               )}
-              <div className=" w-20 h-[2rem] ml-32">
-                <LanguageSwitcher />
-              </div>
               <div className="w-full flex flex-col mt-auto px-8">
                 <Button
                   clickFn={() => {
@@ -84,9 +81,6 @@ const BurgerMenu: React.FC<Props> = ({
               >
                 {t("registration")}
               </Button>
-              <div className="translate-y-2">
-                <LanguageSwitcher />
-              </div>
             </div>
           )}
         </div>

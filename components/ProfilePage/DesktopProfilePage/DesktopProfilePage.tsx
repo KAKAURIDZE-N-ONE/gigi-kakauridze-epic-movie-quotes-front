@@ -33,7 +33,7 @@ const DesktopProfilePage: React.FC = () => {
             <ProfileImage />
           </div>
           <div className="pb-16">
-            <div className="mt-[12rem] mx-40">
+            <div className="mt-[12rem] lg:mx-24 xl:mx-40">
               <div className="max-w-[40rem] mx-auto">
                 <div
                   className={`flex transition-all duration-300 flex-col ${
