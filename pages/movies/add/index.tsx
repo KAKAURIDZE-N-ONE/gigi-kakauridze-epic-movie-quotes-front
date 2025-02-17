@@ -98,6 +98,7 @@ const AddMoviePage: React.FC = () => {
         </InnerTextarea>
         <h1>Gela Barkalaia</h1>
         <h1>Gela Barkalaia</h1>
+        <h1>Gela Barkalaia</h1>
       </DarkModalLayout>
     </Modal>
   );
