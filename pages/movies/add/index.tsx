@@ -28,19 +28,19 @@ const index: React.FC = () => {
       >
         <InnerInput
           error={errors.nameEn?.message}
-          {...register("nameEn", {
+          register={register("nameEn", {
             required: "required",
           })}
-          lang="Eng"
+          lang="en"
         >
           Movie name
         </InnerInput>
         <InnerInput
           error={errors.nameKa?.message}
-          {...register("nameKa", {
+          register={register("nameKa", {
             required: "required",
           })}
-          lang="ქარ"
+          lang="ka"
         >
           ფილმის სახელი
         </InnerInput>
@@ -59,7 +59,7 @@ const index: React.FC = () => {
         </InnerSelect>
         <InnerInput
           error={errors.year?.message}
-          {...register("year", {
+          register={register("year", {
             required: "required",
           })}
         >
@@ -67,40 +67,37 @@ const index: React.FC = () => {
         </InnerInput>
         <InnerInput
           error={errors.directorEn?.message}
-          {...register("directorEn", {
+          register={register("directorEn", {
             required: "required",
           })}
-          lang="Eng"
+          lang="en"
         >
           Director
         </InnerInput>
         <InnerInput
           error={errors.directorKa?.message}
-          {...register("directorKa", {
+          register={register("directorKa", {
             required: "required",
           })}
-          lang="ქარ"
+          lang="ka"
         >
           რეჟისორი
         </InnerInput>
         <InnerTextarea
           error={errors.descriptionEn?.message}
-          {...register("descriptionEn", {
-            required: "required",
-          })}
-          lang="Eng"
+          register={register("descriptionEn", { required: "required" })}
+          lang="en"
         >
           Movie Description
         </InnerTextarea>
         <InnerTextarea
           error={errors.descriptionKa?.message}
-          {...register("descriptionKa", {
-            required: "required",
-          })}
-          lang="ქარ"
+          register={register("descriptionKa", { required: "required" })}
+          lang="ka"
         >
           ფილმის აღწერა
         </InnerTextarea>
+
         {/* 
 
         {/* <InnerFile />  */}

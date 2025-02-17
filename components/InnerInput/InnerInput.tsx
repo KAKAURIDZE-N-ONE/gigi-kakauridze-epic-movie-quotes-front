@@ -1,11 +1,11 @@
 import React from "react";
 import { Props } from "./types";
 
-const InnerInput: React.FC<Props> = ({ children, lang, error, ...rest }) => {
+const InnerInput: React.FC<Props> = ({ children, lang, error, register }) => {
   return (
     <div className="relative">
       <input
-        {...rest}
+        {...register}
         id={children}
         type="text"
         placeholder={children}
@@ -14,7 +14,7 @@ const InnerInput: React.FC<Props> = ({ children, lang, error, ...rest }) => {
       />
       {lang && (
         <label htmlFor={children} className="absolute right-4 top-3 text-gray">
-          {lang}
+          {lang === "en" ? "Eng" : "ქარ"}
         </label>
       )}
       {error && <p className="text-sm text-[#F04438] mt-1 -mb-1">{error}</p>}

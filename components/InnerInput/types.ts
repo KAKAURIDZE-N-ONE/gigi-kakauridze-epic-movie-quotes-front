@@ -1,5 +1,8 @@
+import { UseFormRegisterReturn } from "react-hook-form";
+
 export type Props = {
   children: string;
-  lang?: "Eng" | "ქარ";
+  lang?: "en" | "ka";
   error: string | undefined;
+  register: UseFormRegisterReturn<string>;
 };

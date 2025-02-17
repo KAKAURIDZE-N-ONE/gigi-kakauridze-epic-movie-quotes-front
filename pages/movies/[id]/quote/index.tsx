@@ -18,11 +18,9 @@ const AddQuotePage: React.FC = () => {
         xBtnUrl={`/movies/${movieId}`}
         title="Add Quote"
       >
-        <InnerInput lang="Eng">Movie name</InnerInput>
-        <InnerInput lang="ქარ">ფილმის სახელი</InnerInput>
-        <InnerInput>წელი/Year</InnerInput>
-        <InnerInput lang="Eng">Director</InnerInput>
-        <InnerInput lang="ქარ">Director</InnerInput>
+        <div>Add Quote</div>
+        {/* <InnerInput lang="en">Quote name</InnerInput>
+        <InnerInput lang="ka">ფილმის სახელი</InnerInput> */}
       </DarkModalLayout>
     </Modal>
   );
