@@ -5,7 +5,7 @@ export type Props = {
   additionalClasses?: string;
   color?: string;
   size: "small" | "medium" | "smaller" | "normal" | "smallest";
-  clickFn: () => void;
+  clickFn?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
   icon?: ReactNode;

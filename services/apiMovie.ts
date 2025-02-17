@@ -11,3 +11,9 @@ export async function getMovie(id: number) {
 
   return response.data.data;
 }
+
+export async function getCategories() {
+  const response = await authInstace.get(`/api/categories`);
+
+  return response.data.data;
+}

@@ -5,7 +5,7 @@ import { MovieCard } from "../MovieCard";
 import useMoviesLayout from "./useMoviesLayout";
 
 const MoviesLayout: React.FC = () => {
-  const { movies } = useMoviesLayout();
+  const { movies, router } = useMoviesLayout();
 
   return (
     <div className="text-white px-[2.1875rem] lg:pl-0 lg:pr-[4.375rem]">
@@ -18,7 +18,9 @@ const MoviesLayout: React.FC = () => {
           <div className="lg:hidden">
             <Button
               icon={<PlusButton />}
-              clickFn={() => {}}
+              clickFn={() => {
+                router.push("movies/add");
+              }}
               color="red"
               size="smallest"
             >
@@ -28,7 +30,9 @@ const MoviesLayout: React.FC = () => {
           <div className="hidden lg:inline-block">
             <Button
               icon={<PlusButton />}
-              clickFn={() => {}}
+              clickFn={() => {
+                router.push("movies/add");
+              }}
               color="red"
               size="medium"
             >

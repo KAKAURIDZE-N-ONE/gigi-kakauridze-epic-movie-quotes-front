@@ -23,6 +23,8 @@ const Header: React.FC = () => {
 
   if (!mounted) return null;
 
+  console.log(isColored);
+
   return (
     <>
       {createPortal(
@@ -32,6 +34,7 @@ const Header: React.FC = () => {
         />,
         document.body
       )}
+
       {!isColored && <div className="h-[5.375rem]"></div>}
       <div
         className={`${
@@ -57,35 +60,55 @@ const Header: React.FC = () => {
 
         <div className="bg-red-200 flex items-center justify-center gap-2 lg:gap-4">
           <div className="flex items-center gap-5 lg:gap-9">
+            {!isColored && (
+              <div className="translate-x-6 lg:translate-x-0 lg:inline-block">
+                <LanguageSwitcher />
+              </div>
+            )}
             {isNewsFeedPage && (
-              <div>
+              <div className="lg:mr-7">
                 <Search />
               </div>
             )}
-            {isAuthenticated && (
-              <div className="inline-block relative cursor-pointer">
+            {isAuthenticated && isColored && (
+              <div className="inline-block relative cursor-pointer -mr-9 lg:mr-0 ">
                 <div
                   className="absolute -top-2 -right-2 w-5 h-5 bg-red4 
-                flex items-center justify-center rounded-full"
+                flex items-center justify-center rounded-full "
                 >
                   <p className="font-medium text-white">3</p>
                 </div>
                 <Bell />
               </div>
             )}
-            {isColored && (
-              <div
-                onClick={toggleBurgerMenuIsOpen}
-                className="cursor-pointer inline-block lg:hidden"
-              >
-                <List />
+            {isAuthenticated && !isColored && (
+              <div className="inline-block relative cursor-pointer lg:mr-14 ">
+                <div
+                  className="absolute -top-2 -right-2 w-5 h-5 bg-red4 
+                flex items-center justify-center rounded-full "
+                >
+                  <p className="font-medium text-white">3</p>
+                </div>
+                <Bell />
               </div>
+            )}
+
+            {isColored && (
+              <>
+                <div className="translate-x-6 lg:translate-x-0">
+                  <LanguageSwitcher />
+                </div>
+
+                <div
+                  onClick={toggleBurgerMenuIsOpen}
+                  className="cursor-pointer inline-block lg:hidden"
+                >
+                  <List />
+                </div>
+              </>
             )}
           </div>
 
-          <div className="hidden lg:inline-block">
-            <LanguageSwitcher />
-          </div>
           {!isAuthenticated && (
             <div className="hidden lg:flex items-center justify-center gap-4">
               <Button

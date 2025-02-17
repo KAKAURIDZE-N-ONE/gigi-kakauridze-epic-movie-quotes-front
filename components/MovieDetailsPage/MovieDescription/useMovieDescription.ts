@@ -16,5 +16,5 @@ export default function useMovieDescription() {
     enabled: !!id,
   });
 
-  return { movie, language: i18n.language };
+  return { movie, language: i18n.language, router };
 }
