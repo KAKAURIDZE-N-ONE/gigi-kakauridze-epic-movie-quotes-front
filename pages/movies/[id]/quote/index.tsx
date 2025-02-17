@@ -19,8 +19,6 @@ const AddQuotePage: React.FC = () => {
         title="Add Quote"
       >
         <div>Add Quote</div>
-        {/* <InnerInput lang="en">Quote name</InnerInput>
-        <InnerInput lang="ka">ფილმის სახელი</InnerInput> */}
       </DarkModalLayout>
     </Modal>
   );
