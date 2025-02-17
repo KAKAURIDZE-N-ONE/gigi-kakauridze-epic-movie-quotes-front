@@ -96,10 +96,6 @@ const AddMoviePage: React.FC = () => {
         >
           ფილმის აღწერა
         </InnerTextarea>
-
-        {/* 
-
-        {/* <InnerFile />  */}
       </DarkModalLayout>
     </Modal>
   );
