@@ -96,6 +96,10 @@ const AddMoviePage: React.FC = () => {
         >
           ფილმის აღწერა
         </InnerTextarea>
+        <h1>Gela Barkalaia</h1>
+        <h1>Gela Barkalaia</h1>
+        <h1>Gela Barkalaia</h1>
+        <h1>Gela Barkalaia</h1>
       </DarkModalLayout>
     </Modal>
   );
