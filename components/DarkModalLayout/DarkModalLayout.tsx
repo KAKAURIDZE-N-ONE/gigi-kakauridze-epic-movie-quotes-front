@@ -11,11 +11,14 @@ const DarkModalLayout: React.FC<Props> = ({
   children,
   btnText,
   submitFn,
+  isPending,
 }) => {
   const { user } = useDarkModalLayout();
-
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-darkerBlue overflow-auto pb-8">
+    <div
+      className={`lg:left-1/2 lg:-translate-x-1/2 lg:min-w-[60rem] lg:top-24 bottom-0 lg:bottom-24
+        absolute top-0 left-0 w-full lg:w-auto lg:h-auto bg-darkerBlue overflow-auto pb-8`}
+    >
       <div
         className="top-0 left-0 w-full bg-darkerBlue z-50 sticky h-[5.75rem] flex items-center justify-between px-[2.1875rem]
        border-b border-b-[#EFEFEF33]"
@@ -41,7 +44,7 @@ const DarkModalLayout: React.FC<Props> = ({
       >
         {children}
         <div className="flex flex-col mt-7">
-          <Button size="medium" color="red" type="submit">
+          <Button disabled={isPending} size="medium" color="red" type="submit">
             {btnText}
           </Button>
         </div>

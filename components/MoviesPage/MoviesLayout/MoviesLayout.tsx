@@ -15,7 +15,7 @@ const MoviesLayout: React.FC = () => {
             My list of movies
             <span className="hidden lg:inline-block">(Total 25)</span>
           </h1>
-          <div className="lg:hidden">
+          <div className="lg:hidden ">
             <Button
               icon={<PlusButton />}
               clickFn={() => {

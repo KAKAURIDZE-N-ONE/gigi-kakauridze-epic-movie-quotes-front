@@ -10,7 +10,7 @@ const InnerInput: React.FC<Props> = ({ children, lang, error, register }) => {
         type="text"
         placeholder={children}
         className="bg-darkerBlue border border-gray w-full rounded-[0.3rem] h-12 pl-4 
-        placeholder:text-white"
+        placeholder:text-white "
       />
       {lang && (
         <label htmlFor={children} className="absolute right-4 top-3 text-gray">

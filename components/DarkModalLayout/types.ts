@@ -6,4 +6,5 @@ export type Props = {
   submitFn: () => void;
   xBtnUrl: string;
   btnText: string;
+  isPending: boolean;
 };

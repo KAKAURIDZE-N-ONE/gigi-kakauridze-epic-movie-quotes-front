@@ -5,4 +5,5 @@ export type Props = {
   lang?: "en" | "ka";
   error: string | undefined;
   register: UseFormRegisterReturn<string>;
+  isEditInput?: boolean;
 };

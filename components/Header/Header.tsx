@@ -32,12 +32,11 @@ const Header: React.FC = () => {
         />,
         document.body
       )}
-
-      {!isColored && <div className="h-[5.375rem]"></div>}
+      {/* <div className="h-[5.375rem]"></div> */}
       <div
         className={`${
-          !isColored ? "bg-normalBlue top-0 h-[5.375rem]" : "top-7"
-        } flex fixed left-0 w-full   px-[2.1875rem] lg:px-[4.375rem] items-center justify-between z-50`}
+          !isColored ? "bg-normalBlue top-0 h-[5.375rem]" : "top-7 "
+        } flex fixed left-0 w-full  px-[2.1875rem] lg:px-[4.375rem] items-center justify-between z-50`}
       >
         {isColored ? (
           <h2 className="font-medium text-skin select-none">{t("header")}</h2>
