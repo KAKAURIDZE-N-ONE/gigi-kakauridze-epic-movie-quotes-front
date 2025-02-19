@@ -1,4 +1,5 @@
 import { MOVIE } from "@/config/queryKeys";
+import useDeleteMovie from "@/hooks/useDeleteMovie";
 import { getMovie } from "@/services/apiMovie";
 import { MovieResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
@@ -10,11 +11,24 @@ export default function useMovieDescription() {
   const { id } = router.query;
   const { i18n } = useTranslation();
 
+  const { mutate: deleteMovie, isPending: deleteMovieIsPending } =
+    useDeleteMovie();
+
   const { data: movie } = useQuery<MovieResponse>({
     queryKey: [id, MOVIE],
     queryFn: () => getMovie(Number(id)),
     enabled: !!id,
   });
 
-  return { movie, language: i18n.language, router };
+  const handleDeleteMovie = async (id: number) => {
+    deleteMovie(id);
+  };
+
+  return {
+    movie,
+    language: i18n.language,
+    router,
+    handleDeleteMovie,
+    deleteMovieIsPending,
+  };
 }

@@ -12,7 +12,7 @@ const Modal: React.FC<Props> = ({ children, turnOfFn }) => {
   return ReactDOM.createPortal(
     <div
       onClick={turnOfFn ? turnOfFn : () => {}}
-      className="fixed left-0 top-0 w-full h-full z-[60] blurAnime "
+      className="fixed left-0 top-0 w-full h-full z-[60] blurAnime"
     >
       <div className="fixed inset-0  backdrop-blur-[0.305rem] "></div>
       <div

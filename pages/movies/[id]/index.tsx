@@ -1,21 +1,22 @@
 import { DesktopInnerLayout } from "@/components/DesktopInnerLayout";
 import { Layout } from "@/components/Layout";
 import { MovieDescription } from "@/components/MovieDetailsPage";
-import React from "react";
+import { useMediaQuery } from "react-responsive";
 
-const index: React.FC = () => {
+const ViewMovie: React.FC = () => {
+  const isMobile = useMediaQuery({ maxWidth: 1023 });
+
   return (
     <Layout>
-      <div className="hidden lg:block">
+      {isMobile ? (
+        <MovieDescription />
+      ) : (
         <DesktopInnerLayout>
           <MovieDescription />
         </DesktopInnerLayout>
-      </div>
-      <div className="lg:hidden text-white">
-        <MovieDescription />
-      </div>
+      )}
     </Layout>
   );
 };
 
-export default index;
+export default ViewMovie;

@@ -3,7 +3,7 @@ import { FormLayout } from "@/components/FormLayout";
 import { Input } from "@/components/Input";
 import React from "react";
 import useSignUpBody from "./useSignUpBody";
-import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
+import { EMAIL_PATTERN_VALUE } from "@/config/regex";
 import Google from "@/svgs/Google";
 
 const SignUpBody: React.FC = () => {
@@ -85,7 +85,7 @@ const SignUpBody: React.FC = () => {
         {...register("email", {
           required: t("email_label") + " " + t2("required"),
           pattern: {
-            value: EMAIL_VALIDATION_PATTERN_VALUE,
+            value: EMAIL_PATTERN_VALUE,
             message: t2("invalid_email"),
           },
         })}

@@ -3,7 +3,7 @@ import { FormLayout } from "../../FormLayout";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import useForgotPasswordBody from "./useForgotPasswordBody";
-import { EMAIL_VALIDATION_PATTERN_VALUE } from "@/config/regex";
+import { EMAIL_PATTERN_VALUE } from "@/config/regex";
 
 const ForgotPasswordBody: React.FC = () => {
   const {
@@ -47,7 +47,7 @@ const ForgotPasswordBody: React.FC = () => {
         {...register("email", {
           required: t("email_label") + " " + t2("required"),
           pattern: {
-            value: EMAIL_VALIDATION_PATTERN_VALUE,
+            value: EMAIL_PATTERN_VALUE,
             message: t2("invalid_email"),
           },
         })}

@@ -9,4 +9,5 @@ export type FormFieldsAddMovie = {
   directorKa: string;
   descriptionEn: string;
   descriptionKa: string;
+  image: FileList;
 };
