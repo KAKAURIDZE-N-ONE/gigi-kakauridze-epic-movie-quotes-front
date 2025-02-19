@@ -41,23 +41,22 @@ export async function createMovie(data: CreateOrUpdateMovieValues) {
   return response.data;
 }
 
-export async function updateMovie(data: Partial<CreateOrUpdateMovieValues>) {
+export async function updateMovie(data: CreateOrUpdateMovieValues) {
   const formData = new FormData();
 
-  if (data.description?.en)
-    formData.append("description[en]", data.description.en);
-  if (data.description?.ka)
-    formData.append("description[ka]", data.description.ka);
-  if (data.director?.en) formData.append("director[en]", data.director.en);
-  if (data.director?.ka) formData.append("director[ka]", data.director.ka);
-  if (data.name?.en) formData.append("name[en]", data.name.en);
-  if (data.name?.ka) formData.append("name[ka]", data.name.ka);
-  if (data.categories) {
-    data.categories.forEach((category) =>
-      formData.append("categories[]", category.toString())
-    );
-  }
-  if (data.year) formData.append("year", data.year.toString());
+  formData.append("description[en]", data.description.en);
+  formData.append("description[ka]", data.description.ka);
+  formData.append("director[en]", data.director.en);
+  formData.append("director[ka]", data.director.ka);
+  formData.append("name[en]", data.name.en);
+  formData.append("name[ka]", data.name.ka);
+
+  data.categories.forEach((category) =>
+    formData.append("categories[]", category.toString())
+  );
+
+  formData.append("year", data.year.toString());
+
   if (data.image) formData.append("image", data.image);
 
   formData.append("_method", "patch");
