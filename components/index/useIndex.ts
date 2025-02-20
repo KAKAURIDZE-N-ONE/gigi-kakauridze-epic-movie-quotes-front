@@ -1,3 +1,4 @@
+import useGuestOnly from "@/hooks/useGuestOnly";
 import image1 from "@/public/images/image1.png";
 import image2 from "@/public/images/image2.png";
 import image3 from "@/public/images/image3.png";
@@ -11,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 export default function useIndex() {
+  useGuestOnly();
   const router = useRouter();
   const { t } = useTranslation("landing-page");
   const openedModal = useAppSelector(selectOpenedModal);

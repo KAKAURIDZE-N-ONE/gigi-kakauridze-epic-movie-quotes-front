@@ -12,3 +12,9 @@ export type CreateOrUpdateMovieValues = {
   year: number;
   movieId?: number;
 };
+
+export type CreateOrUpdateQuoteValues = {
+  quote: Locales;
+  movie_id: string;
+  image: File;
+};

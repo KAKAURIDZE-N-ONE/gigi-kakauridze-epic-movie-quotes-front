@@ -53,12 +53,9 @@ export default function useCreateOrEditMovieBody() {
 
     reset({
       categories,
-      nameEn: movieData.name.en,
-      nameKa: movieData.name.ka,
-      directorEn: movieData.director.en,
-      directorKa: movieData.director.ka,
-      descriptionEn: movieData.description.en,
-      descriptionKa: movieData.description.ka,
+      name: movieData.name,
+      director: movieData.director,
+      description: movieData.description,
       year: movieData.year,
     });
   }, [movieData, isEditBody, reset]);
@@ -79,21 +76,18 @@ export default function useCreateOrEditMovieBody() {
         }
       );
     }
-  }, [categories, setValue]);
+  }, [categories, setValue, isEditBody]);
 
   const createMovieOnSubmit = async (data: FormFieldsAddMovie) => {
-    const name = { en: data.nameEn, ka: data.nameKa };
-    const director = { en: data.descriptionEn, ka: data.directorKa };
-    const description = { en: data.descriptionEn, ka: data.descriptionKa };
     const categoriesIds = data.categories.map(
       (category: Category) => category.id
     );
     const image = data.image[0];
 
     createMovie({
-      name,
-      director,
-      description,
+      name: data.name,
+      director: data.director,
+      description: data.description,
       categories: categoriesIds,
       image,
       year: data.year,
@@ -101,9 +95,6 @@ export default function useCreateOrEditMovieBody() {
   };
 
   const editMovieOnSubmit = async (data: FormFieldsAddMovie) => {
-    const name = { en: data.nameEn, ka: data.nameKa };
-    const director = { en: data.descriptionEn, ka: data.directorKa };
-    const description = { en: data.descriptionEn, ka: data.descriptionKa };
     const categoriesIds = data.categories.map(
       (category: Category) => category.id
     );
@@ -111,9 +102,9 @@ export default function useCreateOrEditMovieBody() {
 
     updateMovie({
       movieId: Number(editMovieId),
-      name,
-      director,
-      description,
+      name: data.name,
+      director: data.director,
+      description: data.description,
       categories: categoriesIds,
       image,
       year: data.year,

@@ -28,7 +28,7 @@ const MovieDescription: React.FC = () => {
               className="aspect-[1.1854] lg:aspect-[1.8344] bg-center rounded-xl bg-no-repeat bg-cover w-full mt-10 lg:mt-0"
             ></div>
             <div className="mt-9 hidden lg:block">
-              <MovieQuotes quotes={movie?.quotes} />
+              <MovieQuotes movieId={movie?.id} quotes={movie?.quotes} />
             </div>
           </div>
           <div className="w-full lg:w-[45%] px-[2.1875rem] lg:px-0">
@@ -101,7 +101,7 @@ const MovieDescription: React.FC = () => {
             )}
           </div>
           <div className="lg:hidden">
-            <MovieQuotes quotes={movie?.quotes} />
+            <MovieQuotes movieId={movie?.id} quotes={movie?.quotes} />
           </div>
         </div>
       </div>

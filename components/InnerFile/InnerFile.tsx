@@ -7,11 +7,11 @@ const InnerFile: React.FC<Props> = ({
   control,
   register,
   error,
-  movieImage,
+  savedImage,
 }) => {
   const { imagePreview } = useInnerFile({ control });
 
-  const hasImage = imagePreview || movieImage;
+  const hasImage = imagePreview || savedImage;
   return (
     <div className="flex flex-col">
       <div
@@ -26,7 +26,7 @@ const InnerFile: React.FC<Props> = ({
         {hasImage && (
           <div
             style={{
-              backgroundImage: `url(${imagePreview || movieImage})`,
+              backgroundImage: `url(${imagePreview || savedImage})`,
             }}
             className="aspect-[1.6090] w-full bg-no-repeat bg-center bg-cover"
           ></div>

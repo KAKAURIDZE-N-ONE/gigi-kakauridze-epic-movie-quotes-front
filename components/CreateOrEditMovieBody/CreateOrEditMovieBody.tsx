@@ -12,6 +12,8 @@ import {
 import { InnerSelect } from "@/components/InnerSelect";
 import { InnerTextarea } from "@/components/InnerTextarea";
 import { InnerFile } from "@/components/InnerFile";
+import { Control } from "react-hook-form";
+import { FormFieldsAddMovie, FormFieldsAddQuote } from "@/types/movie";
 
 const CreateOrEditMovieBody: React.FC = () => {
   const {
@@ -54,8 +56,8 @@ const CreateOrEditMovieBody: React.FC = () => {
         >
           <InnerInput
             isEditInput={isEditBody}
-            error={errors.nameEn?.message}
-            register={register("nameEn", {
+            error={errors.name?.en?.message}
+            register={register("name.en", {
               required: "required",
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
@@ -67,8 +69,8 @@ const CreateOrEditMovieBody: React.FC = () => {
             Movie name
           </InnerInput>
           <InnerInput
-            error={errors.nameKa?.message}
-            register={register("nameKa", {
+            error={errors.name?.ka?.message}
+            register={register("name.ka", {
               required: "required",
               pattern: {
                 value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
@@ -111,8 +113,8 @@ const CreateOrEditMovieBody: React.FC = () => {
             წელი/Year
           </InnerInput>
           <InnerInput
-            error={errors.directorEn?.message}
-            register={register("directorEn", {
+            error={errors.director?.en?.message}
+            register={register("director.en", {
               required: "required",
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
@@ -124,8 +126,8 @@ const CreateOrEditMovieBody: React.FC = () => {
             Director
           </InnerInput>
           <InnerInput
-            error={errors.directorKa?.message}
-            register={register("directorKa", {
+            error={errors.director?.ka?.message}
+            register={register("director.ka", {
               required: "required",
               pattern: {
                 value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
@@ -137,8 +139,8 @@ const CreateOrEditMovieBody: React.FC = () => {
             რეჟისორი
           </InnerInput>
           <InnerTextarea
-            error={errors.descriptionEn?.message}
-            register={register("descriptionEn", {
+            error={errors.description?.en?.message}
+            register={register("description.en", {
               required: "required",
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
@@ -150,8 +152,8 @@ const CreateOrEditMovieBody: React.FC = () => {
             Movie Description
           </InnerTextarea>
           <InnerTextarea
-            error={errors.descriptionKa?.message}
-            register={register("descriptionKa", {
+            error={errors.description?.ka?.message}
+            register={register("description.ka", {
               required: "required",
               pattern: {
                 value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
@@ -163,8 +165,10 @@ const CreateOrEditMovieBody: React.FC = () => {
             ფილმის აღწერა
           </InnerTextarea>
           <InnerFile
-            movieImage={movieImage}
-            control={control}
+            savedImage={movieImage}
+            control={
+              control as Control<FormFieldsAddMovie | FormFieldsAddQuote>
+            }
             error={errors.image?.message}
             register={register(
               "image",
