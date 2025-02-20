@@ -3,8 +3,11 @@ import PlusButton from "@/svgs/PlusButton";
 import React from "react";
 import { Props } from "./types";
 import { Quote } from "@/components/MovieDetailsPage";
+import { useRouter } from "next/router";
 
-const MovieQuotes: React.FC<Props> = ({ quotes }) => {
+const MovieQuotes: React.FC<Props> = ({ quotes, movieId }) => {
+  const router = useRouter();
+
   return (
     <div className="flex flex-col gap-5 w-full">
       <div>
@@ -16,7 +19,7 @@ const MovieQuotes: React.FC<Props> = ({ quotes }) => {
           <h2 className="text-2xl ">Quotes (Total {quotes?.length})</h2>
           <div className="h-8 w-px border-l border-l-gray"></div>
           <Button
-            clickFn={() => {}}
+            clickFn={() => router.push(`/movies/${movieId}/quote`)}
             size="medium"
             icon={<PlusButton />}
             color="red"

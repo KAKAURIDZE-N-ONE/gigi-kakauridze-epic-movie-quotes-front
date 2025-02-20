@@ -35,7 +35,7 @@ export default function Home() {
             )}
           </Modal>
         )}
-        <div className="relative -translate-y-20">
+        <div className="relative -mt-24">
           <Hero />
           {imagesData.map((dataItem) => (
             <HeroImage

@@ -79,7 +79,7 @@ export default function useCreateOrEditMovieBody() {
         }
       );
     }
-  }, [categories, setValue]);
+  }, [categories, setValue, isEditBody]);
 
   const createMovieOnSubmit = async (data: FormFieldsAddMovie) => {
     const name = { en: data.nameEn, ka: data.nameKa };

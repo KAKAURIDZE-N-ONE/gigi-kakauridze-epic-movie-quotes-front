@@ -12,6 +12,8 @@ import {
 import { InnerSelect } from "@/components/InnerSelect";
 import { InnerTextarea } from "@/components/InnerTextarea";
 import { InnerFile } from "@/components/InnerFile";
+import { Control } from "react-hook-form";
+import { FormFieldsAddMovie, FormFieldsAddQuote } from "@/types/movie";
 
 const CreateOrEditMovieBody: React.FC = () => {
   const {
@@ -163,8 +165,10 @@ const CreateOrEditMovieBody: React.FC = () => {
             ფილმის აღწერა
           </InnerTextarea>
           <InnerFile
-            movieImage={movieImage}
-            control={control}
+            savedImage={movieImage}
+            control={
+              control as Control<FormFieldsAddMovie | FormFieldsAddQuote>
+            }
             error={errors.image?.message}
             register={register(
               "image",

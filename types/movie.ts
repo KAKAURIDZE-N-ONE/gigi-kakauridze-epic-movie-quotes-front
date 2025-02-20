@@ -11,3 +11,10 @@ export type FormFieldsAddMovie = {
   descriptionKa: string;
   image: FileList;
 };
+
+export type FormFieldsAddQuote = {
+  movieId: number;
+  quoteEn: string;
+  quoteKa: string;
+  image: FileList;
+};

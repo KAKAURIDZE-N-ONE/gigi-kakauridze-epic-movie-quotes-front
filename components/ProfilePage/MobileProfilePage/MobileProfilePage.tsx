@@ -25,14 +25,14 @@ const MobileProfilePage: React.FC = () => {
   return (
     <>
       {openedModal === "makeChangesUsername" && (
-        <div className="flex justify-center mt-16">
+        <div className="flex justify-center mt-32">
           <ConfirmModalBody onConfirm={handleConfirmUsername}>
             Are you sure to make name changes?
           </ConfirmModalBody>
         </div>
       )}
       {openedModal === "makeChangesPassword" && (
-        <div className="flex justify-center mt-16">
+        <div className="flex justify-center mt-32">
           <ConfirmModalBody onConfirm={handleConfirmPassword}>
             Are you sure to make password changes?
           </ConfirmModalBody>
