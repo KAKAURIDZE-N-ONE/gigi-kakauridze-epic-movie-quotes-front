@@ -1,20 +1,18 @@
 import { Category } from "./respones";
 
+type Locales = { en: string; ka: string };
+
 export type FormFieldsAddMovie = {
-  nameEn: string;
-  nameKa: string;
   categories: Category[];
   year: number;
-  directorEn: string;
-  directorKa: string;
-  descriptionEn: string;
-  descriptionKa: string;
+  name: Locales;
+  director: Locales;
+  description: Locales;
   image: FileList;
 };
 
 export type FormFieldsAddQuote = {
   movieId: number;
-  quoteEn: string;
-  quoteKa: string;
+  quote: Locales;
   image: FileList;
 };

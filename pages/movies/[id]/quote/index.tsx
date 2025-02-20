@@ -46,8 +46,8 @@ const AddQuotePage: React.FC = () => {
         />
         <div className="mt-2">
           <InnerTextarea
-            error={errors.quoteEn?.message}
-            register={register("quoteEn", {
+            error={errors.quote?.en?.message}
+            register={register("quote.en", {
               required: "required",
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
@@ -60,8 +60,8 @@ const AddQuotePage: React.FC = () => {
           </InnerTextarea>
         </div>
         <InnerTextarea
-          error={errors.quoteKa?.message}
-          register={register("quoteKa", {
+          error={errors.quote?.ka?.message}
+          register={register("quote.ka", {
             required: "required",
             pattern: {
               value: GEORGIAN_LANGUAGE_PATTERN_VALUE,

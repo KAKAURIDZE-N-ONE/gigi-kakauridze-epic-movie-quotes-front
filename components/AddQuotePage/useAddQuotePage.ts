@@ -23,10 +23,8 @@ export default function useAddQuotePage() {
     });
 
   function onSubmit(data: FormFieldsAddQuote) {
-    const quote = { en: data.quoteEn, ka: data.quoteKa };
-
     createQuote({
-      quote,
+      quote: data.quote,
       movie_id: String(movieId),
       image: data.image[0],
     });
