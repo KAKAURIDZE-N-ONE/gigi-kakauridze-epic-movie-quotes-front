@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import PlusButton from "@/svgs/PlusButton";
+import PlusButton from "@/components/icons/PlusButton";
 import React from "react";
 import { Props } from "./types";
 import { Quote } from "@/components/MovieDetailsPage";
@@ -30,7 +30,7 @@ const MovieQuotes: React.FC<Props> = ({ quotes, movieId }) => {
       </div>
       <div className="mt-4 lg:mt-9 flex flex-col gap-4 pb-10">
         {quotes?.map((quote) => {
-          return <Quote key={quote.id} quote={quote} />;
+          return <Quote movieId={movieId} key={quote.id} quote={quote} />;
         })}
       </div>
     </div>

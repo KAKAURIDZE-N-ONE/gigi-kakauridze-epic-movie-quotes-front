@@ -5,4 +5,5 @@ export type Props = {
   lang?: "en" | "ka";
   error?: string;
   register: UseFormRegisterReturn<string>;
+  disabled?: boolean;
 };

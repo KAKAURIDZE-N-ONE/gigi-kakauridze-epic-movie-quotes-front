@@ -1,12 +1,10 @@
 import React from "react";
 import useMovieDescription from "./useMovieDescription";
-import Pencil from "@/svgs/Pencil";
-import Trash from "@/svgs/Trash";
 import { MovieQuotes } from "../MovieQuotes";
 import { Button } from "@/components/Button";
-import PlusButton from "@/svgs/PlusButton";
+import PlusButton from "@/components/icons/PlusButton";
 import Loader from "@/components/Loader";
-import Link from "next/link";
+import EditAndDeleteButtons from "../EditAndDeleteButtons/EditAndDeleteButtons";
 
 const MovieDescription: React.FC = () => {
   const { movie, language, router, handleDeleteMovie, deleteMovieIsPending } =
@@ -39,28 +37,11 @@ const MovieDescription: React.FC = () => {
                     {movie?.name[language]}
                   </h2>
                   <div className="hidden lg:flex items-center justify-between bg-normalBlue  rounded-[0.625rem] h-[2.5rem] w-36 overflow-hidden">
-                    {movie?.id && (
-                      <Link
-                        href={`/movies/${movie?.id}/edit`}
-                        className="w-full flex items-center justify-center hover:bg-slate-600 transition-all duration-200 h-full cursor-pointer"
-                      >
-                        <Pencil />
-                      </Link>
-                    )}
-                    <div className="h-2/3 w-px bg-gray "></div>
-                    {movie?.id && (
-                      <div
-                        onClick={() => handleDeleteMovie(movie?.id)}
-                        className={`${
-                          deleteMovieIsPending
-                            ? "pointer-events-none"
-                            : "hover:bg-slate-600"
-                        }
-                        w-full flex items-center justify-center  transition-all duration-200 h-full cursor-pointer`}
-                      >
-                        <Trash />
-                      </div>
-                    )}
+                    <EditAndDeleteButtons
+                      handleDeleteMovie={handleDeleteMovie}
+                      deleteMovieIsPending={deleteMovieIsPending}
+                      movieId={movie.id}
+                    />
                   </div>
                 </div>
                 <div className="mt-5 -ml-1">
@@ -86,7 +67,7 @@ const MovieDescription: React.FC = () => {
                 <div className="text-lg text-white2 mt-5">
                   {movie?.description[language]}
                 </div>
-                <div className="lg:hidden mt-5">
+                <div className="lg:hidden mt-5 flex items-center justify-between">
                   <Button
                     size="smallest"
                     icon={<PlusButton />}
@@ -95,7 +76,13 @@ const MovieDescription: React.FC = () => {
                   >
                     Add quote
                   </Button>
+                  <EditAndDeleteButtons
+                    handleDeleteMovie={handleDeleteMovie}
+                    deleteMovieIsPending={deleteMovieIsPending}
+                    movieId={movie.id}
+                  />
                 </div>
+
                 <div className="lg:hidden border-b border-b-[#54535A] mt-6"></div>
               </div>
             )}

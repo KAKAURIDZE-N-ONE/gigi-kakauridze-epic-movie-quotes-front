@@ -1,4 +1,4 @@
-import Quote from "@/svgs/Quote";
+import Quote from "@/components/icons/Quote";
 import React from "react";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";

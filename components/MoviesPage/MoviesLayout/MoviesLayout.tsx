@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import PlusButton from "@/svgs/PlusButton";
+import PlusButton from "@/components/icons/PlusButton";
 import React from "react";
 import { MovieCard } from "../MovieCard";
 import useMoviesLayout from "./useMoviesLayout";
@@ -13,7 +13,9 @@ const MoviesLayout: React.FC = () => {
         <div className="flex items-center justify-between mt-5">
           <h1 className="font-medium text-2xl">
             My list of movies
-            <span className="hidden lg:inline-block">(Total 25)</span>
+            <span className="hidden lg:inline-block">
+              (Total {movies?.length})
+            </span>
           </h1>
           <div className="lg:hidden ">
             <Button
@@ -40,7 +42,7 @@ const MoviesLayout: React.FC = () => {
             </Button>
           </div>
         </div>
-        <p className="font-medium lg:hidden">(Total 25)</p>
+        <p className="font-medium lg:hidden">(Total {movies?.length})</p>
       </div>
       <div className="mt-9 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-14 pb-20 gap-x-7">
         {movies?.map((movie) => (

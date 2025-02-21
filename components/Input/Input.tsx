@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ClosedEye from "@/svgs/ClosedEye";
-import OpenEye from "@/svgs/OpenEye";
-import ErrorMark from "@/svgs/ErrorMark";
+import ClosedEye from "@/components/icons/ClosedEye";
+import OpenEye from "@/components/icons/OpenEye";
+import ErrorMark from "@/components/icons/ErrorMark";
 import { Props } from "./types";
 
 const Input = React.forwardRef<HTMLInputElement, Props>(

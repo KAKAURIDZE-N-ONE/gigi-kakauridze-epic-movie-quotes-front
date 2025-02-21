@@ -1,6 +1,6 @@
 import { Props } from "./types";
 import useInnerSelect from "./useInnerSelect";
-import SmallXIcon from "@/svgs/SmallXIcon";
+import SmallXIcon from "@/components/icons/SmallXIcon";
 
 const InnerSelect: React.FC<Props> = ({
   options,

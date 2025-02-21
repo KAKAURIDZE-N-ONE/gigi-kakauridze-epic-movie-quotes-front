@@ -4,7 +4,7 @@ import { Input } from "@/components/Input";
 import React from "react";
 import useSignUpBody from "./useSignUpBody";
 import { EMAIL_PATTERN_VALUE } from "@/config/regex";
-import Google from "@/svgs/Google";
+import Google from "@/components/icons/Google";
 
 const SignUpBody: React.FC = () => {
   const {

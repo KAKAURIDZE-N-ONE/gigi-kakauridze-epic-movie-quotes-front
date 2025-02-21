@@ -3,7 +3,7 @@ import { FormLayout } from "../../FormLayout";
 import { Button } from "@/components/Button";
 import useLoginBody from "./useLoginBody";
 import { Input } from "@/components/Input";
-import Google from "@/svgs/Google";
+import Google from "@/components/icons/Google";
 
 const LogInBody: React.FC = () => {
   const {

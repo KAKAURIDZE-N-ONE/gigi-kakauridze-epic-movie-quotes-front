@@ -7,7 +7,7 @@ import {
   ProfileDescription,
   ProfileImage,
 } from "@/components/ProfilePage";
-import ArrowLeftBig from "@/svgs/ArrowLeftBig";
+import ArrowLeftBig from "@/components/icons/ArrowLeftBig";
 import { EditUsernameBody } from "@/components/ProfilePage";
 
 const MobileProfilePage: React.FC = () => {

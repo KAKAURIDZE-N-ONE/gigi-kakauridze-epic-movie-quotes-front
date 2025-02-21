@@ -1,16 +1,18 @@
-import LanguageArrow from "@/svgs/LanguageArrow";
+import LanguageArrow from "@/components/icons/LanguageArrow";
 import useLanguageSwitcher from "./useLanguageSwitcher";
+import { Props } from "./types";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher: React.FC<Props> = ({ size }) => {
   const { isActive, setIsActive, locale, locales, asPath, dropDownRef } =
     useLanguageSwitcher();
 
   return (
     <div
       ref={dropDownRef}
-      className="text-white w-24 h-[2.375rem] flex 
+      className={`${size === "small" ? "w-10" : "w-24"}
+        text-white h-[2.375rem] flex 
     items-center justify-center gap-2 cursor-pointer
-    relative"
+    relative`}
       onClick={() => setIsActive((isActive) => !isActive)}
     >
       <h4 className="text-base select-none">
@@ -24,7 +26,10 @@ const LanguageSwitcher = () => {
         <LanguageArrow />
       </div>
       {isActive && (
-        <div className="absolute left-1/2 -translate-x-1/2 -bottom-7 ">
+        <div
+          className={`${size === "small" ? "-bottom-6" : "-bottom-7 "}
+        absolute left-1/2 -translate-x-1/2 `}
+        >
           {locales?.map((lng) => (
             <button
               className="text-white opacityAnime"

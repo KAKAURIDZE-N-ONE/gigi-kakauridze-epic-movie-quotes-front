@@ -15,6 +15,13 @@ export type CreateOrUpdateMovieValues = {
 
 export type CreateOrUpdateQuoteValues = {
   quote: Locales;
-  movie_id: string;
+  movie_id: number;
   image: File;
+  quote_id?: number;
+};
+
+export type CreateCommentValues = {
+  comment: string;
+  quote_id: number;
+  user_id: number;
 };
