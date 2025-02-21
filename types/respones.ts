@@ -42,3 +42,39 @@ export type MovieResponse = {
   categories: Category[];
   quotes: Quote[];
 };
+
+type CommentUser = {
+  avatar: string;
+  name: string;
+};
+
+export type Comment = {
+  id: number;
+  comment: string;
+  user: CommentUser;
+};
+
+export type PostsListingResponse = {
+  id: number;
+  image: string;
+  quote: Record<string, string>;
+  likes_count: number;
+  comments: Comment[];
+  movie: {
+    name: Record<string, string>;
+    year: number;
+    user: {
+      avatar: string;
+      name: string;
+    };
+  };
+};
+
+export type MovieShortResponse = {
+  id: number;
+  name: Record<string, string>;
+  director: Record<string, string>;
+  year: number;
+  image: string;
+  categories: Category[];
+};

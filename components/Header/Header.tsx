@@ -32,7 +32,6 @@ const Header: React.FC = () => {
         />,
         document.body
       )}
-      {/* <div className="h-[5.375rem]"></div> */}
       <div
         className={`${
           !isColored ? "bg-normalBlue top-0 h-[5.375rem]" : "top-7 "
@@ -58,12 +57,15 @@ const Header: React.FC = () => {
         <div className="bg-red-200 flex items-center justify-center gap-2 lg:gap-4">
           <div className="flex items-center gap-5 lg:gap-9">
             {!isColored && (
-              <div className="translate-x-6 lg:translate-x-0 lg:inline-block">
-                <LanguageSwitcher />
+              <div className="lg:translate-x-0 lg:inline-block">
+                <LanguageSwitcher size="small" />
               </div>
             )}
             {isNewsFeedPage && (
-              <div className="lg:mr-7">
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:mr-7 cursor-pointer"
+              >
                 <Search />
               </div>
             )}

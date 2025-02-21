@@ -6,10 +6,12 @@ const InnerTextarea: React.FC<Props> = ({
   error,
   lang,
   register,
+  disabled = false,
 }) => {
   return (
     <div className="relative">
       <textarea
+        disabled={disabled}
         {...register}
         id={children}
         className="bg-darkerBlue border border-gray w-full rounded-[0.3rem] min-h-[5.375rem] pl-4 pt-[0.625rem] placeholder:text-white"

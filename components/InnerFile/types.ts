@@ -6,6 +6,8 @@ export type Props = {
   control: Control<FormFieldsAddMovie | FormFieldsAddQuote>;
   register: UseFormRegisterReturn<string>;
   savedImage?: string;
+  size?: "big";
+  disabled?: boolean;
 };
 
 export type HookProps = {

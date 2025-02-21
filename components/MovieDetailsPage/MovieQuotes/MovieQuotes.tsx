@@ -30,7 +30,7 @@ const MovieQuotes: React.FC<Props> = ({ quotes, movieId }) => {
       </div>
       <div className="mt-4 lg:mt-9 flex flex-col gap-4 pb-10">
         {quotes?.map((quote) => {
-          return <Quote key={quote.id} quote={quote} />;
+          return <Quote movieId={movieId} key={quote.id} quote={quote} />;
         })}
       </div>
     </div>

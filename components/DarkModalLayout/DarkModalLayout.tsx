@@ -1,22 +1,23 @@
-import React from "react";
 import { Props } from "./types";
 import XIcon from "@/svgs/XIcon";
-import Link from "next/link";
 import useDarkModalLayout from "./useDarkModalLayout";
 import { Button } from "../Button";
+import { UserShortDescription } from "../UserShortDescription";
 
 const DarkModalLayout: React.FC<Props> = ({
   title,
-  xBtnUrl,
   children,
   btnText,
   submitFn,
   isPending,
+  needScroll = true,
+  type,
 }) => {
-  const { user } = useDarkModalLayout();
+  const { user, router } = useDarkModalLayout();
   return (
     <div
-      className={`lg:left-1/2 lg:-translate-x-1/2 lg:min-w-[60rem] lg:top-24 bottom-0 lg:bottom-24
+      className={`${needScroll ? "lg:bottom-24" : "lg:bottom-auto"}
+        lg:left-1/2 lg:-translate-x-1/2 lg:min-w-[60rem] lg:top-24 bottom-0 
         absolute top-0 left-0 w-full lg:w-auto lg:h-auto bg-darkerBlue overflow-auto pb-8`}
     >
       <div
@@ -25,29 +26,30 @@ const DarkModalLayout: React.FC<Props> = ({
       >
         <div className="w-4"></div>
         <h1 className="font-medium text-xl translate-y-1">{title}</h1>
-        <Link href={xBtnUrl} className="translate-y-1">
+        <button onClick={() => router.back()} className="translate-y-1">
           <XIcon />
-        </Link>
+        </button>
       </div>
-      <div className="flex items-center px-[2.1875rem] gap-4 mt-9">
-        <div
-          style={{
-            backgroundImage: `url(${user?.avatar})`,
-          }}
-          className="bg-no-repeat bg-center bg-cover w-10 h-10 rounded-full"
-        ></div>
-        <h3 className="text-xl">{user?.name}</h3>
+      <div className="mt-9 px-[2.1875rem]">
+        <UserShortDescription avatar={user?.avatar} name={user?.name} />
       </div>
       <form
         onSubmit={submitFn}
         className="flex flex-col gap-4 px-[2.1875rem] mt-8"
       >
         {children}
-        <div className="flex flex-col mt-7">
-          <Button disabled={isPending} size="medium" color="red" type="submit">
-            {btnText}
-          </Button>
-        </div>
+        {type !== "view" && (
+          <div className="flex flex-col mt-7">
+            <Button
+              disabled={isPending}
+              size="medium"
+              color="red"
+              type="submit"
+            >
+              {btnText}
+            </Button>
+          </div>
+        )}
       </form>
     </div>
   );

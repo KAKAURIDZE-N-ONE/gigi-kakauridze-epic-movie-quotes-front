@@ -49,8 +49,7 @@ const CreateOrEditMovieBody: React.FC = () => {
           submitFn={handleSubmit(
             isEditBody ? editMovieOnSubmit : createMovieOnSubmit
           )}
-          btnText="Add movie"
-          xBtnUrl={isEditBody ? `/movies/${editMovieId}` : "/movies"}
+          btnText={`${isEditBody ? "Edit" : "Add"} movie`}
           isPending={createMovieIsPending || updateMovieIsPending}
           title={`${isEditBody ? "Edit" : "Add"} Movie`}
         >

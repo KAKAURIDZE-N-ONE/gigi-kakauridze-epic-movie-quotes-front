@@ -13,6 +13,12 @@ export async function getMovie(id: number) {
   return response.data.data;
 }
 
+export async function getMovieShort(id: number) {
+  const response = await authInstace.get(`/api/movies/${id}/short`);
+
+  return response.data.data;
+}
+
 export async function getCategories() {
   const response = await authInstace.get(`/api/categories`);
 
