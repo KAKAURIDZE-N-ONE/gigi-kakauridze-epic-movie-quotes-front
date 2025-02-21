@@ -2,8 +2,8 @@ import React from "react";
 import { Props } from "./types";
 import { UserShortDescription } from "@/components/UserShortDescription";
 import usePost from "./usePost";
-import Comment from "@/svgs/Comment";
-import Heart from "@/svgs/Heart";
+import Comment from "@/components/icons/Comment";
+import Heart from "@/components/icons/Heart";
 import { Comments } from "@/components/NewsFeedPage";
 
 const Post: React.FC<Props> = ({ post }) => {

@@ -2,7 +2,7 @@ import React from "react";
 import useMovieDescription from "./useMovieDescription";
 import { MovieQuotes } from "../MovieQuotes";
 import { Button } from "@/components/Button";
-import PlusButton from "@/svgs/PlusButton";
+import PlusButton from "@/components/icons/PlusButton";
 import Loader from "@/components/Loader";
 import EditAndDeleteButtons from "../EditAndDeleteButtons/EditAndDeleteButtons";
 

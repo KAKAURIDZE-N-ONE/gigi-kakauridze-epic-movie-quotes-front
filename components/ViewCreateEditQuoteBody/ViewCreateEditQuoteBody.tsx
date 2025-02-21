@@ -10,12 +10,10 @@ import {
 import { FormFieldsAddMovie, FormFieldsAddQuote } from "@/types/movie";
 import Head from "next/head";
 
-import React from "react";
 import { Control } from "react-hook-form";
 import { Props } from "./types";
 import { MovieShortDescription } from "../MovieShortDescription";
 import useViewCreateEditQuoteBody from "./useViewCreateEditQuoteBody";
-import { Comments } from "../NewsFeedPage";
 
 const ViewCreateEditQuoteBody: React.FC<Props> = ({
   darkModalIsScrollable = true,
@@ -35,7 +33,6 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({
     movieShort,
     router,
     quoteImage,
-    quote,
   } = useViewCreateEditQuoteBody();
 
   return (

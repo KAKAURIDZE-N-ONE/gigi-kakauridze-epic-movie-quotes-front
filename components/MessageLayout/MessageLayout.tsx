@@ -1,8 +1,8 @@
 import React from "react";
 import { Props } from "./types";
-import Post from "@/svgs/Post";
+import Post from "@/components/icons/Post";
 import { useDispatch } from "react-redux";
-import XIcon from "@/svgs/XIcon";
+import XIcon from "@/components/icons/XIcon";
 import { updateOpenedModal } from "@/store/slices/modalSlice";
 
 const MessageLayout: React.FC<Props> = ({

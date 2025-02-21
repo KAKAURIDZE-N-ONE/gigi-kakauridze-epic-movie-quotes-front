@@ -1,8 +1,8 @@
 import React from "react";
 import { Props } from "./types";
-import Comment from "@/svgs/Comment";
-import Heart from "@/svgs/Heart";
-import ThreeDots from "@/svgs/ThreeDots";
+import Comment from "@/components/icons/Comment";
+import Heart from "@/components/icons/Heart";
+import ThreeDots from "@/components/icons/ThreeDots";
 import useQuote from "./useQuote";
 import { QuoteManagementWindow } from "../QuoteManagementWindow";
 

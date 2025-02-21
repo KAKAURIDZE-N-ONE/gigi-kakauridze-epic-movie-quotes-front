@@ -2,11 +2,11 @@ import React from "react";
 import { Button } from "../Button";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import useHeader from "./useHeader";
-import Bell from "@/svgs/Bell";
+import Bell from "@/components/icons/Bell";
 import { createPortal } from "react-dom";
 import { BurgerMenu } from "../BurgerMenu";
-import List from "@/svgs/List";
-import Search from "@/svgs/Search";
+import List from "@/components/icons/List";
+import Search from "@/components/icons/Search";
 
 const Header: React.FC = () => {
   const {

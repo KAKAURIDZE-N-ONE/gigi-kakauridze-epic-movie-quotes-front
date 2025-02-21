@@ -1,6 +1,6 @@
 import React from "react";
-import { Props } from "./Props";
 import useMovieShortDescription from "./useMovieShortDescription";
+import { Props } from "./types";
 
 const MovieShortDescription: React.FC<Props> = ({ movieShort }) => {
   const { language } = useMovieShortDescription();

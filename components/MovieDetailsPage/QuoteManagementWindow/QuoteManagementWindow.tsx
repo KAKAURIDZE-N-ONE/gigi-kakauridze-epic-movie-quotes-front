@@ -1,6 +1,6 @@
-import BigOpenEye from "@/svgs/BigOpenEye";
-import Pencil from "@/svgs/Pencil";
-import Trash from "@/svgs/Trash";
+import BigOpenEye from "@/components/icons/BigOpenEye";
+import Pencil from "@/components/icons/Pencil";
+import Trash from "@/components/icons/Trash";
 import React from "react";
 import { Props } from "./types";
 import useQuoteManagementWindow from "./useQuoteManagementWindow";

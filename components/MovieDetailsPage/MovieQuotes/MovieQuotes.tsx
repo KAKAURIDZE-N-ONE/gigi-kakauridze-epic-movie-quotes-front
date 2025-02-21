@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import PlusButton from "@/svgs/PlusButton";
+import PlusButton from "@/components/icons/PlusButton";
 import React from "react";
 import { Props } from "./types";
 import { Quote } from "@/components/MovieDetailsPage";

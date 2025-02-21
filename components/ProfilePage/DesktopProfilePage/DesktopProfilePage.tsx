@@ -2,7 +2,7 @@ import React from "react";
 import { ProfileImage } from "../ProfileImage";
 import { Input } from "@/components/Input";
 import useDesktopProfilePage from "./useDesktopProfilePage";
-import XIcon from "@/svgs/XIcon";
+import XIcon from "@/components/icons/XIcon";
 import { Button } from "@/components/Button";
 
 const DesktopProfilePage: React.FC = () => {

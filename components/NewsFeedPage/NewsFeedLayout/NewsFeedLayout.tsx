@@ -1,4 +1,4 @@
-import PencilSquare from "@/svgs/PencilSquare";
+import PencilSquare from "@/components/icons/PencilSquare";
 import React from "react";
 import useNewsFeedLayout from "./useNewsFeedLayout";
 import { Post } from "../Post";

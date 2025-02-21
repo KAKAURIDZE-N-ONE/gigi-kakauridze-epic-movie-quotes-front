@@ -1,7 +1,7 @@
 import React from "react";
 import { Props } from "./types";
-import ArrowLeft from "@/svgs/ArrowLeft";
-import XIcon from "@/svgs/XIcon";
+import ArrowLeft from "@/components/icons/ArrowLeft";
+import XIcon from "@/components/icons/XIcon";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { updateOpenedModal } from "@/store/slices/modalSlice";

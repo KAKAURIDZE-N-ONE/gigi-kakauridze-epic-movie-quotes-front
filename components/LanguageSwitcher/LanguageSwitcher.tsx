@@ -1,4 +1,4 @@
-import LanguageArrow from "@/svgs/LanguageArrow";
+import LanguageArrow from "@/components/icons/LanguageArrow";
 import useLanguageSwitcher from "./useLanguageSwitcher";
 import { Props } from "./types";
 

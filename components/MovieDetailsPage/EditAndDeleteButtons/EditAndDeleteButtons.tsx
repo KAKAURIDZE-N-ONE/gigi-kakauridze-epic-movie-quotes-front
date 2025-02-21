@@ -1,5 +1,5 @@
-import Pencil from "@/svgs/Pencil";
-import Trash from "@/svgs/Trash";
+import Pencil from "@/components/icons/Pencil";
+import Trash from "@/components/icons/Trash";
 import Link from "next/link";
 import React from "react";
 import { Props } from "./types";

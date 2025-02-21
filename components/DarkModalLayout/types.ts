@@ -8,5 +8,5 @@ export type Props = {
   isPending: boolean;
   needScroll?: boolean;
   onlyView?: boolean;
-  type: "create" | "view" | "edit";
+  type?: "create" | "view" | "edit";
 };

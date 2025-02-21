@@ -1,5 +1,5 @@
 import { Props } from "./types";
-import XIcon from "@/svgs/XIcon";
+import XIcon from "@/components/icons/XIcon";
 import useDarkModalLayout from "./useDarkModalLayout";
 import { Button } from "../Button";
 import { UserShortDescription } from "../UserShortDescription";

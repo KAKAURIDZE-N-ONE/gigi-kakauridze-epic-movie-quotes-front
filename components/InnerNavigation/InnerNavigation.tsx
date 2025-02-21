@@ -4,8 +4,8 @@ import { Props } from "./types";
 import defaultProfileImage from "@/public/images/defaultProfileImage.png";
 import Link from "next/link";
 import { updateBurgerMenuIsOpen } from "@/store/slices/modalSlice";
-import House from "@/svgs/House";
-import Camera from "@/svgs/Camera";
+import House from "@/components/icons/House";
+import Camera from "@/components/icons/Camera";
 
 const InnerNavigation: React.FC<Props> = ({ user }) => {
   const dispatch = useDispatch();

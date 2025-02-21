@@ -1,4 +1,4 @@
-import Camera2 from "@/svgs/Camera2";
+import Camera2 from "@/components/icons/Camera2";
 import React from "react";
 import { Props } from "./types";
 import useInnerFile from "./useInnerFile";

@@ -4,11 +4,7 @@ import useUpdateQuote from "@/hooks/useUpdateQuote";
 import { getMovieShort } from "@/services/apiMovie";
 import { getQuote } from "@/services/apiQuote";
 import { FormFieldsAddQuote } from "@/types/movie";
-import {
-  MovieShortResponse,
-  PostsListingResponse,
-  Quote,
-} from "@/types/respones";
+import { MovieShortResponse, PostsListingResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -90,7 +86,6 @@ export default function useViewCreateEditQuoteBody() {
     updateQuoteIsPending,
     movieShort,
     router,
-    quote,
     quoteImage: quote?.image,
   };
 }
