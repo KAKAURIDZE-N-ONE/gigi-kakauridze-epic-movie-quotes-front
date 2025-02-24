@@ -28,9 +28,13 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           {children}
         </label>
         <div className="w-full relative">
+          {value && (
+            <p className="absolute top-1/2 -translate-y-1/2 left-3 text-black">
+              {value}
+            </p>
+          )}
           <input
             ref={ref}
-            {...(value ? { defaultValue: value } : {})}
             disabled={value ? true : false}
             autoComplete={autoComplete || ""}
             type={

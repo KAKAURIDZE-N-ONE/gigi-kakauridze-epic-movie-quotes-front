@@ -14,8 +14,9 @@ import { InnerTextarea } from "@/components/InnerTextarea";
 import { InnerFile } from "@/components/InnerFile";
 import { Control } from "react-hook-form";
 import { FormFieldsAddMovie, FormFieldsAddQuote } from "@/types/movie";
+import { Props } from "./types";
 
-const CreateOrEditMovieBody: React.FC = () => {
+const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
   const {
     categories,
     register,
@@ -28,39 +29,35 @@ const CreateOrEditMovieBody: React.FC = () => {
     control,
     createMovieIsPending,
     updateMovieIsPending,
-    router,
     isEditBody,
-    editMovieId,
     movieImage,
-  } = useCreateOrEditMovieBody();
+    t,
+  } = useCreateOrEditMovieBody({ type });
 
   return (
     <div>
       {(createMovieIsPending || updateMovieIsPending) && <Loader />}
-      <Modal
-        turnOfFn={() =>
-          router.push(isEditBody ? `/movies/${editMovieId}` : "/movies")
-        }
-      >
+      <Modal turnOfFn={turnOfFn}>
         <Head>
-          <title>{isEditBody ? "Edit" : "Add"} Movie</title>
+          <title>{isEditBody ? t("edit_movie") : t("add_movie")}</title>
         </Head>
         <DarkModalLayout
           submitFn={handleSubmit(
             isEditBody ? editMovieOnSubmit : createMovieOnSubmit
           )}
-          btnText={`${isEditBody ? "Edit" : "Add"} movie`}
+          xBtnFn={turnOfFn}
+          btnText={isEditBody ? t("save_changes") : t("add_movie")}
           isPending={createMovieIsPending || updateMovieIsPending}
-          title={`${isEditBody ? "Edit" : "Add"} Movie`}
+          title={isEditBody ? t("edit_movie") : t("add_movie")}
         >
           <InnerInput
             isEditInput={isEditBody}
             error={errors.name?.en?.message}
             register={register("name.en", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
-                message: "Only English letters and numbers are allowed",
+                message: t("only_english"),
               },
             })}
             lang="en"
@@ -70,10 +67,10 @@ const CreateOrEditMovieBody: React.FC = () => {
           <InnerInput
             error={errors.name?.ka?.message}
             register={register("name.ka", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
-                message: "Only Georgian letters and numbers are allowed",
+                message: t("only_georgian"),
               },
             })}
             lang="ka"
@@ -87,8 +84,7 @@ const CreateOrEditMovieBody: React.FC = () => {
             setValue={setValue}
             error={errors.categories?.message}
             {...register("categories", {
-              validate: (value) =>
-                value.length > 0 || "At least one category is required",
+              validate: (value) => value.length > 0 || t("at_least_one"),
             })}
           >
             Select categories
@@ -96,17 +92,17 @@ const CreateOrEditMovieBody: React.FC = () => {
           <InnerInput
             error={errors.year?.message}
             register={register("year", {
-              required: "required",
+              required: t("required"),
               valueAsNumber: true,
               min: {
-                value: 1900,
-                message: "Year must be after 1900",
+                value: 1895,
+                message: t("after_1995"),
               },
               max: {
                 value: new Date().getFullYear(),
-                message: "Year cannot be in the future",
+                message: t("not_in_future"),
               },
-              validate: (value) => !isNaN(value) || "Must be a number",
+              validate: (value) => !isNaN(value) || t("only_number"),
             })}
           >
             წელი/Year
@@ -114,10 +110,10 @@ const CreateOrEditMovieBody: React.FC = () => {
           <InnerInput
             error={errors.director?.en?.message}
             register={register("director.en", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
-                message: "Only English letters and numbers are allowed",
+                message: t("only_english"),
               },
             })}
             lang="en"
@@ -127,10 +123,10 @@ const CreateOrEditMovieBody: React.FC = () => {
           <InnerInput
             error={errors.director?.ka?.message}
             register={register("director.ka", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
-                message: "Only Georgian letters and numbers are allowed",
+                message: t("only_georgian"),
               },
             })}
             lang="ka"
@@ -140,10 +136,10 @@ const CreateOrEditMovieBody: React.FC = () => {
           <InnerTextarea
             error={errors.description?.en?.message}
             register={register("description.en", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
-                message: "Only Georgian letters and numbers are allowed",
+                message: t("only_english"),
               },
             })}
             lang="en"
@@ -153,10 +149,10 @@ const CreateOrEditMovieBody: React.FC = () => {
           <InnerTextarea
             error={errors.description?.ka?.message}
             register={register("description.ka", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
-                message: "Only Georgian letters and numbers are allowed",
+                message: t("only_georgian"),
               },
             })}
             lang="ka"
@@ -171,7 +167,7 @@ const CreateOrEditMovieBody: React.FC = () => {
             error={errors.image?.message}
             register={register(
               "image",
-              isEditBody ? {} : { required: "required" }
+              isEditBody ? {} : { required: t("required") }
             )}
           />
         </DarkModalLayout>

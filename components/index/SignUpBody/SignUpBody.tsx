@@ -71,7 +71,7 @@ const SignUpBody: React.FC = () => {
             message: t2("max_length") + "15.",
           },
           pattern: {
-            value: /^[a-z0-9]+$/,
+            value: /^[a-z0-9ა-ჰ]+$/,
             message: "Only lowercase letters and numbers are allowed.",
           },
         })}

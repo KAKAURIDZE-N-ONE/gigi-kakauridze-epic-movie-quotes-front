@@ -8,6 +8,7 @@ const ProfileImage: React.FC = () => {
     handleImageChange,
     imageUploadIsPending,
     userIsPending,
+    t,
   } = useProfileImage();
 
   return (
@@ -47,7 +48,7 @@ const ProfileImage: React.FC = () => {
         className="text-xl text-white cursor-pointer"
         htmlFor="profileImage"
       >
-        Upload new photo
+        {t("photo_header")}
       </label>
     </div>
   );

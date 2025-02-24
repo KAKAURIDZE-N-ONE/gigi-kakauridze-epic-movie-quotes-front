@@ -3,28 +3,33 @@ import PlusButton from "@/components/icons/PlusButton";
 import React from "react";
 import { Props } from "./types";
 import { Quote } from "@/components/MovieDetailsPage";
-import { useRouter } from "next/router";
+import { updateActiveQuoteModal } from "@/store/slices/modalSlice";
+import useMovieQuotes from "./useMovieQuotes";
 
 const MovieQuotes: React.FC<Props> = ({ quotes, movieId }) => {
-  const router = useRouter();
+  const { dispatch, t } = useMovieQuotes();
 
   return (
     <div className="flex flex-col gap-5 w-full">
       <div>
         <div className="block lg:hidden px-[2.1875rem] mt-3">
-          <h2 className="text-2xl">All Quotes</h2>
-          <p>(Total {quotes?.length})</p>
+          <h2 className="text-2xl">{t("all_quotes")}</h2>
+          <p>
+            ({t("total")} {quotes?.length})
+          </p>
         </div>
         <div className="items-center gap-5 hidden lg:flex">
-          <h2 className="text-2xl ">Quotes (Total {quotes?.length})</h2>
+          <h2 className="text-2xl ">
+            {t("quotes")} ({t("total")} {quotes?.length})
+          </h2>
           <div className="h-8 w-px border-l border-l-gray"></div>
           <Button
-            clickFn={() => router.push(`/movies/${movieId}/quote`)}
+            clickFn={() => dispatch(updateActiveQuoteModal("add"))}
             size="medium"
             icon={<PlusButton />}
             color="red"
           >
-            Add quote
+            {t("add_quote")}
           </Button>
         </div>
       </div>

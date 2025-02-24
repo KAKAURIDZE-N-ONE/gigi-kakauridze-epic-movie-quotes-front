@@ -1,0 +1,16 @@
+{
+  "post": "Post",
+  "new_quote": "Write new quote",
+  "add_quote": "Add quote",
+  "edit_quote": "Edit quote",
+  "file_small": "Upload image",
+  "file_large": "Drag & drop your image here or",
+  "choose_file": "Choose file",
+  "save_changes": "Save changes",
+  "change_photo": "Change Photo",
+  "director": "Director",
+  "replace": "REPLACE PHOTO",
+  "only_english": "Only English letters are allowed",
+  "only_georgian": "Only Georgian letters are allowed",
+  "required": "Required"
+}

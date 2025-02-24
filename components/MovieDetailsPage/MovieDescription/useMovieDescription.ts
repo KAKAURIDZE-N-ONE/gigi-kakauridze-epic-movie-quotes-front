@@ -5,9 +5,12 @@ import { MovieResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
 export default function useMovieDescription() {
+  const { t } = useTranslation("movie-description-page");
   const router = useRouter();
+  const dispatch = useDispatch();
   const { id } = router.query;
   const { i18n } = useTranslation();
 
@@ -27,8 +30,9 @@ export default function useMovieDescription() {
   return {
     movie,
     language: i18n.language,
-    router,
     handleDeleteMovie,
     deleteMovieIsPending,
+    dispatch,
+    t,
   };
 }

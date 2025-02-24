@@ -23,7 +23,7 @@ const LanguageSwitcher: React.FC<Props> = ({ size }) => {
           isActive ? "rotate-180" : "rotate-0"
         } transition-all duration-300`}
       >
-        <LanguageArrow />
+        <LanguageArrow className="w-4 h-4" />{" "}
       </div>
       {isActive && (
         <div

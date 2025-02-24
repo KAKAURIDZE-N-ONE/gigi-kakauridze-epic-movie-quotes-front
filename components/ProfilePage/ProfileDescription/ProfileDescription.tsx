@@ -1,11 +1,10 @@
 import React from "react";
 import { InputUnderline } from "@/components/ProfilePage";
-import { useAuthentication } from "@/hooks/useAuthentication";
 import { Props } from "./types";
+import useProfileDescription from "./useProfileDescription";
 
 const ProfileDescription: React.FC<Props> = ({ setActiveEdit }) => {
-  const { user } = useAuthentication();
-
+  const { t, user } = useProfileDescription();
   return (
     <div className="flex flex-col gap-7 text-white px-[1.7rem]">
       <InputUnderline
@@ -13,10 +12,10 @@ const ProfileDescription: React.FC<Props> = ({ setActiveEdit }) => {
         editable={true}
         value={user?.name}
       >
-        Username
+        {t("username")}
       </InputUnderline>
       <InputUnderline value={user?.email} editable={false}>
-        Email
+        {t("email")}
       </InputUnderline>
       {!user?.google_id && (
         <InputUnderline
@@ -24,7 +23,7 @@ const ProfileDescription: React.FC<Props> = ({ setActiveEdit }) => {
           value={"************"}
           editable={true}
         >
-          Password
+          {t("password")}
         </InputUnderline>
       )}
     </div>

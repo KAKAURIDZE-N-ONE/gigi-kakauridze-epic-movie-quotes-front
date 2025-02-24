@@ -1,9 +1,9 @@
 import { useAuthentication } from "@/hooks/useAuthentication";
-import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 export default function useDarkModalLayout() {
-  const router = useRouter();
+  const dispatch = useDispatch();
   const { user } = useAuthentication();
 
-  return { user, router };
+  return { user, dispatch };
 }

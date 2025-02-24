@@ -5,17 +5,24 @@ import { Button } from "@/components/Button";
 import PlusButton from "@/components/icons/PlusButton";
 import Loader from "@/components/Loader";
 import EditAndDeleteButtons from "../EditAndDeleteButtons/EditAndDeleteButtons";
+import { updateActiveQuoteModal } from "@/store/slices/modalSlice";
 
 const MovieDescription: React.FC = () => {
-  const { movie, language, router, handleDeleteMovie, deleteMovieIsPending } =
-    useMovieDescription();
+  const {
+    movie,
+    language,
+    handleDeleteMovie,
+    deleteMovieIsPending,
+    dispatch,
+    t,
+  } = useMovieDescription();
 
   return (
     <>
       {deleteMovieIsPending && <Loader />}
       <div className="text-white w-full  h-full lg:pr-[4.375rem]">
         <h1 className="text-2xl font-medium hidden lg:inline-block">
-          Movie description
+          {t("header")}
         </h1>
         <div className=" flex flex-col lg:flex-row w-full gap-5 mt-9 lg:mt-7 ">
           <div className="w-full lg:w-[55%] px-[2.1875rem] lg:px-0">
@@ -58,7 +65,7 @@ const MovieDescription: React.FC = () => {
                 </div>
                 <p className="mt-4">
                   <span className="font-bold text-white2 text-lg">
-                    Director:
+                    {t("director")}:
                   </span>
                   <span className="font-medium text-lg ml-4">
                     {movie?.director[language]}
@@ -72,9 +79,9 @@ const MovieDescription: React.FC = () => {
                     size="smallest"
                     icon={<PlusButton />}
                     color="red"
-                    clickFn={() => router.push(`/movies/${movie?.id}/quote`)}
+                    clickFn={() => dispatch(updateActiveQuoteModal("add"))}
                   >
-                    Add quote
+                    {t("add_quote")}
                   </Button>
                   <EditAndDeleteButtons
                     handleDeleteMovie={handleDeleteMovie}

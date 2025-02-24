@@ -8,11 +8,14 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useForm, useWatch } from "react-hook-form";
+import { HookProps } from "./types";
+import { useTranslation } from "react-i18next";
 
-export default function useCreateOrEditMovieBody() {
+export default function useCreateOrEditMovieBody({ type }: HookProps) {
+  const { t } = useTranslation("movie-modal");
   const router = useRouter();
 
-  const isEditBody = router.pathname.endsWith("/edit");
+  const isEditBody = type === "edit";
   const { id: editMovieId } = router.query;
 
   const { data: categories } = useQuery({
@@ -123,9 +126,8 @@ export default function useCreateOrEditMovieBody() {
     control,
     createMovieIsPending,
     updateMovieIsPending,
-    router,
     isEditBody,
-    editMovieId,
     movieImage: movieData?.image,
+    t,
   };
 }

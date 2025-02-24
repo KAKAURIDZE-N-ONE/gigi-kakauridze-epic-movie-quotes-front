@@ -6,7 +6,8 @@ export type Props = {
   submitFn: () => void;
   btnText: string;
   isPending: boolean;
-  needScroll?: boolean;
   onlyView?: boolean;
-  type?: "create" | "view" | "edit";
+  type?: "create" | "view" | "edit" | "createPost";
+  trashFn?: () => void;
+  xBtnFn?: () => void | undefined;
 };

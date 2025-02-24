@@ -1,0 +1,18 @@
+{
+  "header": "ჩემი პროფილი",
+  "photo_header": "ატვირთე ახალი ფოტო",
+  "username": "სახელი",
+  "email": "მეილი",
+  "password": "პაროლი",
+  "cancell": "გაუქმება",
+  "confirm": "დადასტურება",
+  "save_changes": "შეინახე ცვლილებები",
+  "name_validation_header": "სახელი უნდა შეიცავდეს",
+  "password_validation_header": "პაროლი უნდა შეიცავდეს",
+  "name_validation_min": "3 ან მეტი ასო",
+  "name_or_password_validation_max": "15 ზე ნაკლები ან ტოლი ასო",
+  "only_lower_case": "მხოლოდ დაბალი რეგისტრის ასოები",
+  "password_validation_min": "8 ან მეტი ასო",
+  "edit": "რედაქტირება",
+  "sure_make_changes": "დარწმუნებული ხარ რომ გააკეთო ცვლილებები?"
+}

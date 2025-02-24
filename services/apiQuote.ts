@@ -1,8 +1,8 @@
 import { authInstace, fileInstance } from "./axios";
 import { CreateOrUpdateQuoteValues } from "@/types/requests";
 
-export async function getQuotes() {
-  const response = await authInstace.get("/api/quotes");
+export async function getQuotes(page: number) {
+  const response = await authInstace.get(`/api/quotes?page=${page}`);
 
   return response.data.data;
 }
@@ -16,7 +16,6 @@ export async function getQuote(quoteId: number) {
 export async function createQuote(data: CreateOrUpdateQuoteValues) {
   const formData = new FormData();
 
-  console.log(data);
   formData.append("movie_id", data.movie_id.toString());
   formData.append("quote[en]", data.quote.en);
   formData.append("quote[ka]", data.quote.ka);

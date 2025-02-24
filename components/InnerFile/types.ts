@@ -8,6 +8,7 @@ export type Props = {
   savedImage?: string;
   size?: "big";
   disabled?: boolean;
+  type?: "edit" | "view";
 };
 
 export type HookProps = {

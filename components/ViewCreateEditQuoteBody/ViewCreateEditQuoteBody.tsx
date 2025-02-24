@@ -14,11 +14,9 @@ import { Control } from "react-hook-form";
 import { Props } from "./types";
 import { MovieShortDescription } from "../MovieShortDescription";
 import useViewCreateEditQuoteBody from "./useViewCreateEditQuoteBody";
+import { Comments } from "../NewsFeedPage";
 
-const ViewCreateEditQuoteBody: React.FC<Props> = ({
-  darkModalIsScrollable = true,
-  type,
-}) => {
+const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
   const {
     movieId,
     redirectedFromMovie,
@@ -32,25 +30,39 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({
     updateQuoteIsPending,
     movieShort,
     router,
-    quoteImage,
-  } = useViewCreateEditQuoteBody();
+    quote,
+    isMobile,
+    handleDeleteQuote,
+    deleteQuoteIsPending,
+    t,
+  } = useViewCreateEditQuoteBody({ type });
 
   return (
     <>
-      {(createQuoteIsPending || updateQuoteIsPending) && <Loader />}
+      {(createQuoteIsPending ||
+        updateQuoteIsPending ||
+        deleteQuoteIsPending) && <Loader />}
       <Modal
         turnOfFn={() => {
-          if (redirectedFromMovie) {
+          if (turnOfFn) turnOfFn();
+          else if (redirectedFromMovie) {
             router.push(`/movies/${movieId}`);
           }
         }}
       >
         <Head>
           <title>
-            {type === "create" ? "Add" : type === "edit" ? "Edit" : ""} Quote
+            {type === "create"
+              ? t("add_quote")
+              : type === "edit"
+              ? t("edit_quote")
+              : ""}
+            Quote
           </title>
         </Head>
         <DarkModalLayout
+          xBtnFn={turnOfFn}
+          trashFn={handleDeleteQuote}
           type={type}
           submitFn={handleSubmit(
             type === "create"
@@ -61,40 +73,45 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({
           )}
           btnText={`${
             type === "create"
-              ? "Add quote"
+              ? t("add_quote")
               : type === "edit"
-              ? "Save changes"
+              ? t("save_changes")
               : ""
           } `}
           isPending={createQuoteIsPending}
           title={`${
-            type === "create" ? "Add" : type === "edit" ? "Edit" : ""
-          } quote`}
-          needScroll={darkModalIsScrollable}
+            type === "create"
+              ? t("add_quote")
+              : type === "edit"
+              ? t("edit_quote")
+              : ""
+          }`}
         >
           {type === "create" && (
             <MovieShortDescription movieShort={movieShort} />
           )}
-          {type === "create" && (
-            <InnerFile
-              control={
-                control as Control<FormFieldsAddMovie | FormFieldsAddQuote>
-              }
-              error={errors.image?.message}
-              register={register("image", {
-                required: "required",
-              })}
-            />
+          {type === "create" && isMobile && (
+            <div className="mt-2">
+              <InnerFile
+                control={
+                  control as Control<FormFieldsAddMovie | FormFieldsAddQuote>
+                }
+                error={errors.image?.message}
+                register={register("image", {
+                  required: t("required"),
+                })}
+              />
+            </div>
           )}
           <div className="mt-2">
             <InnerTextarea
               disabled={type === "view"}
               error={errors.quote?.en?.message}
               register={register("quote.en", {
-                required: "required",
+                required: t("required"),
                 pattern: {
                   value: ENGLISH_LANGUAGE_PATTERN_VALUE,
-                  message: "Only english letters and numbers are allowed",
+                  message: t("only_english"),
                 },
               })}
               lang="en"
@@ -106,26 +123,49 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({
             disabled={type === "view"}
             error={errors.quote?.ka?.message}
             register={register("quote.ka", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
-                message: "Only Georgian letters and numbers are allowed",
+                message: t("only_georgian"),
               },
             })}
             lang="ka"
           >
-            ფილმის აღწერა
+            შექმენი ახალი ციტატა
           </InnerTextarea>
+          {type === "create" && !isMobile && (
+            <div className="mt-3">
+              <InnerFile
+                control={
+                  control as Control<FormFieldsAddMovie | FormFieldsAddQuote>
+                }
+                error={errors.image?.message}
+                register={register("image", {
+                  required: t("required"),
+                })}
+              />
+            </div>
+          )}
           {(type === "edit" || type === "view") && (
-            <InnerFile
-              disabled={type === "view"}
-              size="big"
-              savedImage={quoteImage}
-              control={
-                control as Control<FormFieldsAddMovie | FormFieldsAddQuote>
-              }
-              error={errors.image?.message}
-              register={register("image")}
+            <div className="mt-1">
+              <InnerFile
+                disabled={type === "view"}
+                size="big"
+                type={type}
+                savedImage={quote?.image}
+                control={
+                  control as Control<FormFieldsAddMovie | FormFieldsAddQuote>
+                }
+                error={errors.image?.message}
+                register={register("image")}
+              />
+            </div>
+          )}
+          {type === "view" && (
+            <Comments
+              likes_count={quote?.likes_count}
+              quote_id={quote?.id}
+              comments={quote?.comments}
             />
           )}
         </DarkModalLayout>
