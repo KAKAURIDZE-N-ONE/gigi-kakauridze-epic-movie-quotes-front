@@ -52,6 +52,13 @@ export type Comment = {
   id: number;
   comment: string;
   user: CommentUser;
+  quote?: {
+    id: number;
+  };
+};
+
+export type RealTimeComment = {
+  comment: Comment;
 };
 
 export type PostsListingResponse = {

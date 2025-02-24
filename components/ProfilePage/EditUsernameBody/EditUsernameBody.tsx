@@ -14,7 +14,7 @@ const EditUsernameBody: React.FC<Props> = ({ setFormDataUsername }) => {
       <div className="px-8">
         <Input
           size="big"
-          placeholder="New Username"
+          placeholder={t("new_name")}
           error={errors.name?.message}
           {...register("name", {
             required: t("name_label") + " " + t2("required"),

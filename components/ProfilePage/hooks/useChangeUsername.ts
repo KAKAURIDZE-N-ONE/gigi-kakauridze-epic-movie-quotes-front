@@ -14,7 +14,7 @@ export default function useChangeUsername({
     mutationFn: changeUsername,
     onSuccess: (data) => {
       setActiveEdit(null);
-      queryClient.removeQueries({ queryKey: [USER] });
+      queryClient.invalidateQueries({ queryKey: [USER] });
       showSuccessToast(data.status);
     },
     onError: (error) => {

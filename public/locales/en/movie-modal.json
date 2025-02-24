@@ -1,0 +1,12 @@
+{
+  "add_movie": "Add Movie",
+  "edit_movie": "Edit Movie",
+  "save_changes": "Save changes",
+  "required": "Required",
+  "only_english": "Only English letters are allowed",
+  "only_georgian": "Only Georgian letters are allowed",
+  "at_least_one": "At least one category is required",
+  "only_number": "Must be a number",
+  "after_1995": "The first film was released in 1895",
+  "not_in_future": "The film could not be released in the future"
+}

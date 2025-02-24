@@ -1,4 +1,3 @@
-import React from "react";
 import { ProfileImage } from "../ProfileImage";
 import { Input } from "@/components/Input";
 import useDesktopProfilePage from "./useDesktopProfilePage";
@@ -13,6 +12,7 @@ const DesktopProfilePage: React.FC = () => {
     t3,
     t,
     t2,
+    tPage,
     onSubmitPassword,
     errorsPassword,
     handleSubmitPassword,
@@ -27,13 +27,13 @@ const DesktopProfilePage: React.FC = () => {
   return (
     <div className="">
       <div className="flex flex-col gap-10  mr-36">
-        <h2 className="ml-8 text-2xl font-medium">My profile</h2>
+        <h2 className="ml-8 text-2xl font-medium">{tPage("header")}</h2>
         <div className="w-full max-w-[68rem] bg-darkerBlue mt-20 rounded-xl relative">
           <div className="absolute -top-[6.5rem] left-1/2 -translate-x-1/2 z-30 ">
             <ProfileImage />
           </div>
           <div className="pb-16">
-            <div className="mt-[12rem] lg:mx-24 xl:mx-40">
+            <div className="mt-[12rem] lg:mx-44 xl:mx-44">
               <div className="max-w-[40rem] mx-auto">
                 <div
                   className={`flex transition-all duration-300 flex-col ${
@@ -42,7 +42,7 @@ const DesktopProfilePage: React.FC = () => {
                 >
                   <div className="flex">
                     <div className="w-full relative">
-                      <Input value={user?.name}>Username</Input>
+                      <Input value={user?.name}>{tPage("username")}</Input>
                       {activeEdit === "username" ? (
                         <div
                           onClick={() => setActiveEdit(null)}
@@ -51,12 +51,14 @@ const DesktopProfilePage: React.FC = () => {
                           <XIcon />
                         </div>
                       ) : (
-                        <h3
-                          onClick={() => setActiveEdit("username")}
-                          className="text-white2 text-xl absolute -right-14 bottom-[0.37rem] cursor-pointer"
-                        >
-                          Edit
-                        </h3>
+                        <div className="absolute -right-2 translate-x-full  bottom-[0.37rem] ">
+                          <h3
+                            onClick={() => setActiveEdit("username")}
+                            className="text-white2 text-xl cursor-pointer"
+                          >
+                            {tPage("edit")}
+                          </h3>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -69,12 +71,13 @@ const DesktopProfilePage: React.FC = () => {
                       className="border border-[#CED4DA33] rounded-[0.25rem]
                         px-5 py-6"
                     >
-                      <h4>Passwords should contain:</h4>
+                      <h4>{tPage("name_validation_header")}:</h4>
                       <ul className="flex flex-col gap-1 mt-3">
                         <li className="flex items-center gap-2">
                           <div
                             className={`w-1 h-1 rounded-full ${
-                              usernameValue?.length <= 0
+                              usernameValue?.length <= 0 ||
+                              usernameValue === undefined
                                 ? "bg-gray2"
                                 : usernameValue?.length < 3
                                 ? "bg-red"
@@ -83,20 +86,22 @@ const DesktopProfilePage: React.FC = () => {
                           ></div>
                           <p
                             className={`${
-                              usernameValue?.length <= 0
+                              usernameValue?.length <= 0 ||
+                              usernameValue === undefined
                                 ? "text-gray2"
                                 : usernameValue?.length < 3
                                 ? "text-red"
                                 : "text-white"
                             } text-sm text-gray2`}
                           >
-                            3 or more characters
+                            {tPage("name_validation_min")}
                           </p>
                         </li>
                         <li className="flex items-center gap-2">
                           <div
                             className={`w-1 h-1 rounded-full ${
-                              usernameValue?.length <= 0
+                              usernameValue?.length <= 0 ||
+                              usernameValue === undefined
                                 ? "bg-gray2"
                                 : usernameValue?.length <= 15
                                 ? "bg-green"
@@ -105,20 +110,22 @@ const DesktopProfilePage: React.FC = () => {
                           ></div>
                           <p
                             className={`text-sm  ${
-                              usernameValue?.length <= 0
+                              usernameValue?.length <= 0 ||
+                              usernameValue === undefined
                                 ? "text-gray2"
                                 : usernameValue?.length <= 15
                                 ? "text-white"
                                 : "text-red"
                             }`}
                           >
-                            Lower or equal of 15 characters
+                            {tPage("name_or_password_validation_max")}
                           </p>
                         </li>
                         <li className="flex items-center gap-2">
                           <div
                             className={`w-1 h-1 rounded-full ${
-                              usernameValue?.length <= 0
+                              usernameValue?.length <= 0 ||
+                              usernameValue === undefined
                                 ? "bg-gray2"
                                 : usernameValue === usernameValue?.toLowerCase()
                                 ? "bg-green"
@@ -127,14 +134,15 @@ const DesktopProfilePage: React.FC = () => {
                           ></div>
                           <p
                             className={`text-sm  ${
-                              usernameValue?.length === 0
+                              usernameValue?.length === 0 ||
+                              usernameValue === undefined
                                 ? "text-gray2"
                                 : usernameValue === usernameValue?.toLowerCase()
                                 ? "text-white"
                                 : "text-red"
                             }`}
                           >
-                            Only lowercase letters and numbers
+                            {tPage("only_lower_case")}
                           </p>
                         </li>
                       </ul>
@@ -146,7 +154,7 @@ const DesktopProfilePage: React.FC = () => {
                         className=""
                       >
                         <Input
-                          placeholder="New Username"
+                          placeholder={t("new_name")}
                           {...registerUsername("name", {
                             required: t("name_label") + " " + t3("required"),
                             minLength: {
@@ -158,7 +166,7 @@ const DesktopProfilePage: React.FC = () => {
                               message: t3("max_length") + "15.",
                             },
                             pattern: {
-                              value: /^[a-z0-9]+$/,
+                              value: /^[a-z0-9ა-ჰ]+$/,
                               message: t3("only_lower_case"),
                             },
                           })}
@@ -169,12 +177,12 @@ const DesktopProfilePage: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-10">
-                    <Input value={user?.email}>Email</Input>
+                    <Input value={user?.email}>{tPage("email")}</Input>
                     {!user?.google_id && (
                       <div className="flex">
                         <div className="w-full relative">
                           <Input type="password" value={"••••••••••••"}>
-                            Password
+                            {tPage("password")}
                           </Input>
                           {activeEdit === "password" ? (
                             <div
@@ -184,12 +192,14 @@ const DesktopProfilePage: React.FC = () => {
                               <XIcon />
                             </div>
                           ) : (
-                            <h3
-                              onClick={() => setActiveEdit("password")}
-                              className="text-white2 text-xl absolute -right-14 bottom-[0.37rem] cursor-pointer"
-                            >
-                              Edit
-                            </h3>
+                            <div className="absolute -right-2 translate-x-full  bottom-[0.37rem] ">
+                              <h3
+                                onClick={() => setActiveEdit("password")}
+                                className="text-white2 text-xl cursor-pointer"
+                              >
+                                {tPage("edit")}
+                              </h3>
+                            </div>
                           )}
                         </div>
                       </div>
@@ -203,12 +213,13 @@ const DesktopProfilePage: React.FC = () => {
                         className="border border-[#CED4DA33] rounded-[0.25rem]
                         px-5 py-6"
                       >
-                        <h4>Passwords should contain:</h4>
+                        <h4>{tPage("password_validation_header")}:</h4>
                         <ul className="flex flex-col gap-1 mt-3">
                           <li className="flex items-center gap-2">
                             <div
                               className={`w-1 h-1 rounded-full ${
-                                passwordValue?.length <= 0
+                                passwordValue?.length <= 0 ||
+                                passwordValue === undefined
                                   ? "bg-gray2"
                                   : passwordValue?.length < 8
                                   ? "bg-red"
@@ -217,20 +228,22 @@ const DesktopProfilePage: React.FC = () => {
                             ></div>
                             <p
                               className={`${
-                                passwordValue?.length <= 0
+                                passwordValue?.length <= 0 ||
+                                passwordValue === undefined
                                   ? "text-gray2"
                                   : passwordValue?.length < 8
                                   ? "text-red"
                                   : "text-white"
                               } text-sm text-gray2`}
                             >
-                              8 or more characters
+                              {tPage("password_validation_min")}
                             </p>
                           </li>
                           <li className="flex items-center gap-2">
                             <div
                               className={`w-1 h-1 rounded-full ${
-                                passwordValue?.length <= 0
+                                passwordValue?.length <= 0 ||
+                                passwordValue === undefined
                                   ? "bg-gray2"
                                   : passwordValue?.length <= 15
                                   ? "bg-green"
@@ -239,14 +252,15 @@ const DesktopProfilePage: React.FC = () => {
                             ></div>
                             <p
                               className={`text-sm  ${
-                                passwordValue?.length <= 0
+                                passwordValue?.length <= 0 ||
+                                passwordValue === undefined
                                   ? "text-gray2"
                                   : passwordValue?.length <= 15
                                   ? "text-white"
                                   : "text-red"
                               }`}
                             >
-                              Lower or equal of 15 characters
+                              {tPage("name_or_password_validation_max")}
                             </p>
                           </li>
                         </ul>
@@ -313,7 +327,7 @@ const DesktopProfilePage: React.FC = () => {
             onClick={() => setActiveEdit(null)}
             className="hover:opacity-80 transition-all duration-200"
           >
-            Cancell
+            {tPage("cancell")}
           </button>
           <Button
             form={
@@ -329,7 +343,7 @@ const DesktopProfilePage: React.FC = () => {
             color="red"
             additionalClasses="text-nowrap"
           >
-            Save changes
+            {tPage("save_changes")}
           </Button>
         </div>
       </div>

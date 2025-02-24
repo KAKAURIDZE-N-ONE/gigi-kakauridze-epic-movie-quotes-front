@@ -16,6 +16,7 @@ export default function useDesktopProfilePage() {
   const { t } = useTranslation("sign-up-modal");
   const { t: t2 } = useTranslation("reset-password-modal");
   const { t: t3 } = useTranslation("errors");
+  const { t: tPage } = useTranslation("profile-page");
 
   const { user } = useAuthentication();
 
@@ -80,6 +81,7 @@ export default function useDesktopProfilePage() {
     t3,
     t,
     t2,
+    tPage,
     onSubmitPassword,
     errorsPassword,
     handleSubmitPassword,

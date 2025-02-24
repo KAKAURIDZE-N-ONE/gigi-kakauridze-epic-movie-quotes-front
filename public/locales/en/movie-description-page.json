@@ -1,0 +1,11 @@
+{
+  "header": "Movie description",
+  "quotes": "Quotes",
+  "total": "Total",
+  "add_quote": "Add quote",
+  "view_quote": "View Quote",
+  "director": "Director",
+  "edit": "Edit",
+  "delete": "Delete",
+  "all_quotes": "All quotes"
+}

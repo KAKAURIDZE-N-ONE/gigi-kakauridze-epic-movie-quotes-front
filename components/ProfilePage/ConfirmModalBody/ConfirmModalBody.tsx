@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import useConfirmModalBody from "./useConfirmModalBody";
 
 const ConfirmModalBody: React.FC<Props> = ({ children, onConfirm }) => {
-  const { closeModal } = useConfirmModalBody();
+  const { closeModal, t } = useConfirmModalBody();
 
   return (
     <div
@@ -17,7 +17,7 @@ const ConfirmModalBody: React.FC<Props> = ({ children, onConfirm }) => {
       </div>
       <div className="flex max- items-center justify-between p-5">
         <button className="text-white2" onClick={closeModal}>
-          Cancell
+          {t("cancell")}
         </button>
         <Button
           clickFn={() => {
@@ -26,7 +26,7 @@ const ConfirmModalBody: React.FC<Props> = ({ children, onConfirm }) => {
           size="smaller"
           color="red"
         >
-          Confirm
+          {t("confirm")}
         </Button>
       </div>
     </div>

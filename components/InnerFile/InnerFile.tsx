@@ -10,8 +10,9 @@ const InnerFile: React.FC<Props> = ({
   savedImage,
   size,
   disabled = false,
+  type,
 }) => {
-  const { imagePreview } = useInnerFile({ control });
+  const { imagePreview, t } = useInnerFile({ control });
 
   const hasImage = imagePreview || savedImage;
   return (
@@ -34,6 +35,16 @@ const InnerFile: React.FC<Props> = ({
           id="input"
           type="file"
         />
+        {size === "big" && type === "edit" && (
+          <label
+            htmlFor="input"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+          flex items-center justify-center flex-col gap-3 px-5 py-4 bg-[#181623df] rounded-[0.625rem]"
+          >
+            <Camera2 />
+            <p className="text-nowrap">{t("file_small")}</p>
+          </label>
+        )}
         {hasImage && (
           <div
             style={{
@@ -53,24 +64,22 @@ const InnerFile: React.FC<Props> = ({
             <div className="flex gap-3">
               {!hasImage && <Camera2 />}
               {!hasImage && (
-                <p className="text-xl hidden lg:block">
-                  Drag & drop your image here or
-                </p>
+                <p className="text-xl hidden lg:block">{t("file_large")}</p>
               )}
-              {!hasImage && <p className="lg:hidden">Upload image</p>}
+              {!hasImage && <p className="lg:hidden">{t("file_small")}</p>}
             </div>
             <div
               className={`${hasImage ? "lg:mx-auto" : ""}
           flex flex-col gap-5 lg:items-center `}
             >
               {hasImage && (
-                <h3 className="text-sm font-bold text-skin">REPLACE PHOTO</h3>
+                <h3 className="text-sm font-bold text-skin">{t("replace")}</h3>
               )}
               {hasImage && (
                 <div className=" items-center gap-6 hidden lg:flex">
                   <Camera2 />
-                  <p className="text-xl hidden lg:block">
-                    Drag & drop your image here or
+                  <p className="text-xl hidden lg:block lg:pr-5 text-center">
+                    {t("file_large")}
                   </p>
                 </div>
               )}
@@ -78,7 +87,7 @@ const InnerFile: React.FC<Props> = ({
                 className="cursor-pointer flex items-center justify-center bg-[#9747FF66] 
             py-2 px-2 lg:px-3 rounded-sm mr-4 lg:ml-1"
               >
-                <p className="text-sm lg:text-lg">Choose file</p>
+                <p className="text-sm lg:text-lg">{t("choose_file")}</p>
               </div>
             </div>
           </div>

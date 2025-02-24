@@ -1,20 +1,32 @@
 import { MOVIE_SHORT, QUOTE } from "@/config/queryKeys";
 import useCreateQuote from "@/hooks/useCreateQuote";
+import useDeleteQuote from "@/hooks/useDeleteQuote";
 import useUpdateQuote from "@/hooks/useUpdateQuote";
 import { getMovieShort } from "@/services/apiMovie";
 import { getQuote } from "@/services/apiQuote";
+import { selectActiveModalQuoteId } from "@/store/slices/modalSlice";
+import { useAppSelector } from "@/store/store";
 import { FormFieldsAddQuote } from "@/types/movie";
 import { MovieShortResponse, PostsListingResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
+import { HookProps } from "./types";
 
-export default function useViewCreateEditQuoteBody() {
+export default function useViewCreateEditQuoteBody({ type }: HookProps) {
+  const { t } = useTranslation("quote-modals");
   const router = useRouter();
-  const { id: movieId, quoteId } = router.query;
+  const isMobile = useMediaQuery({ maxWidth: 1023 });
+  const quoteId = useAppSelector(selectActiveModalQuoteId);
+  const { id: movieId } = router.query;
   const { pathname } = router;
   const redirectedFromMovie = pathname.startsWith("/movies");
+
+  const { mutate: deleteQuote, isPending: deleteQuoteIsPending } =
+    useDeleteQuote({ movieId: Number(movieId) });
 
   const { data: movieShort } = useQuery<MovieShortResponse>({
     queryKey: [MOVIE_SHORT, movieId],
@@ -37,16 +49,15 @@ export default function useViewCreateEditQuoteBody() {
   } = useForm<FormFieldsAddQuote>();
 
   useEffect(() => {
-    if (quote) {
+    if (quote && type !== "create") {
       reset({
         quote: quote.quote,
       });
     }
-  }, [quote, reset]);
+  }, [quote, reset, type]);
 
   const { mutate: createQuote, isPending: createQuoteIsPending } =
     useCreateQuote({
-      redirectedFromMovie,
       movieId: Number(movieId),
     });
 
@@ -61,6 +72,9 @@ export default function useViewCreateEditQuoteBody() {
       movie_id: Number(movieId),
       image: data.image[0],
     });
+    reset({
+      quote: { en: "", ka: "" },
+    });
   }
 
   function onSubmitEdit(data: FormFieldsAddQuote) {
@@ -71,6 +85,10 @@ export default function useViewCreateEditQuoteBody() {
       movie_id: Number(movieId),
       image: imageFile,
     });
+  }
+
+  function handleDeleteQuote() {
+    if (quoteId) deleteQuote({ quoteId: Number(quoteId) });
   }
 
   return {
@@ -86,6 +104,10 @@ export default function useViewCreateEditQuoteBody() {
     updateQuoteIsPending,
     movieShort,
     router,
-    quoteImage: quote?.image,
+    quote,
+    isMobile,
+    handleDeleteQuote,
+    deleteQuoteIsPending,
+    t,
   };
 }

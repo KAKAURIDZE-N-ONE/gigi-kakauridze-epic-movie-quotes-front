@@ -19,6 +19,9 @@ const Header: React.FC = () => {
     mounted,
     isColored,
     isNewsFeedPage,
+    notificationsModalIsOpen,
+    setNotificationsModalIsOpen,
+    notificationsRef,
   } = useHeader();
 
   if (!mounted) return null;
@@ -35,7 +38,7 @@ const Header: React.FC = () => {
       <div
         className={`${
           !isColored ? "bg-normalBlue top-0 h-[5.375rem]" : "top-7 "
-        } flex fixed left-0 w-full  px-[2.1875rem] lg:px-[4.375rem] items-center justify-between z-50`}
+        } flex fixed left-0 w-full  px-[2.1875rem] lg:px-[4.375rem] items-center justify-between z-[70]`}
       >
         {isColored ? (
           <h2 className="font-medium text-skin select-none">{t("header")}</h2>
@@ -64,31 +67,33 @@ const Header: React.FC = () => {
             {isNewsFeedPage && (
               <div
                 onClick={(e) => e.stopPropagation()}
-                className="lg:mr-7 cursor-pointer"
+                className="lg:mr-1 cursor-pointer"
               >
                 <Search />
               </div>
             )}
-            {isAuthenticated && isColored && (
-              <div className="inline-block relative cursor-pointer -mr-9 lg:mr-0 ">
-                <div
-                  className="absolute -top-2 -right-2 w-5 h-5 bg-red4 
-                flex items-center justify-center rounded-full "
-                >
-                  <p className="font-medium text-white">3</p>
-                </div>
-                <Bell />
-              </div>
-            )}
+
             {isAuthenticated && !isColored && (
-              <div className="inline-block relative cursor-pointer lg:mr-14 ">
+              <div
+                ref={notificationsRef}
+                className="inline-block relative cursor-pointer lg:mr-9 "
+              >
                 <div
                   className="absolute -top-2 -right-2 w-5 h-5 bg-red4 
                 flex items-center justify-center rounded-full "
                 >
                   <p className="font-medium text-white">3</p>
                 </div>
-                <Bell />
+                <div
+                  onClick={() =>
+                    setNotificationsModalIsOpen((isOpen) => !isOpen)
+                  }
+                >
+                  <Bell />
+                </div>
+                {notificationsModalIsOpen && (
+                  <div className="fixed lg:absolute left-0 w-full lg:-translate-x-1/2 lg:left-4 top-[5.375rem] lg:top-[3.46rem] z-[70] lg:w-24 h-10 bg-red"></div>
+                )}
               </div>
             )}
 
@@ -120,7 +125,7 @@ const Header: React.FC = () => {
               <Button
                 clickFn={() => router.push("/log-in")}
                 size="small"
-                additionalClasses="bg-black text-white border-white"
+                additionalClasses="bg-black text-white border-white hover:bg-white hover:text-black"
               >
                 {t("autorization")}
               </Button>
@@ -132,7 +137,7 @@ const Header: React.FC = () => {
               <Button
                 clickFn={logOut}
                 size="small"
-                additionalClasses="text-white border-white"
+                additionalClasses="text-white border-white hover:bg-white hover:text-darkerBlue"
               >
                 {t("log_out")}
               </Button>

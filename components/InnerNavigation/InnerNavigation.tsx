@@ -1,14 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Props } from "./types";
 import defaultProfileImage from "@/public/images/defaultProfileImage.png";
 import Link from "next/link";
 import { updateBurgerMenuIsOpen } from "@/store/slices/modalSlice";
 import House from "@/components/icons/House";
 import Camera from "@/components/icons/Camera";
+import useInnerNavigation from "./useInnerNavigation";
 
 const InnerNavigation: React.FC<Props> = ({ user }) => {
-  const dispatch = useDispatch();
+  const { pathname, dispatch, t } = useInnerNavigation();
 
   return (
     <div className="w-full">
@@ -19,7 +19,7 @@ const InnerNavigation: React.FC<Props> = ({ user }) => {
               ? `url(${user?.avatar})`
               : `url(${defaultProfileImage.src})`,
           }}
-          className="bg-no-repeat bg-center bg-cover w-[2.5rem] h-[2.5rem]
+          className="bg-no-repeat bg-center bg-cover w-[3rem] h-[3rem]
   rounded-full"
         ></div>
         <div className="flex flex-col gap-1">
@@ -29,26 +29,38 @@ const InnerNavigation: React.FC<Props> = ({ user }) => {
             onClick={() => dispatch(updateBurgerMenuIsOpen(false))}
             className="text-sm text-white2 cursor-pointer hover:text-white transition-all duration-300"
           >
-            Edit your profile
+            {t("profile")}
           </Link>
         </div>
       </div>
-      <div className="flex flex-col gap-8 mt-8 pl-1">
+      <div className="flex flex-col gap-8 mt-8 lg:mt-6 pl-1 ml-2">
         <Link
           onClick={() => dispatch(updateBurgerMenuIsOpen(false))}
           href="/news-feed"
-          className="flex items-center gap-[1.875rem]"
+          className="flex items-center gap-[1.875rem] group"
         >
-          <House />
-          <h2 className="text-xl text-white">News feed</h2>
+          <House isActive={pathname === "/news-feed"} />
+          <h2
+            className={`text-xl text-white ${
+              pathname !== "/news-feed" ? "group-hover:text-gray" : ""
+            } transition-all duration-200`}
+          >
+            {t("news_feed")}
+          </h2>
         </Link>
         <Link
           onClick={() => dispatch(updateBurgerMenuIsOpen(false))}
           href="/movies"
-          className="flex items-center gap-[1.875rem]"
+          className="flex items-center gap-[1.8575rem] group"
         >
-          <Camera />
-          <h2 className="text-xl text-white">List of movies</h2>
+          <Camera isActive={pathname === "/movies"} />
+          <h2
+            className={`text-xl text-white ${
+              pathname !== "/movies" ? "group-hover:text-gray" : ""
+            } transition-all duration-200`}
+          >
+            {t("movies")}
+          </h2>
         </Link>
       </div>
     </div>

@@ -11,8 +11,10 @@ import { FormFieldResetPassword } from "@/types/auth";
 import { getCsrfCookie } from "@/services/apiAuth";
 import useChangeUsername from "../hooks/useChangeUsername";
 import useChangePassword from "../hooks/useChangePassword";
+import { useTranslation } from "react-i18next";
 
 export default function useMobileProfilePage() {
+  const { t } = useTranslation("profile-page");
   const [activeEdit, setActiveEdit] = useState<"username" | "password" | null>(
     null
   );
@@ -61,5 +63,6 @@ export default function useMobileProfilePage() {
     handleConfirmPassword,
     openedModal,
     setFormDataPassword,
+    t,
   };
 }

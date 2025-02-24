@@ -5,34 +5,44 @@ import React from "react";
 import { Props } from "./types";
 import useQuoteManagementWindow from "./useQuoteManagementWindow";
 import Loader from "@/components/Loader";
-import Link from "next/link";
+import {
+  updateActiveModalQuoteId,
+  updateActiveQuoteModal,
+} from "@/store/slices/modalSlice";
 
 const QuoteManagementWindow: React.FC<Props> = ({ quoteId, movieId }) => {
-  const { deleteQuote, deleteQuoteIsPending } = useQuoteManagementWindow({
-    movieId,
-  });
+  const { deleteQuote, deleteQuoteIsPending, dispatch, t } =
+    useQuoteManagementWindow({
+      movieId,
+    });
   return (
     <>
       {deleteQuoteIsPending && <Loader />}
       <div onClick={(e) => e.stopPropagation()} className="relative ">
         <div
           className="absolute bottom-full right-0 lg:bottom-auto lg:top-6 lg:right-auto lg:left-0 bg-normalBlue 
-        flex flex-col  rounded-[0.625rem] overflow-hidden"
+        flex flex-col  rounded-[0.625rem] overflow-hidden z-50"
         >
-          <Link
-            href={`/movies/${movieId}/quote/${quoteId}`}
+          <div
+            onClick={() => {
+              dispatch(updateActiveQuoteModal("view"));
+              dispatch(updateActiveModalQuoteId(quoteId));
+            }}
             className="flex items-center gap-4 hover:bg-black py-5 pr-14 pl-6 transition-all duration-200"
           >
             <BigOpenEye />
-            <p className="text-nowrap">View Quote</p>
-          </Link>
-          <Link
-            href={`/movies/${movieId}/quote/${quoteId}/edit`}
+            <p className="text-nowrap">{t("view_quote")}</p>
+          </div>
+          <div
+            onClick={() => {
+              dispatch(updateActiveQuoteModal("edit"));
+              dispatch(updateActiveModalQuoteId(quoteId));
+            }}
             className="flex items-center gap-4 hover:bg-black py-5 pr-14 pl-6 transition-all duration-200"
           >
             <Pencil />
-            <p className="text-nowrap">Edit</p>
-          </Link>
+            <p className="text-nowrap">{t("edit")}</p>
+          </div>
           {quoteId && (
             <div
               onClick={() => {
@@ -41,7 +51,7 @@ const QuoteManagementWindow: React.FC<Props> = ({ quoteId, movieId }) => {
               className="flex items-center gap-4 hover:bg-black py-5 pr-14 pl-6 transition-all duration-200"
             >
               <Trash />
-              <p className="text-nowrap">Delete</p>
+              <p className="text-nowrap">{t("delete")}</p>
             </div>
           )}
         </div>

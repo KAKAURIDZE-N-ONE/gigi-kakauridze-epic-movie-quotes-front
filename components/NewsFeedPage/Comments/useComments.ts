@@ -2,11 +2,14 @@ import { useAuthentication } from "@/hooks/useAuthentication";
 import useCreateComment from "@/hooks/useCreateComment";
 import { HookProps } from "./types";
 import { FormEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function useComments({ quote_id }: HookProps) {
+  const { t } = useTranslation("news-feed-page");
   const [comment, setComment] = useState<string>("");
   const { user } = useAuthentication();
-  const { mutate: createComment } = useCreateComment();
+  const { mutate: createComment, isPending: createCommentIsPending } =
+    useCreateComment();
 
   function handleCreateComment(e: FormEvent<HTMLFormElement>, comment: string) {
     e.preventDefault();
@@ -15,5 +18,12 @@ export default function useComments({ quote_id }: HookProps) {
     setComment("");
   }
 
-  return { user, handleCreateComment, comment, setComment };
+  return {
+    user,
+    handleCreateComment,
+    createCommentIsPending,
+    comment,
+    setComment,
+    t,
+  };
 }

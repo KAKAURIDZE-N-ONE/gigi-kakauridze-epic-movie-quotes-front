@@ -1,0 +1,18 @@
+{
+  "header": "My profile",
+  "photo_header": "Upload new photo",
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
+  "cancell": "Cancell",
+  "confirm": "Confirm",
+  "save_changes": "Save changes",
+  "name_validation_header": "username should contain",
+  "password_validation_header": "password should contain",
+  "name_validation_min": "3 or more characters",
+  "name_or_password_validation_max": "Lower or equal of 15 characters",
+  "only_lower_case": "Only lowercase letters and numbers",
+  "password_validation_min": "3 or more characters",
+  "edit": "Edit",
+  "sure_make_changes": "Are you sure to make name changes?"
+}

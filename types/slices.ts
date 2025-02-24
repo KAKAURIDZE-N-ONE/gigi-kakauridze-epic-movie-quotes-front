@@ -1,3 +1,5 @@
+import { PostsListingResponse } from "./respones";
+
 export type ModalState = {
   burgerMenuIsOpen: boolean;
   openedModal:
@@ -12,6 +14,13 @@ export type ModalState = {
     | "makeChangesUsername"
     | "makeChangesPassword"
     | null;
-
   currentUserNotficationEmail: string;
+  activeQuoteModal: "add" | "edit" | "view" | "createPost" | null;
+  activeModalQuoteId: number | null;
+  activeMovieModal: "add" | "edit" | null;
+};
+
+export type NewsFeedState = {
+  posts: PostsListingResponse[];
+  page: number;
 };

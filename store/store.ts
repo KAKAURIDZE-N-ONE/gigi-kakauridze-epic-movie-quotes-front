@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import modalReducer from "./slices/modalSlice";
+import newsFeedReducer from "./slices/newsFeedSlice";
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
+    newsFeed: newsFeedReducer,
   },
 });
 

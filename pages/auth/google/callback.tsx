@@ -23,9 +23,10 @@ const GoogleAuthCallBack: React.FC = () => {
         if (response?.error) {
           router.push("/log-in");
           showErrorToast(response?.error);
+        } else {
+          router.push("/news-feed");
+          showSuccessToast(response?.status);
         }
-        router.push("/news-feed");
-        showSuccessToast(response?.status);
       } catch (error) {
         console.error(error);
       }
