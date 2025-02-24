@@ -4,13 +4,10 @@ import { useEffect, useState } from "react";
 export default function usePageIsLoading() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     const handleStart = () => {
-      if (mounted) setLoading(true);
+      setLoading(true);
     };
     const handleStop = () => setLoading(false);
 
@@ -23,7 +20,7 @@ export default function usePageIsLoading() {
       router.events.off("routeChangeComplete", handleStop);
       router.events.off("routeChangeError", handleStop);
     };
-  }, [router, mounted]);
+  }, [router]);
 
   return { pageIsLoading: loading };
 }

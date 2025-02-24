@@ -1,6 +1,6 @@
-import { MOVIES_SHORT } from "@/config/queryKeys";
+import { MOVIES } from "@/config/queryKeys";
 import useCreateQuote from "@/hooks/useCreateQuote";
-import { getMoviesShort } from "@/services/apiMovie";
+import { getMovies } from "@/services/apiMovie";
 import { FormFieldsAddQuote } from "@/types/movie";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -14,8 +14,8 @@ export default function useCreatePostBody() {
   );
 
   const { data: movies } = useQuery({
-    queryKey: [MOVIES_SHORT],
-    queryFn: getMoviesShort,
+    queryKey: [MOVIES],
+    queryFn: getMovies,
   });
 
   const { mutate: createQuote, isPending: createQuoteIsPending } =

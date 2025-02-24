@@ -1,4 +1,5 @@
 import { QUOTES } from "@/config/queryKeys";
+import useListenCommentAdd from "@/hooks/useListenCommentAdd";
 import { getQuotes } from "@/services/apiQuote";
 import {
   addNewCommentOnPost,
@@ -7,7 +8,7 @@ import {
   setPosts,
 } from "@/store/slices/newsFeedSlice";
 import { useAppSelector } from "@/store/store";
-import { PostsListingResponse, RealTimeComment } from "@/types/respones";
+import { PostsListingResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -30,34 +31,19 @@ export default function useNewsFeedLayout() {
     queryFn: () => getQuotes(page),
   });
 
+  const newComment = useListenCommentAdd();
+
+  useEffect(() => {
+    if (newComment) {
+      dispatch(addNewCommentOnPost(newComment));
+    }
+  }, [newComment, dispatch]);
+
   useEffect(() => {
     if (searchRef && searchIsActive) {
       searchRef.current?.focus();
     }
   }, [searchRef, searchIsActive]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.Echo) {
-      const channel = window.Echo.channel("comments");
-
-      channel.listen("CommentAdded", (event: RealTimeComment) => {
-        const postId = event?.comment?.quote?.id;
-        const newComment = {
-          id: event.comment.id,
-          comment: event.comment.comment,
-          user: {
-            avatar: event?.comment.user?.avatar,
-            name: event?.comment.user?.name,
-          },
-        };
-        dispatch(addNewCommentOnPost({ postId, comment: newComment }));
-      });
-
-      return () => {
-        channel.stopListening("CommentAdded");
-      };
-    }
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setPosts(data));

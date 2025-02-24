@@ -7,12 +7,6 @@ export async function getMovies() {
   return response.data.data;
 }
 
-export async function getMoviesShort() {
-  const response = await authInstace.get("/api/movies/short");
-
-  return response.data.data;
-}
-
 export async function getMovie(id: number) {
   const response = await authInstace.get(`/api/movies/${id}`);
 

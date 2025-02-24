@@ -29,7 +29,7 @@ const SelectMovies: React.FC<Props> = ({
             <p className="lg:text-2xl">Choose movie</p>
           </div>
           <div className={`${isOpen ? "rotate-180" : ""}`}>
-            <LanguageArrow size="big" />
+            <LanguageArrow className="w-5 h-5" />
           </div>
         </div>
       )}
