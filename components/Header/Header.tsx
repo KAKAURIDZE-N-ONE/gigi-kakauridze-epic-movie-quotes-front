@@ -1,12 +1,11 @@
-import React from "react";
 import { Button } from "../Button";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import useHeader from "./useHeader";
-import Bell from "@/components/icons/Bell";
 import { createPortal } from "react-dom";
 import { BurgerMenu } from "../BurgerMenu";
 import List from "@/components/icons/List";
 import Search from "@/components/icons/Search";
+import Notifications from "../Notifications/Notifications";
 
 const Header: React.FC = () => {
   const {
@@ -19,9 +18,6 @@ const Header: React.FC = () => {
     mounted,
     isColored,
     isNewsFeedPage,
-    notificationsModalIsOpen,
-    setNotificationsModalIsOpen,
-    notificationsRef,
   } = useHeader();
 
   if (!mounted) return null;
@@ -67,35 +63,13 @@ const Header: React.FC = () => {
             {isNewsFeedPage && (
               <div
                 onClick={(e) => e.stopPropagation()}
-                className="lg:mr-1 cursor-pointer"
+                className="mr-1 cursor-pointer lg:hidden"
               >
                 <Search />
               </div>
             )}
 
-            {isAuthenticated && !isColored && (
-              <div
-                ref={notificationsRef}
-                className="inline-block relative cursor-pointer lg:mr-9 "
-              >
-                <div
-                  className="absolute -top-2 -right-2 w-5 h-5 bg-red4 
-                flex items-center justify-center rounded-full "
-                >
-                  <p className="font-medium text-white">3</p>
-                </div>
-                <div
-                  onClick={() =>
-                    setNotificationsModalIsOpen((isOpen) => !isOpen)
-                  }
-                >
-                  <Bell />
-                </div>
-                {notificationsModalIsOpen && (
-                  <div className="fixed lg:absolute left-0 w-full lg:-translate-x-1/2 lg:left-4 top-[5.375rem] lg:top-[3.46rem] z-[70] lg:w-24 h-10 bg-red"></div>
-                )}
-              </div>
-            )}
+            {isAuthenticated && !isColored && <Notifications />}
 
             {isColored && (
               <>

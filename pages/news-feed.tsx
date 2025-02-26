@@ -10,7 +10,8 @@ import {
 import { updateActiveQuoteModal } from "@/store/slices/modalSlice";
 
 const NewsFeed: React.FC = () => {
-  const { isPending, newPostModalIsOpen, dispatch } = useNewsFeedPage();
+  const { isPending, newPostModalIsOpen, dispatch, isMobile } =
+    useNewsFeedPage();
 
   if (isPending) return <Loader />;
   else
@@ -24,14 +25,17 @@ const NewsFeed: React.FC = () => {
           </Modal>
         )}
         <Layout>
-          <div className="hidden lg:block">
-            <DesktopInnerLayout>
+          {isMobile ? (
+            <div className="lg:hidden block text-white">
               <NewsFeedLayout />
-            </DesktopInnerLayout>
-          </div>
-          <div className="lg:hidden block text-white">
-            <NewsFeedLayout />
-          </div>
+            </div>
+          ) : (
+            <div className="hidden lg:block">
+              <DesktopInnerLayout>
+                <NewsFeedLayout />
+              </DesktopInnerLayout>
+            </div>
+          )}
         </Layout>
       </>
     );

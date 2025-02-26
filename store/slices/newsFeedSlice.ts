@@ -1,5 +1,5 @@
 import { NewsFeedState } from "@/types/slices";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 const initialState: NewsFeedState = {
@@ -11,15 +11,20 @@ const newsFeedSlice = createSlice({
   name: "newsFeed",
   initialState,
   reducers: {
-    setPosts(state, action) {
-      state.posts = action.payload;
+    pushNextPagePosts(state, action: PayloadAction<NewsFeedState["posts"]>) {
+      state.posts = [...state.posts, ...action.payload];
     },
-    nextPage(state, action) {
-      state.page = action.payload;
+    updatePage(state) {
+      state.page += 1;
+    },
+    resetPage(state) {
+      state.page = 0;
+    },
+    resetPosts(state) {
+      state.posts = [];
     },
     addNewCommentOnPost(state, action) {
       const { postId, comment } = action.payload;
-      console.log(postId, comment);
       const post = state.posts.find((post) => post.id === postId);
       post?.comments.push(comment);
     },
@@ -29,6 +34,12 @@ const newsFeedSlice = createSlice({
 export const selectPosts = (state: RootState) => state.newsFeed.posts;
 export const selectPage = (state: RootState) => state.newsFeed.page;
 
-export const { setPosts, addNewCommentOnPost } = newsFeedSlice.actions;
+export const {
+  pushNextPagePosts,
+  addNewCommentOnPost,
+  resetPosts,
+  updatePage,
+  resetPage,
+} = newsFeedSlice.actions;
 
 export default newsFeedSlice.reducer;

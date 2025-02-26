@@ -5,12 +5,20 @@ import {
   addNewCommentOnPost,
   selectPage,
   selectPosts,
-  setPosts,
+  pushNextPagePosts,
+  resetPosts,
+  updatePage,
 } from "@/store/slices/newsFeedSlice";
 import { useAppSelector } from "@/store/store";
 import { PostsListingResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
@@ -26,28 +34,49 @@ export default function useNewsFeedLayout() {
   const [searchIsActive, setSearchIsActive] = useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const { data } = useQuery<PostsListingResponse[]>({
-    queryKey: [QUOTES],
+  const { data, isPending } = useQuery<PostsListingResponse[]>({
+    queryKey: [QUOTES, page],
     queryFn: () => getQuotes(page),
+    refetchOnWindowFocus: false,
   });
+
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      if (isPending) return;
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - 200
+      ) {
+        dispatch(updatePage());
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [dispatch, isPending]);
+
+  useEffect(() => {
+    if (data) {
+      if (page === 1) dispatch(resetPosts());
+      dispatch(pushNextPagePosts(data));
+    }
+  }, [data, dispatch, page]);
 
   const newComment = useListenCommentAdd();
 
+  const stableDispatch = useCallback(dispatch, []);
+
   useEffect(() => {
-    if (newComment) {
+    if (newComment !== null) {
       dispatch(addNewCommentOnPost(newComment));
     }
-  }, [newComment, dispatch]);
+  }, [newComment, stableDispatch]);
 
   useEffect(() => {
     if (searchRef && searchIsActive) {
       searchRef.current?.focus();
     }
   }, [searchRef, searchIsActive]);
-
-  useEffect(() => {
-    dispatch(setPosts(data));
-  }, [data, dispatch]);
 
   return {
     dispatch,

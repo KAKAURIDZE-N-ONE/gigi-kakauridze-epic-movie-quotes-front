@@ -7,17 +7,23 @@ import { getQuote } from "@/services/apiQuote";
 import { selectActiveModalQuoteId } from "@/store/slices/modalSlice";
 import { useAppSelector } from "@/store/store";
 import { FormFieldsAddQuote } from "@/types/movie";
-import { MovieShortResponse, PostsListingResponse } from "@/types/respones";
+import {
+  Comment,
+  MovieShortResponse,
+  PostsListingResponse,
+} from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
 import { HookProps } from "./types";
+import useListenCommentAdd from "@/hooks/useListenCommentAdd";
 
 export default function useViewCreateEditQuoteBody({ type }: HookProps) {
   const { t } = useTranslation("quote-modals");
+  const [comments, setComments] = useState<Comment[]>([]);
   const router = useRouter();
   const isMobile = useMediaQuery({ maxWidth: 1023 });
   const quoteId = useAppSelector(selectActiveModalQuoteId);
@@ -39,6 +45,20 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     queryFn: () => getQuote(Number(quoteId)),
     enabled: !!quoteId,
   });
+
+  useEffect(() => {
+    if (quote) {
+      setComments(quote.comments);
+    }
+  }, [quote, setComments]);
+
+  const newComment = useListenCommentAdd();
+
+  useEffect(() => {
+    if (newComment?.postId === quoteId) {
+      setComments((comments) => [...comments, newComment.comment]);
+    }
+  }, [newComment, quoteId]);
 
   const {
     register,
@@ -109,5 +129,6 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     handleDeleteQuote,
     deleteQuoteIsPending,
     t,
+    comments,
   };
 }

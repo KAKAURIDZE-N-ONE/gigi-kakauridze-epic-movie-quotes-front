@@ -85,3 +85,17 @@ export type MovieShortResponse = {
   image: string;
   categories: Category[];
 };
+
+export type CommentNotification = {
+  id: string;
+  created_at: string;
+  data: {
+    quote_id: number;
+    movie_id: number;
+    comment_id: number;
+    commenter_name: string;
+    commenter_avatar: string;
+  };
+  type: string;
+  read_at: string | null;
+};

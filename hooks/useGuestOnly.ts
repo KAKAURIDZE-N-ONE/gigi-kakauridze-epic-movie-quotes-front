@@ -10,7 +10,6 @@ const useGuestOnly = () => {
   useEffect(() => {
     if (!isPending && isAuthenticated) {
       router.replace("/news-feed");
-      showInfoToast("You are already logged in.");
     }
   }, [isPending, isAuthenticated, router]);
 

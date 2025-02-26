@@ -1,5 +1,4 @@
 import PencilSquare from "@/components/icons/PencilSquare";
-import React from "react";
 import useNewsFeedLayout from "./useNewsFeedLayout";
 import { Post } from "../Post";
 import SmallSearch from "@/components/icons/SmallSearch";
@@ -25,12 +24,14 @@ const NewsFeedLayout: React.FC = () => {
         <div
           onClick={() => dispatch(updateActiveQuoteModal("createPost"))}
           className={`${!searchIsActive ? "lg:w-full" : ""}
-          px-[2.1875rem] lg:py-3 lg:px-3  lg:bg-normalBlue lg:hover:bg-[#9696964c] rounded-[0.625rem] transition-colors duration-200`}
+          cursor-pointer px-[2.1875rem] lg:py-3 lg:px-3  lg:bg-normalBlue lg:hover:bg-[#9696964c] rounded-[0.625rem] transition-colors duration-200`}
         >
           <div className="inline-block lg:block ">
-            <div className="flex items-center gap-3 cursor-pointer">
+            <div className="group flex items-center gap-3 ">
               <PencilSquare />
-              <h2 className="text-nowrap">{t("new_quote")}</h2>
+              <h2 className="text-nowrap group-hover:opacity-70 transition-all duration-200">
+                {t("new_quote")}
+              </h2>
             </div>
           </div>
         </div>
@@ -97,10 +98,10 @@ const NewsFeedLayout: React.FC = () => {
             onClick={() => {
               setSearchIsActive(true);
             }}
-            className="hidden lg:flex items-center gap-3 cursor-pointer"
+            className="group hidden lg:flex items-center gap-3 cursor-pointer"
           >
             <SmallSearch />
-            <p className="text-xl text-white2 text-nowrap select-none">
+            <p className="text-xl text-white2 group-hover:text-white text-nowrap select-none transition-all duration-200">
               {t("search")}
             </p>
           </div>
