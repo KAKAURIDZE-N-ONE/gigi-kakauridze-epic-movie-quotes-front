@@ -8,7 +8,7 @@ export default function useListenCommentAdd() {
   } | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.Echo) {
+    if (window && typeof window !== "undefined" && window.Echo) {
       const channel = window.Echo.channel("comments");
 
       channel.listen("CommentAdded", (event: RealTimeComment) => {
@@ -28,7 +28,7 @@ export default function useListenCommentAdd() {
         channel.stopListening("CommentAdded");
       };
     }
-  }, []);
+  }, [window.Echo]);
 
   return newComment;
 }

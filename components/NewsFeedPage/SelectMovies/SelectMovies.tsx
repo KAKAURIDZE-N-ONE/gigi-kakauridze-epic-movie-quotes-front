@@ -21,10 +21,10 @@ const SelectMovies: React.FC<Props> = ({
         >
           <div className="flex items-center gap-3 lg:gap-4">
             <div className="hidden lg:block">
-              <Camera size="big" isActive={false} />
+              <Camera className="w-8 h-8" isActive={false} />
             </div>
             <div className="lg:hidden">
-              <Camera isActive={false} />
+              <Camera className="w-6 h-6" isActive={false} />
             </div>
             <p className="lg:text-2xl">Choose movie</p>
           </div>

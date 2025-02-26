@@ -1,14 +1,14 @@
 import React from "react";
 
-const Camera: React.FC<{ isActive: boolean; size?: "big" }> = ({
+const Camera: React.FC<{ isActive: boolean; className: string }> = ({
   isActive = false,
-  size,
+  className,
 }) => {
   return (
     <svg
       viewBox="0 0 24 24"
       className={`${isActive ? "fill-red" : "group-hover:fill-gray fill-white"} 
-       transition-all duration-200 ${size === "big" ? `w-7 h-7` : "w-6 h-6"}`}
+       transition-all duration-200 ${className}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <g clipPath="url(#clip0_33577_2629)">

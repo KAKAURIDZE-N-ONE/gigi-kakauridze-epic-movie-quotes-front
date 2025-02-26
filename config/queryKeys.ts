@@ -5,3 +5,4 @@ export const MOVIE_SHORT = "movie-short";
 export const CATEGORIES = "movie-categories";
 export const QUOTES = "quotes";
 export const QUOTE = "quote";
+export const NOTIFICATIONS = "notifications";

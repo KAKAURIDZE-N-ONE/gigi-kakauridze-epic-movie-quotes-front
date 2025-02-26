@@ -19,7 +19,7 @@ const InnerNavigation: React.FC<Props> = ({ user }) => {
               ? `url(${user?.avatar})`
               : `url(${defaultProfileImage.src})`,
           }}
-          className="bg-no-repeat bg-center bg-cover w-[3rem] h-[3rem]
+          className="bg-no-repeat bg-center bg-cover w-[3rem] h-[3rem]  lg:w-[3.75rem] lg:h-[3.75rem]
   rounded-full"
         ></div>
         <div className="flex flex-col gap-1">
@@ -33,13 +33,18 @@ const InnerNavigation: React.FC<Props> = ({ user }) => {
           </Link>
         </div>
       </div>
-      <div className="flex flex-col gap-8 mt-8 lg:mt-6 pl-1 ml-2">
+      <div className="flex flex-col gap-8 mt-8 lg:mt-8 pl-1 ml-2">
         <Link
           onClick={() => dispatch(updateBurgerMenuIsOpen(false))}
           href="/news-feed"
           className="flex items-center gap-[1.875rem] group"
         >
-          <House isActive={pathname === "/news-feed"} />
+          <div className="lg:hidden">
+            <House className="w-6 h-6" isActive={pathname === "/news-feed"} />
+          </div>
+          <div className="hidden lg:block">
+            <House className="w-8 h-8" isActive={pathname === "/news-feed"} />
+          </div>
           <h2
             className={`text-xl text-white ${
               pathname !== "/news-feed" ? "group-hover:text-gray" : ""
@@ -53,7 +58,12 @@ const InnerNavigation: React.FC<Props> = ({ user }) => {
           href="/movies"
           className="flex items-center gap-[1.8575rem] group"
         >
-          <Camera isActive={pathname === "/movies"} />
+          <div className="lg:hidden">
+            <Camera className="w-6 h-6" isActive={pathname === "/movies"} />
+          </div>
+          <div className="hidden lg:block">
+            <Camera className="w-8 h-8" isActive={pathname === "/movies"} />
+          </div>
           <h2
             className={`text-xl text-white ${
               pathname !== "/movies" ? "group-hover:text-gray" : ""

@@ -35,6 +35,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
     handleDeleteQuote,
     deleteQuoteIsPending,
     t,
+    comments,
   } = useViewCreateEditQuoteBody({ type });
 
   return (
@@ -165,7 +166,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
             <Comments
               likes_count={quote?.likes_count}
               quote_id={quote?.id}
-              comments={quote?.comments}
+              comments={comments}
             />
           )}
         </DarkModalLayout>

@@ -5,6 +5,7 @@ import {
   updateActiveModalQuoteId,
   updateActiveQuoteModal,
 } from "@/store/slices/modalSlice";
+import { resetPage, updatePage } from "@/store/slices/newsFeedSlice";
 import { useAppSelector } from "@/store/store";
 import { showErrorToast } from "@/utils/toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -25,7 +26,8 @@ export default function useCreateQuote({ movieId }: { movieId: number }) {
       }
       if (activeQuoteModal === "createPost") {
         dispatch(updateActiveQuoteModal(null));
-        queryClient.invalidateQueries({ queryKey: [QUOTES] });
+        dispatch(resetPage());
+        queryClient.invalidateQueries({ queryKey: [QUOTES, 1] });
       }
     },
     onError: () => {
