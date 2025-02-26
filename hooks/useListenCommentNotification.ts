@@ -19,29 +19,7 @@ export default function useListenCommentNotification(
         `Attempting to subscribe to private-App.Models.User.${userId}`
       );
 
-      const channel = new Echo({
-        broadcaster: "pusher",
-        key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
-        cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER,
-        encrypted: true,
-        authorizer: (channel: any) => {
-          return {
-            authorize: (socketId: any, callback: any) => {
-              authInstace
-                .post("/api/broadcasting/auth", {
-                  socket_id: socketId,
-                  channel_name: channel.name,
-                })
-                .then((response) => {
-                  callback(false, response.data);
-                })
-                .catch((error) => {
-                  callback(true, error);
-                });
-            },
-          };
-        },
-      }).private(`App.Models.User.${userId}`);
+      const channel = window.Echo.private(`App.Models.User.${userId}`);
 
       channel.notification((notification: CommentNotification) => {
         console.log("New notification received:", notification);

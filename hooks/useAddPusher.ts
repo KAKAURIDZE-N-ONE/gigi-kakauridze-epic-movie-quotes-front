@@ -20,18 +20,15 @@ export default function useAddPusher() {
             encrypted: true,
             authorizer: (channel: any) => {
               return {
-                authorize: (socketId: any, callback: any) => {
-                  authInstace
-                    .post("/api/broadcasting/auth", {
+                authorize: async (socketId: any, callback: any) => {
+                  try {
+                    authInstace.post("/api/broadcasting/auth", {
                       socket_id: socketId,
                       channel_name: channel.name,
-                    })
-                    .then((response) => {
-                      callback(false, response.data);
-                    })
-                    .catch((error) => {
-                      callback(true, error);
                     });
+                  } catch (error) {
+                    callback(true, error);
+                  }
                 },
               };
             },
