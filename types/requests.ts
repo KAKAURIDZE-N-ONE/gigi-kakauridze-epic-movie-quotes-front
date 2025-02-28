@@ -25,3 +25,13 @@ export type CreateCommentValues = {
   quote_id: number;
   user_id: number;
 };
+
+export type CreateLikeValues = {
+  quote_id: number;
+  user_id: number;
+};
+
+export type UpdateLikeValues = {
+  active: 1 | 0;
+  id: number;
+};

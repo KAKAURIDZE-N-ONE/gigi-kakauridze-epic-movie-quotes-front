@@ -20,10 +20,14 @@ import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
 import { HookProps } from "./types";
 import useListenCommentAdd from "@/hooks/useListenCommentAdd";
+import useListenLike from "@/hooks/useListenLike";
+import { useAuthentication } from "@/hooks/useAuthentication";
 
 export default function useViewCreateEditQuoteBody({ type }: HookProps) {
+  const { user } = useAuthentication();
   const { t } = useTranslation("quote-modals");
   const [comments, setComments] = useState<Comment[]>([]);
+  const [likesQuantity, setLikesQuantity] = useState<number | null>(null);
   const router = useRouter();
   const isMobile = useMediaQuery({ maxWidth: 1023 });
   const quoteId = useAppSelector(selectActiveModalQuoteId);
@@ -46,11 +50,32 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     enabled: !!quoteId,
   });
 
+  const { addLike, removeLike } = useListenLike();
+
+  useEffect(() => {
+    if (addLike) {
+      if (addLike.like.user_id === user?.id) return;
+      setLikesQuantity((likesQuantity) =>
+        likesQuantity ? likesQuantity + 1 : 1
+      );
+    }
+  }, [addLike, user]);
+
+  useEffect(() => {
+    if (removeLike) {
+      if (removeLike.like.user_id === user?.id) return;
+      setLikesQuantity((likesQuantity) =>
+        likesQuantity ? likesQuantity - 1 : 0
+      );
+    }
+  }, [removeLike, user]);
+
   useEffect(() => {
     if (quote) {
       setComments(quote.comments);
+      setLikesQuantity(quote.likes_count);
     }
-  }, [quote, setComments]);
+  }, [quote, setComments, setLikesQuantity]);
 
   const newComment = useListenCommentAdd();
 
@@ -130,5 +155,6 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     deleteQuoteIsPending,
     t,
     comments,
+    likesQuantity,
   };
 }

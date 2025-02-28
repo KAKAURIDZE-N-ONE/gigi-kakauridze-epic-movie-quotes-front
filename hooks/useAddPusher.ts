@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { getCsrfCookie } from "@/services/apiAuth";
 
 import { authInstace } from "@/services/axios";
+import { authorizePusherUser } from "@/services/apiPusher";
 
 export default function useAddPusher() {
   useEffect(() => {
@@ -18,20 +19,10 @@ export default function useAddPusher() {
             key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
             cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER,
             encrypted: true,
-            authorizer: (channel: any) => {
-              return {
-                authorize: async (socketId: any, callback: any) => {
-                  try {
-                    authInstace.post("/api/broadcasting/auth", {
-                      socket_id: socketId,
-                      channel_name: channel.name,
-                    });
-                  } catch (error) {
-                    callback(true, error);
-                  }
-                },
-              };
-            },
+            authorizer: (channel: any) => ({
+              authorize: (socketId: any, callback: any) =>
+                authorizePusherUser(socketId, callback, channel.name),
+            }),
           });
         } catch (error) {
           console.error("Failed to initialize Echo:", error);

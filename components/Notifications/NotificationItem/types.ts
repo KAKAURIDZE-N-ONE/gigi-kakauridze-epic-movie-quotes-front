@@ -1,5 +1,5 @@
-import { CommentNotification } from "@/types/respones";
+import { Notification } from "@/types/respones";
 
 export type Props = {
-  notification: CommentNotification;
+  notification: Notification;
 };

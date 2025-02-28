@@ -2,7 +2,7 @@ import React from "react";
 import { Props } from "./types";
 import { UserShortDescription } from "@/components/UserShortDescription";
 import usePost from "./usePost";
-import { Comments } from "@/components/NewsFeedPage";
+import { CommentsAndLikes } from "../CommentsAndLikes";
 
 const Post: React.FC<Props> = ({ post }) => {
   const { language } = usePost();
@@ -26,7 +26,8 @@ const Post: React.FC<Props> = ({ post }) => {
         }}
         className="aspect-[1.79] bg-no-repeat bg-cover bg-center rounded-[0.625rem] mt-4"
       ></div>
-      <Comments
+      <CommentsAndLikes
+        current_user_like={post?.current_user_like}
         likes_count={post.likes_count}
         quote_id={post.id}
         comments={post.comments}
