@@ -25,6 +25,7 @@ const CommentsAndLikes: React.FC<Props> = ({
     handleLike,
     storedHasLiked,
     wasLiked,
+    getUpdatedLikesCount,
   } = useCommentsAndLikes({
     quote_id,
     current_user_like,
@@ -40,15 +41,7 @@ const CommentsAndLikes: React.FC<Props> = ({
         <div className="flex items-center gap-3">
           {likes_count !== null && (
             <p className="text-xl">
-              {userHasLiked
-                ? likes_count >= 0
-                  ? wasLiked
-                    ? likes_count
-                    : likes_count + 1
-                  : 0
-                : wasLiked
-                ? likes_count - wasLiked
-                : likes_count}
+              {getUpdatedLikesCount(likes_count, userHasLiked, wasLiked)}
             </p>
           )}
 

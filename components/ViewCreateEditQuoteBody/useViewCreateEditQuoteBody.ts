@@ -21,8 +21,10 @@ import { useMediaQuery } from "react-responsive";
 import { HookProps } from "./types";
 import useListenCommentAdd from "@/hooks/useListenCommentAdd";
 import useListenLike from "@/hooks/useListenLike";
+import { useAuthentication } from "@/hooks/useAuthentication";
 
 export default function useViewCreateEditQuoteBody({ type }: HookProps) {
+  const { user } = useAuthentication();
   const { t } = useTranslation("quote-modals");
   const [comments, setComments] = useState<Comment[]>([]);
   const [likesQuantity, setLikesQuantity] = useState<number | null>(null);
@@ -51,18 +53,22 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
   const { addLike, removeLike } = useListenLike();
 
   useEffect(() => {
-    if (addLike)
+    if (addLike) {
+      if (addLike.like.user_id === user?.id) return;
       setLikesQuantity((likesQuantity) =>
         likesQuantity ? likesQuantity + 1 : 1
       );
-  }, [addLike]);
+    }
+  }, [addLike, user]);
 
   useEffect(() => {
-    if (removeLike)
+    if (removeLike) {
+      if (removeLike.like.user_id === user?.id) return;
       setLikesQuantity((likesQuantity) =>
         likesQuantity ? likesQuantity - 1 : 0
       );
-  }, [removeLike]);
+    }
+  }, [removeLike, user]);
 
   useEffect(() => {
     if (quote) {

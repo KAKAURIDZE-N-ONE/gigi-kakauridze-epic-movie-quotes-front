@@ -69,6 +69,32 @@ export default function useCommentsAndLikes({
     }
   }, [current_user_like, likeHasUpdatedBeforeCreate, handleLike, userHasLiked]);
 
+  function getUpdatedLikesCount(
+    likes_count: number | null,
+    userHasLiked: boolean,
+    wasLiked: 0 | 1
+  ) {
+    if (likes_count === null) return null;
+
+    if (userHasLiked) {
+      if (likes_count >= 0) {
+        if (wasLiked === 1) {
+          return likes_count;
+        } else {
+          return likes_count + 1;
+        }
+      } else {
+        return 0;
+      }
+    } else {
+      if (wasLiked === 1) {
+        return likes_count - 1;
+      } else {
+        return likes_count;
+      }
+    }
+  }
+
   return {
     user,
     handleCreateComment,
@@ -81,5 +107,6 @@ export default function useCommentsAndLikes({
     handleLike,
     storedHasLiked,
     wasLiked,
+    getUpdatedLikesCount,
   };
 }
