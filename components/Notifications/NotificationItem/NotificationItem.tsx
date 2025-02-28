@@ -1,4 +1,3 @@
-import React from "react";
 import { Props } from "./types";
 import useNotificationItem from "./useNotificationItem";
 import Quote from "@/components/icons/Quote";
@@ -8,6 +7,7 @@ import timeFormatter from "@/utils/timeFormatter";
 const NotificationItem: React.FC<Props> = ({ notification }) => {
   const { t, moveToViewQuoteModal, markNotificationAsRead } =
     useNotificationItem();
+
   return (
     <div
       onClick={() => {
@@ -27,7 +27,13 @@ const NotificationItem: React.FC<Props> = ({ notification }) => {
           <div className="flex flex-col items-center gap-2">
             <div
               style={{
-                backgroundImage: `url(${notification.data.commenter_avatar})`,
+                backgroundImage: `url(${
+                  "commenter_avatar" in notification.data
+                    ? notification.data.commenter_avatar
+                    : "liker_avatar" in notification.data
+                    ? notification.data.liker_avatar
+                    : ""
+                })`,
               }}
               className={`
             ${notification.read_at === null ? "" : "translate-y-1"} 
@@ -48,10 +54,13 @@ const NotificationItem: React.FC<Props> = ({ notification }) => {
           <div className="flex flex-col gap-2">
             <div className="flex flex-col gap-1 lg:gap-2">
               <p className="text-white text-xl">
-                {notification.data.commenter_name}
+                {"commenter_name" in notification.data
+                  ? notification.data.commenter_name
+                  : "liker_name" in notification.data &&
+                    notification.data.liker_name}
               </p>
               <div className="flex items-center gap-3">
-                {notification.data.comment_id ? (
+                {"comment_id" in notification.data ? (
                   <>
                     <Quote />
                     <p className="text-white2 text-base lg:text-xl text-nowrap">

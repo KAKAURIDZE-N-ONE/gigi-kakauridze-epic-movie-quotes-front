@@ -14,7 +14,7 @@ import { Control } from "react-hook-form";
 import { Props } from "./types";
 import { MovieShortDescription } from "../MovieShortDescription";
 import useViewCreateEditQuoteBody from "./useViewCreateEditQuoteBody";
-import { Comments } from "../NewsFeedPage";
+import { CommentsAndLikes } from "../NewsFeedPage";
 
 const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
   const {
@@ -36,6 +36,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
     deleteQuoteIsPending,
     t,
     comments,
+    likesQuantity,
   } = useViewCreateEditQuoteBody({ type });
 
   return (
@@ -162,9 +163,10 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
               />
             </div>
           )}
-          {type === "view" && (
-            <Comments
-              likes_count={quote?.likes_count}
+          {type === "view" && quote && (
+            <CommentsAndLikes
+              current_user_like={quote?.current_user_like}
+              likes_count={likesQuantity}
               quote_id={quote?.id}
               comments={comments}
             />

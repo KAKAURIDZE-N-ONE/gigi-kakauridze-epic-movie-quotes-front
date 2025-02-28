@@ -176,3 +176,19 @@ body {
   border-right: 25px solid transparent;
   border-bottom: 45px solid black;
 }
+
+.scaleAnime {
+  animation: scale 300ms ease-in-out;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

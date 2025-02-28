@@ -1,6 +1,8 @@
 import { NewsFeedState } from "@/types/slices";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { stat } from "fs";
+import { LikeBroadcastResponse, LikeResponse } from "@/types/respones";
 
 const initialState: NewsFeedState = {
   posts: [],
@@ -26,7 +28,32 @@ const newsFeedSlice = createSlice({
     addNewCommentOnPost(state, action) {
       const { postId, comment } = action.payload;
       const post = state.posts.find((post) => post.id === postId);
-      post?.comments.push(comment);
+      if (!post) return;
+      post.comments.push(comment);
+    },
+    addNewLikeOnPost(state, action) {
+      const post = state.posts.find(
+        (post) => post.id === action.payload.like.post_id
+      );
+      if (!post) return;
+      post.likes_count += 1;
+    },
+    removeNewLikeOnPost(state, action) {
+      const post = state.posts.find(
+        (post) => post.id === action.payload.like.post_id
+      );
+      if (!post) return;
+      post.likes_count -= 1;
+    },
+    updateUserLike(state, action: PayloadAction<LikeBroadcastResponse>) {
+      const post = state.posts.find(
+        (post) => post.id === action.payload.like.post_id
+      );
+      if (post)
+        post.current_user_like = {
+          id: action.payload.like.id,
+          active: action.payload.like.active,
+        };
     },
   },
 });
@@ -40,6 +67,9 @@ export const {
   resetPosts,
   updatePage,
   resetPage,
+  addNewLikeOnPost,
+  removeNewLikeOnPost,
+  updateUserLike,
 } = newsFeedSlice.actions;
 
 export default newsFeedSlice.reducer;

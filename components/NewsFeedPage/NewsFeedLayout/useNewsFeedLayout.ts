@@ -1,5 +1,7 @@
 import { QUOTES } from "@/config/queryKeys";
+import { useAuthentication } from "@/hooks/useAuthentication";
 import useListenCommentAdd from "@/hooks/useListenCommentAdd";
+import useListenLike from "@/hooks/useListenLike";
 import { getQuotes } from "@/services/apiQuote";
 import {
   addNewCommentOnPost,
@@ -8,17 +10,14 @@ import {
   pushNextPagePosts,
   resetPosts,
   updatePage,
+  addNewLikeOnPost,
+  removeNewLikeOnPost,
+  updateUserLike,
 } from "@/store/slices/newsFeedSlice";
 import { useAppSelector } from "@/store/store";
 import { PostsListingResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
@@ -32,6 +31,7 @@ export default function useNewsFeedLayout() {
   const page = useAppSelector(selectPage);
   const [searchValue, setSearchValue] = useState<string>("");
   const [searchIsActive, setSearchIsActive] = useState<boolean>(false);
+  const { user } = useAuthentication();
   const dispatch = useDispatch();
 
   const { data, isPending } = useQuery<PostsListingResponse[]>({
@@ -64,13 +64,35 @@ export default function useNewsFeedLayout() {
 
   const newComment = useListenCommentAdd();
 
-  const stableDispatch = useCallback(dispatch, []);
+  const { addLike, removeLike } = useListenLike();
 
   useEffect(() => {
     if (newComment !== null) {
       dispatch(addNewCommentOnPost(newComment));
     }
-  }, [newComment, stableDispatch]);
+  }, [newComment, dispatch]);
+
+  useEffect(() => {
+    if (addLike) {
+      if (user?.id !== addLike.like.user_id) {
+        dispatch(addNewLikeOnPost(addLike));
+      }
+      if (user?.id === addLike.like.user_id) {
+        dispatch(updateUserLike(addLike));
+      }
+    }
+  }, [addLike, dispatch, user?.id]);
+
+  useEffect(() => {
+    if (removeLike) {
+      if (user?.id !== removeLike.like.user_id) {
+        dispatch(removeNewLikeOnPost(removeLike));
+      }
+      if (user?.id === removeLike.like.user_id) {
+        dispatch(updateUserLike(removeLike));
+      }
+    }
+  }, [removeLike, dispatch, user?.id]);
 
   useEffect(() => {
     if (searchRef && searchIsActive) {

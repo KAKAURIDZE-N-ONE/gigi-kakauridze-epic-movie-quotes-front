@@ -22,10 +22,15 @@ export default function useAddPusher() {
               return {
                 authorize: async (socketId: any, callback: any) => {
                   try {
-                    authInstace.post("/api/broadcasting/auth", {
-                      socket_id: socketId,
-                      channel_name: channel.name,
-                    });
+                    const response = await authInstace.post(
+                      "/api/broadcasting/auth",
+                      {
+                        socket_id: socketId,
+                        channel_name: channel.name,
+                      }
+                    );
+
+                    callback(false, response.data);
                   } catch (error) {
                     callback(true, error);
                   }

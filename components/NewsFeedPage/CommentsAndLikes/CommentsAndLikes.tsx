@@ -1,12 +1,18 @@
 import React from "react";
 import { Props } from "./types";
 import { UserShortDescription } from "@/components/UserShortDescription";
-import useComments from "./useComments";
 import Comment from "@/components/icons/Comment";
 import defaultProfileImage from "@/public/images/defaultProfileImage.png";
 import Heart from "@/components/icons/Heart";
+import RedHearth from "@/components/icons/RedHearth";
+import useCommentsAndLikes from "./useCommentsAndLikes";
 
-const Comments: React.FC<Props> = ({ comments, quote_id, likes_count }) => {
+const CommentsAndLikes: React.FC<Props> = ({
+  comments,
+  quote_id,
+  likes_count,
+  current_user_like,
+}) => {
   const {
     user,
     handleCreateComment,
@@ -14,8 +20,14 @@ const Comments: React.FC<Props> = ({ comments, quote_id, likes_count }) => {
     createCommentIsPending,
     setComment,
     t,
-  } = useComments({
+    userHasLiked,
+    setUserHasLiked,
+    handleLike,
+    storedHasLiked,
+    wasLiked,
+  } = useCommentsAndLikes({
     quote_id,
+    current_user_like,
   });
 
   return (
@@ -26,8 +38,44 @@ const Comments: React.FC<Props> = ({ comments, quote_id, likes_count }) => {
           <Comment size="small" />
         </div>
         <div className="flex items-center gap-3">
-          <p className="text-xl">{likes_count}</p>
-          <Heart size="small" />
+          {likes_count !== null && (
+            <p className="text-xl">
+              {userHasLiked
+                ? likes_count >= 0
+                  ? wasLiked
+                    ? likes_count
+                    : likes_count + 1
+                  : 0
+                : wasLiked
+                ? likes_count - wasLiked
+                : likes_count}
+            </p>
+          )}
+
+          {userHasLiked ? (
+            <div
+              className="scaleAnime cursor-pointer"
+              onClick={() => {
+                setUserHasLiked(false);
+                if (storedHasLiked.current === 1 && userHasLiked)
+                  handleLike("update", 0);
+              }}
+            >
+              <RedHearth />
+            </div>
+          ) : (
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                setUserHasLiked(true);
+                if (!current_user_like && !userHasLiked) handleLike("create");
+                else if (storedHasLiked.current === 0 && !userHasLiked)
+                  handleLike("update", 1);
+              }}
+            >
+              <Heart size="small" />
+            </div>
+          )}
         </div>
       </div>
       <div className="border-t border-t-[#EFEFEF4D] mt-4">
@@ -75,4 +123,4 @@ const Comments: React.FC<Props> = ({ comments, quote_id, likes_count }) => {
   );
 };
 
-export default Comments;
+export default CommentsAndLikes;

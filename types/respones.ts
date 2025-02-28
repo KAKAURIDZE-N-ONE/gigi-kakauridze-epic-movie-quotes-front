@@ -75,6 +75,20 @@ export type PostsListingResponse = {
       name: string;
     };
   };
+  current_user_like: LikeResponse | null;
+};
+export type LikeResponse = {
+  id: number;
+  active: 1 | 0;
+};
+
+export type LikeBroadcastResponse = {
+  like: {
+    post_id: number;
+    id: number;
+    user_id: number;
+    active: 1 | 0;
+  };
 };
 
 export type MovieShortResponse = {
@@ -86,16 +100,28 @@ export type MovieShortResponse = {
   categories: Category[];
 };
 
-export type CommentNotification = {
+export type Notification = {
   id: string;
   created_at: string;
-  data: {
-    quote_id: number;
-    movie_id: number;
-    comment_id: number;
-    commenter_name: string;
-    commenter_avatar: string;
-  };
-  type: string;
+  data: CommentNotificationData | LikeNotificationData;
   read_at: string | null;
 };
+
+export type CommentNotificationData = {
+  quote_id: number;
+  movie_id: number;
+  comment_id?: number;
+  commenter_name?: string;
+  commenter_avatar?: string;
+  id?: string;
+};
+
+export type LikeNotificationData = {
+  liker_avatar?: string;
+  liker_name?: string;
+  movie_id: number;
+  quote_id: number;
+  id?: string;
+};
+
+export type PusherNotification = CommentNotificationData | LikeNotificationData;
