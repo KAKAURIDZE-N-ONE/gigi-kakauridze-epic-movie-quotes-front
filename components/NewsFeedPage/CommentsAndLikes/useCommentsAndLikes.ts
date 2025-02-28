@@ -75,24 +75,11 @@ export default function useCommentsAndLikes({
     wasLiked: 0 | 1
   ) {
     if (likes_count === null) return null;
+    if (likes_count < 0) return 0;
 
-    if (userHasLiked) {
-      if (likes_count >= 0) {
-        if (wasLiked === 1) {
-          return likes_count;
-        } else {
-          return likes_count + 1;
-        }
-      } else {
-        return 0;
-      }
-    } else {
-      if (wasLiked === 1) {
-        return likes_count - 1;
-      } else {
-        return likes_count;
-      }
-    }
+    if (userHasLiked) return wasLiked === 1 ? likes_count : likes_count + 1;
+
+    return wasLiked === 1 ? likes_count - 1 : likes_count;
   }
 
   return {
