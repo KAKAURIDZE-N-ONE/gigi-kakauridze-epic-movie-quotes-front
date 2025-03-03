@@ -1,10 +1,18 @@
 import { authInstace, fileInstance } from "./axios";
-import { CreateOrUpdateQuoteValues } from "@/types/requests";
+import { CreateOrUpdateQuoteValues, GetQuotesValues } from "@/types/requests";
 
-export async function getQuotes(page: number) {
-  const response = await authInstace.get(`/api/quotes?page=${page}`);
+export async function getQuotes({ page, filter }: GetQuotesValues) {
+  const params = new URLSearchParams();
+  params.append("page", page.toString());
 
-  return response.data.data;
+  if (filter !== null) {
+    params.append("filter_by", filter.filterBy);
+    params.append("filter_value", filter.value);
+  }
+
+  const response = await authInstace.get(`/api/quotes?${params.toString()}`);
+
+  return response.data;
 }
 
 export async function getQuote(quoteId: number) {

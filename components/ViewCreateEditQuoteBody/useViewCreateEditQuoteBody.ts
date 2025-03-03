@@ -9,8 +9,9 @@ import { useAppSelector } from "@/store/store";
 import { FormFieldsAddQuote } from "@/types/movie";
 import {
   Comment,
+  LikeResponse,
   MovieShortResponse,
-  PostsListingResponse,
+  PostsListingResponseDataItem,
 } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
@@ -26,6 +27,9 @@ import { useAuthentication } from "@/hooks/useAuthentication";
 export default function useViewCreateEditQuoteBody({ type }: HookProps) {
   const { user } = useAuthentication();
   const { t } = useTranslation("quote-modals");
+  const [currentUserLike, setCurrentUserLike] = useState<LikeResponse | null>(
+    null
+  );
   const [comments, setComments] = useState<Comment[]>([]);
   const [likesQuantity, setLikesQuantity] = useState<number | null>(null);
   const router = useRouter();
@@ -44,29 +48,42 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     enabled: !!movieId,
   });
 
-  const { data: quote } = useQuery<PostsListingResponse>({
+  const { data: quote } = useQuery<PostsListingResponseDataItem>({
     queryKey: [QUOTE, quoteId],
     queryFn: () => getQuote(Number(quoteId)),
     enabled: !!quoteId,
+    staleTime: 0,
   });
 
   const { addLike, removeLike } = useListenLike();
 
   useEffect(() => {
     if (addLike) {
-      if (addLike.like.user_id === user?.id) return;
-      setLikesQuantity((likesQuantity) =>
-        likesQuantity ? likesQuantity + 1 : 1
-      );
+      if (addLike.like.user_id === user?.id) {
+        setCurrentUserLike({
+          active: addLike.like.active,
+          id: addLike.like.id,
+        });
+      } else {
+        setLikesQuantity((likesQuantity) =>
+          likesQuantity ? likesQuantity + 1 : 1
+        );
+      }
     }
   }, [addLike, user]);
 
   useEffect(() => {
     if (removeLike) {
-      if (removeLike.like.user_id === user?.id) return;
-      setLikesQuantity((likesQuantity) =>
-        likesQuantity ? likesQuantity - 1 : 0
-      );
+      if (removeLike.like.user_id === user?.id) {
+        setCurrentUserLike({
+          active: removeLike.like.active,
+          id: removeLike.like.id,
+        });
+      } else {
+        setLikesQuantity((likesQuantity) =>
+          likesQuantity ? likesQuantity - 1 : 0
+        );
+      }
     }
   }, [removeLike, user]);
 
@@ -74,6 +91,7 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     if (quote) {
       setComments(quote.comments);
       setLikesQuantity(quote.likes_count);
+      setCurrentUserLike(quote.current_user_like);
     }
   }, [quote, setComments, setLikesQuantity]);
 
@@ -156,5 +174,6 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     t,
     comments,
     likesQuantity,
+    currentUserLike,
   };
 }

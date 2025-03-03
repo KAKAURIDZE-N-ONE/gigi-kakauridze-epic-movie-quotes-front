@@ -1,8 +1,14 @@
 import { CreateOrUpdateMovieValues } from "@/types/requests";
 import { authInstace, fileInstance } from "./axios";
 
-export async function getMovies() {
-  const response = await authInstace.get("/api/movies");
+export async function getMovies(filter?: string) {
+  const params = new URLSearchParams();
+
+  if (filter) {
+    params.append("filter", filter);
+  }
+
+  const response = await authInstace.get(`/api/movies?${params.toString()}`);
 
   return response.data.data;
 }

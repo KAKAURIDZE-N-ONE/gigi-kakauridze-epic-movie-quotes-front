@@ -1,12 +1,12 @@
 import { NewsFeedState } from "@/types/slices";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { stat } from "fs";
-import { LikeBroadcastResponse, LikeResponse } from "@/types/respones";
+import { LikeBroadcastResponse } from "@/types/respones";
 
 const initialState: NewsFeedState = {
   posts: [],
   page: 1,
+  searchIsOpen: false,
 };
 
 const newsFeedSlice = createSlice({
@@ -20,7 +20,7 @@ const newsFeedSlice = createSlice({
       state.page += 1;
     },
     resetPage(state) {
-      state.page = 0;
+      state.page = 1;
     },
     resetPosts(state) {
       state.posts = [];
@@ -55,11 +55,16 @@ const newsFeedSlice = createSlice({
           active: action.payload.like.active,
         };
     },
+    updateSearchIsOpen(state, action: PayloadAction<boolean>) {
+      state.searchIsOpen = action.payload;
+    },
   },
 });
 
 export const selectPosts = (state: RootState) => state.newsFeed.posts;
 export const selectPage = (state: RootState) => state.newsFeed.page;
+export const selectSearchIsOpen = (state: RootState) =>
+  state.newsFeed.searchIsOpen;
 
 export const {
   pushNextPagePosts,
@@ -70,6 +75,7 @@ export const {
   addNewLikeOnPost,
   removeNewLikeOnPost,
   updateUserLike,
+  updateSearchIsOpen,
 } = newsFeedSlice.actions;
 
 export default newsFeedSlice.reducer;

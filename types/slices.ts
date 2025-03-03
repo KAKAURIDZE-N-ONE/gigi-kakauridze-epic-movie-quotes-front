@@ -21,6 +21,7 @@ export type ModalState = {
 };
 
 export type NewsFeedState = {
-  posts: PostsListingResponse[];
+  posts: PostsListingResponse["data"];
   page: number;
+  searchIsOpen: boolean;
 };

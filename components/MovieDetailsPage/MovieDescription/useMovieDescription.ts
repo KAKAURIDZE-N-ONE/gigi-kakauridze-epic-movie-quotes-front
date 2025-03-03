@@ -4,6 +4,7 @@ import { getMovie } from "@/services/apiMovie";
 import { MovieResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
@@ -17,11 +18,21 @@ export default function useMovieDescription() {
   const { mutate: deleteMovie, isPending: deleteMovieIsPending } =
     useDeleteMovie();
 
-  const { data: movie } = useQuery<MovieResponse>({
+  const {
+    data: movie,
+    isPending,
+    error,
+  } = useQuery<MovieResponse>({
     queryKey: [id, MOVIE],
     queryFn: () => getMovie(Number(id)),
     enabled: !!id,
   });
+
+  useEffect(() => {
+    if (error) {
+      router.push("/403");
+    }
+  }, [error, router]);
 
   const handleDeleteMovie = async (id: number) => {
     deleteMovie(id);
@@ -34,5 +45,6 @@ export default function useMovieDescription() {
     deleteMovieIsPending,
     dispatch,
     t,
+    isPending,
   };
 }
