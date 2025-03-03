@@ -9,7 +9,7 @@ const useRequireAuth = () => {
 
   useEffect(() => {
     if (!isPending && !isAuthenticated) {
-      router.replace("/log-in");
+      router.replace("/403");
       showInfoToast("Please log in to continue.");
     }
   }, [isPending, isAuthenticated, router]);

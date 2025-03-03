@@ -35,3 +35,13 @@ export type UpdateLikeValues = {
   active: 1 | 0;
   id: number;
 };
+
+export type GetQuotesValues = {
+  page: number;
+  filter: NewsFeedFilter;
+};
+
+export type NewsFeedFilter = {
+  filterBy: "quoteText" | "movieName";
+  value: string;
+} | null;

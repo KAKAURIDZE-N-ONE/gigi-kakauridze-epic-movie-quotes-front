@@ -37,6 +37,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
     t,
     comments,
     likesQuantity,
+    currentUserLike,
   } = useViewCreateEditQuoteBody({ type });
 
   return (
@@ -165,7 +166,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
           )}
           {type === "view" && quote && (
             <CommentsAndLikes
-              current_user_like={quote?.current_user_like}
+              current_user_like={currentUserLike}
               likes_count={likesQuantity}
               quote_id={quote?.id}
               comments={comments}

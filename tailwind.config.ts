@@ -22,6 +22,7 @@ export default {
         normalBlue: "#24222F",
         darkBlue: "#222030",
         darkerBlue: "#11101A",
+        darkestBlue: "#12101A",
         green: "#198754",
       },
     },

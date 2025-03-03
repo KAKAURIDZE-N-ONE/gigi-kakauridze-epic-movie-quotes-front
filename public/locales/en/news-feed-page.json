@@ -2,5 +2,11 @@
   "new_quote": "Write new quote",
   "search": "Search by",
   "write_comment": "Write a comment",
-  "sending": "Sending..."
+  "sending": "Sending...",
+  "search_validation": "Please start with @ or #",
+  "posts_not_found": "Sorry posts not found",
+  "search_mobile": "Search",
+  "enter": "Enter",
+  "validation_movie": "to search movies",
+  "validation_quote": "to search quotes"
 }

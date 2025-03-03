@@ -21,60 +21,63 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
     handleSubmit,
     choosedMovieId,
     setChoosedMovieId,
-    createQuoteIsPending,
+    createPostIsPending,
     movies,
     t,
   } = useCreatePostBody();
 
   return (
-    <DarkModalLayout
-      isPending={createQuoteIsPending}
-      submitFn={handleSubmit(onSubmit)}
-      title={t("new_quote")}
-      xBtnFn={turnOfFn}
-      btnText={t("post")}
-    >
-      <div className="mt-2">
+    <>
+      {createPostIsPending && <div className="loader"></div>}
+      <DarkModalLayout
+        isPending={createPostIsPending}
+        submitFn={handleSubmit(onSubmit)}
+        title={t("new_quote")}
+        xBtnFn={turnOfFn}
+        btnText={t("post")}
+      >
+        <div className="mt-2">
+          <InnerTextarea
+            error={errors.quote?.en?.message}
+            register={register("quote.en", {
+              required: "required",
+              pattern: {
+                value: ENGLISH_LANGUAGE_PATTERN_VALUE,
+                message: "Only english letters and numbers are allowed",
+              },
+            })}
+            lang="en"
+          >
+            Create new quote
+          </InnerTextarea>
+        </div>
         <InnerTextarea
-          error={errors.quote?.en?.message}
-          register={register("quote.en", {
+          error={errors.quote?.ka?.message}
+          register={register("quote.ka", {
             required: "required",
             pattern: {
-              value: ENGLISH_LANGUAGE_PATTERN_VALUE,
-              message: "Only english letters and numbers are allowed",
+              value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
+              message: "Only Georgian letters and numbers are allowed",
             },
           })}
-          lang="en"
+          lang="ka"
         >
-          Create new quote
+          ფილმის აღწერა
         </InnerTextarea>
-      </div>
-      <InnerTextarea
-        error={errors.quote?.ka?.message}
-        register={register("quote.ka", {
-          required: "required",
-          pattern: {
-            value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
-            message: "Only Georgian letters and numbers are allowed",
-          },
-        })}
-        lang="ka"
-      >
-        ფილმის აღწერა
-      </InnerTextarea>
-      <InnerFile
-        control={control as Control<FormFieldsAddMovie | FormFieldsAddQuote>}
-        error={errors.image?.message}
-        register={register("image", {
-          required: "required",
-        })}
-      />
-      <SelectMovies
-        choosedMovieId={choosedMovieId}
-        setChoosedMovieId={setChoosedMovieId}
-        movies={movies}
-      />
-    </DarkModalLayout>
+        <InnerFile
+          control={control as Control<FormFieldsAddMovie | FormFieldsAddQuote>}
+          error={errors.image?.message}
+          register={register("image", {
+            required: "required",
+          })}
+        />
+        <SelectMovies
+          choosedMovieId={choosedMovieId}
+          setChoosedMovieId={setChoosedMovieId}
+          movies={movies}
+        />
+      </DarkModalLayout>
+    </>
   );
 };
 

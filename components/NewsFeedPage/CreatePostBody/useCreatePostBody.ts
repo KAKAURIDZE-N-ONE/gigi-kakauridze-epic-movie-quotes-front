@@ -15,10 +15,10 @@ export default function useCreatePostBody() {
 
   const { data: movies } = useQuery({
     queryKey: [MOVIES],
-    queryFn: getMovies,
+    queryFn: () => getMovies(),
   });
 
-  const { mutate: createQuote, isPending: createQuoteIsPending } =
+  const { mutate: createQuote, isPending: createPostIsPending } =
     useCreateQuote({
       movieId: Number(choosedMovieId),
     });
@@ -47,7 +47,7 @@ export default function useCreatePostBody() {
     onSubmit,
     choosedMovieId,
     setChoosedMovieId,
-    createQuoteIsPending,
+    createPostIsPending,
     control,
     movies,
     t,

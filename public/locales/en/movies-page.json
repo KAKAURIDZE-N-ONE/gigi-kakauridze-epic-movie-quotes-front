@@ -1,5 +1,8 @@
 {
   "header": "My list of movies",
   "total": "Total",
-  "add_movie": "Add movie"
+  "add_movie": "Add movie",
+  "placeholder": "Enter film name",
+  "search": "Search",
+  "movies_not_found": "Films not found"
 }

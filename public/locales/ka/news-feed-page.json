@@ -2,5 +2,11 @@
   "new_quote": "დაწერეთ ახალი ციტატა",
   "search": "ძებნა",
   "write_comment": "დაწერეთ კომენტარი",
-  "sending": "იგზავნება..."
+  "sending": "იგზავნება...",
+  "search_validation": "გთხოვთ დაიწყეთ @_ით ან #_ით",
+  "posts_not_found": "ვწუხვარ პოსტები ვერ მოიძებნა",
+  "search_mobile": "ძებნა",
+  "enter": "შეიყვანეთ",
+  "validation_movie": "რომ მოძებნოთ ფილმები",
+  "validation_quote": "რომ მოძებნოთ ციტატები"
 }

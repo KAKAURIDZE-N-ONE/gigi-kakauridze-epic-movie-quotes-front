@@ -61,7 +61,7 @@ export type RealTimeComment = {
   comment: Comment;
 };
 
-export type PostsListingResponse = {
+export type PostsListingResponseDataItem = {
   id: number;
   image: string;
   quote: Record<string, string>;
@@ -76,6 +76,11 @@ export type PostsListingResponse = {
     };
   };
   current_user_like: LikeResponse | null;
+};
+
+export type PostsListingResponse = {
+  has_more_pages: boolean;
+  data: PostsListingResponseDataItem[];
 };
 export type LikeResponse = {
   id: number;

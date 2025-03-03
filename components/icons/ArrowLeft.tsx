@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArrowLeft: React.FC = () => {
+const ArrowLeft: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <svg
       width="13"
@@ -8,6 +8,7 @@ const ArrowLeft: React.FC = () => {
       viewBox="0 0 13 10"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <g clipPath="url(#clip0_2943_32037)">
         <path

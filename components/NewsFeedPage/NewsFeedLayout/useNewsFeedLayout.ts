@@ -13,30 +13,38 @@ import {
   addNewLikeOnPost,
   removeNewLikeOnPost,
   updateUserLike,
+  resetPage,
+  selectSearchIsOpen,
 } from "@/store/slices/newsFeedSlice";
 import { useAppSelector } from "@/store/store";
+import { NewsFeedFilter } from "@/types/requests";
 import { PostsListingResponse } from "@/types/respones";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 
 export default function useNewsFeedLayout() {
   const {
     t,
     i18n: { language },
   } = useTranslation("news-feed-page");
+  const isMobile = useMediaQuery({ maxWidth: 1023 });
+  const [searchValidationError, setSearchValidationError] =
+    useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const posts = useAppSelector(selectPosts);
   const page = useAppSelector(selectPage);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [searchIsActive, setSearchIsActive] = useState<boolean>(false);
+  const [filter, setFilter] = useState<NewsFeedFilter>(null);
+  const searchIsOpen = useAppSelector(selectSearchIsOpen);
   const { user } = useAuthentication();
   const dispatch = useDispatch();
 
-  const { data, isPending } = useQuery<PostsListingResponse[]>({
-    queryKey: [QUOTES, page],
-    queryFn: () => getQuotes(page),
+  const { data, isPending } = useQuery<PostsListingResponse>({
+    queryKey: [QUOTES, page, filter?.filterBy, filter?.value],
+    queryFn: () => getQuotes({ page, filter }),
     refetchOnWindowFocus: false,
   });
 
@@ -46,19 +54,20 @@ export default function useNewsFeedLayout() {
 
       if (
         window.innerHeight + window.scrollY >=
-        document.body.scrollHeight - 200
+          document.body.scrollHeight - 200 &&
+        data?.has_more_pages
       ) {
         dispatch(updatePage());
       }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [dispatch, isPending]);
+  }, [dispatch, isPending, data]);
 
   useEffect(() => {
     if (data) {
       if (page === 1) dispatch(resetPosts());
-      dispatch(pushNextPagePosts(data));
+      dispatch(pushNextPagePosts(data.data));
     }
   }, [data, dispatch, page]);
 
@@ -95,20 +104,76 @@ export default function useNewsFeedLayout() {
   }, [removeLike, dispatch, user?.id]);
 
   useEffect(() => {
-    if (searchRef && searchIsActive) {
+    if (searchRef && searchIsOpen) {
       searchRef.current?.focus();
     }
-  }, [searchRef, searchIsActive]);
+  }, [searchRef, searchIsOpen]);
+
+  useEffect(() => {
+    if (searchValue) {
+      if (!searchValue.startsWith("#") && !searchValue.startsWith("@")) {
+        setSearchValidationError(true);
+      } else {
+        setSearchValidationError(false);
+        setFilter(null);
+        window.scrollTo({ top: 0 });
+        if (page > 1) {
+          dispatch(resetPosts());
+          dispatch(resetPage());
+        }
+      }
+    } else {
+      setSearchValidationError(false);
+      setFilter(null);
+      window.scrollTo({ top: 0 });
+      if (page > 1) {
+        dispatch(resetPosts());
+        dispatch(resetPage());
+      }
+    }
+  }, [searchValue, dispatch]);
+
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      if (searchValue && searchValue.length > 1 && !searchValidationError) {
+        const filterBy = searchValue.startsWith("@")
+          ? "movieName"
+          : "quoteText";
+        const value = searchValue.slice(1);
+        dispatch(resetPage());
+
+        setFilter({ filterBy, value });
+      }
+    }, 600);
+
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
+  }, [searchValue, searchValidationError]);
+
+  useEffect(() => {
+    dispatch(resetPage());
+  }, [filter?.value, filter?.filterBy, dispatch]);
+
+  useEffect(() => {
+    if (!searchIsOpen) {
+      setFilter(null);
+      setSearchValue("");
+    }
+  }, [searchIsOpen]);
 
   return {
     dispatch,
     posts,
-    searchIsActive,
-    setSearchIsActive,
+    searchIsOpen,
     searchValue,
     setSearchValue,
     searchRef,
     t,
     language,
+    searchValidationError,
+    isPending,
+    isMobile,
+    page,
   };
 }

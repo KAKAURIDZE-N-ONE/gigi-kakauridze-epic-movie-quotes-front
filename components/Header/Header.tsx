@@ -6,6 +6,7 @@ import { BurgerMenu } from "../BurgerMenu";
 import List from "@/components/icons/List";
 import Search from "@/components/icons/Search";
 import Notifications from "../Notifications/Notifications";
+import { updateSearchIsOpen } from "@/store/slices/newsFeedSlice";
 
 const Header: React.FC = () => {
   const {
@@ -18,6 +19,7 @@ const Header: React.FC = () => {
     mounted,
     isColored,
     isNewsFeedPage,
+    dispatch,
   } = useHeader();
 
   if (!mounted) return null;
@@ -62,8 +64,8 @@ const Header: React.FC = () => {
             )}
             {isNewsFeedPage && (
               <div
-                onClick={(e) => e.stopPropagation()}
-                className="mr-1 cursor-pointer lg:hidden"
+                onClick={() => dispatch(updateSearchIsOpen(true))}
+                className="mr-1 lg:hidden cursor-pointer"
               >
                 <Search />
               </div>

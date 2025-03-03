@@ -44,5 +44,6 @@ export default function useHeader() {
     router,
     toggleBurgerMenuIsOpen,
     burgerMenuIsOpen,
+    dispatch,
   };
 }
