@@ -4,4 +4,6 @@ export type Props = {
   movies: MovieShortResponse[];
   choosedMovieId: number | undefined;
   setChoosedMovieId: React.Dispatch<React.SetStateAction<number | undefined>>;
+  error: boolean;
+  isSubmitted: boolean;
 };

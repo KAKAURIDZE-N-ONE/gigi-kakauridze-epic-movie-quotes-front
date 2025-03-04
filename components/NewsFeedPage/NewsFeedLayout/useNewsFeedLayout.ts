@@ -15,6 +15,7 @@ import {
   updateUserLike,
   resetPage,
   selectSearchIsOpen,
+  selectCreatePostIsPending,
 } from "@/store/slices/newsFeedSlice";
 import { useAppSelector } from "@/store/store";
 import { NewsFeedFilter } from "@/types/requests";
@@ -39,6 +40,7 @@ export default function useNewsFeedLayout() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [filter, setFilter] = useState<NewsFeedFilter>(null);
   const searchIsOpen = useAppSelector(selectSearchIsOpen);
+  const createPostIsPending = useAppSelector(selectCreatePostIsPending);
   const { user } = useAuthentication();
   const dispatch = useDispatch();
 

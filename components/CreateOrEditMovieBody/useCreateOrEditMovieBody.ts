@@ -69,18 +69,6 @@ export default function useCreateOrEditMovieBody({ type }: HookProps) {
   const { mutate: updateMovie, isPending: updateMovieIsPending } =
     useUpdateMovie();
 
-  useEffect(() => {
-    if (categories && categories.length > 0 && !isEditBody) {
-      setValue(
-        "categories",
-        [{ id: categories[0].id, name: categories[0].name }],
-        {
-          shouldValidate: true,
-        }
-      );
-    }
-  }, [categories, setValue, isEditBody]);
-
   const createMovieOnSubmit = async (data: FormFieldsAddMovie) => {
     const categoriesIds = data.categories.map(
       (category: Category) => category.id

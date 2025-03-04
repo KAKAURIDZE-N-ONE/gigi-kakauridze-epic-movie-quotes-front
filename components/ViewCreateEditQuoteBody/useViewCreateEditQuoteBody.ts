@@ -25,6 +25,7 @@ import useListenLike from "@/hooks/useListenLike";
 import { useAuthentication } from "@/hooks/useAuthentication";
 
 export default function useViewCreateEditQuoteBody({ type }: HookProps) {
+  const [mountTwise, setMountTwise] = useState(false);
   const { user } = useAuthentication();
   const { t } = useTranslation("quote-modals");
   const [currentUserLike, setCurrentUserLike] = useState<LikeResponse | null>(
@@ -54,6 +55,14 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     enabled: !!quoteId,
     staleTime: 0,
   });
+
+  useEffect(() => {
+    if (quote && type === "view") {
+      setMountTwise(true);
+      setTimeout(() => setMountTwise(false), 0);
+      setTimeout(() => setMountTwise(true), 300);
+    }
+  }, [quote, setMountTwise]);
 
   const { addLike, removeLike } = useListenLike();
 
@@ -175,5 +184,6 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
     comments,
     likesQuantity,
     currentUserLike,
+    mountTwise,
   };
 }

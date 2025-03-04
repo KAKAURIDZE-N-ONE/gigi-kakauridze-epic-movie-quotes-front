@@ -1,17 +1,22 @@
 import { MOVIES } from "@/config/queryKeys";
 import useCreateQuote from "@/hooks/useCreateQuote";
 import { getMovies } from "@/services/apiMovie";
+import { updateCreatePostIsPending } from "@/store/slices/newsFeedSlice";
 import { FormFieldsAddQuote } from "@/types/movie";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
 export default function useCreatePostBody() {
+  const dispatch = useDispatch();
   const { t } = useTranslation("quote-modals");
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [choosedMovieId, setChoosedMovieId] = useState<number | undefined>(
     undefined
   );
+  const [customSelectError, setCustomSelectError] = useState(false);
 
   const { data: movies } = useQuery({
     queryKey: [MOVIES],
@@ -23,6 +28,15 @@ export default function useCreatePostBody() {
       movieId: Number(choosedMovieId),
     });
 
+  useEffect(() => {
+    dispatch(updateCreatePostIsPending(createPostIsPending));
+  }, [createPostIsPending]);
+
+  useEffect(() => {
+    if (choosedMovieId) setCustomSelectError(false);
+    else setCustomSelectError(true);
+  }, [choosedMovieId, isSubmitted]);
+
   const {
     register,
     formState: { errors },
@@ -31,7 +45,9 @@ export default function useCreatePostBody() {
   } = useForm<FormFieldsAddQuote>();
 
   async function onSubmit(data: FormFieldsAddQuote) {
-    if (!choosedMovieId) return;
+    if (!choosedMovieId) {
+      return;
+    }
 
     createQuote({
       quote: data.quote,
@@ -51,5 +67,9 @@ export default function useCreatePostBody() {
     control,
     movies,
     t,
+    customSelectError,
+    setCustomSelectError,
+    setIsSubmitted,
+    isSubmitted,
   };
 }

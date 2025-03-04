@@ -27,18 +27,19 @@ const ViewMovie: React.FC = () => {
   else
     return (
       <>
-        {activeMovieModal === "edit" && (
-          <CreateOrEditMovieBody
-            type="edit"
-            turnOfFn={() => dispatch(updateActiveMovieModal(null))}
-          />
-        )}
         {activeQuoteModal === "view" && (
           <ViewCreateEditQuoteBody
             turnOfFn={() => dispatch(updateActiveQuoteModal(null))}
             type="view"
           />
         )}
+        {activeMovieModal === "edit" && (
+          <CreateOrEditMovieBody
+            type="edit"
+            turnOfFn={() => dispatch(updateActiveMovieModal(null))}
+          />
+        )}
+
         {activeQuoteModal === "add" && (
           <ViewCreateEditQuoteBody
             turnOfFn={() => dispatch(updateActiveQuoteModal(null))}

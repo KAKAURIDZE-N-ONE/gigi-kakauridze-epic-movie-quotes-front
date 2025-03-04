@@ -21,6 +21,7 @@ const MovieDescription: React.FC = () => {
   return (
     <>
       {(deleteMovieIsPending || isPending) && <Loader />}
+
       {!isPending && (
         <div className="text-white w-full  h-full lg:pr-[4.375rem]">
           <h1 className="text-2xl font-medium hidden lg:inline-block">
