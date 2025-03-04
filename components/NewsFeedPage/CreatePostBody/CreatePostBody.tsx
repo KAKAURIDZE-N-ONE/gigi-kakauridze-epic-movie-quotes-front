@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import useCreatePostBody from "./useCreatePostBody";
 import { DarkModalLayout } from "@/components/DarkModalLayout";
 import { InnerTextarea } from "@/components/InnerTextarea";
@@ -24,6 +24,10 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
     createPostIsPending,
     movies,
     t,
+    customSelectError,
+    setCustomSelectError,
+    setIsSubmitted,
+    isSubmitted,
   } = useCreatePostBody();
 
   return (
@@ -31,7 +35,12 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
       {createPostIsPending && <div className="loader"></div>}
       <DarkModalLayout
         isPending={createPostIsPending}
-        submitFn={handleSubmit(onSubmit)}
+        submitFn={(e: FormEvent) => {
+          e.preventDefault();
+          if (!choosedMovieId) setCustomSelectError(true);
+          handleSubmit(onSubmit)();
+          setIsSubmitted(true);
+        }}
         title={t("new_quote")}
         xBtnFn={turnOfFn}
         btnText={t("post")}
@@ -40,10 +49,10 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
           <InnerTextarea
             error={errors.quote?.en?.message}
             register={register("quote.en", {
-              required: "required",
+              required: t("required"),
               pattern: {
                 value: ENGLISH_LANGUAGE_PATTERN_VALUE,
-                message: "Only english letters and numbers are allowed",
+                message: t("only_english"),
               },
             })}
             lang="en"
@@ -54,10 +63,10 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
         <InnerTextarea
           error={errors.quote?.ka?.message}
           register={register("quote.ka", {
-            required: "required",
+            required: t("required"),
             pattern: {
               value: GEORGIAN_LANGUAGE_PATTERN_VALUE,
-              message: "Only Georgian letters and numbers are allowed",
+              message: t("only_georgian"),
             },
           })}
           lang="ka"
@@ -68,12 +77,15 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
           control={control as Control<FormFieldsAddMovie | FormFieldsAddQuote>}
           error={errors.image?.message}
           register={register("image", {
-            required: "required",
+            required: t("required"),
           })}
         />
         <SelectMovies
+          isSubmitted={isSubmitted}
+          error={customSelectError}
           choosedMovieId={choosedMovieId}
           setChoosedMovieId={setChoosedMovieId}
+          setCustomSelectError={setCustomSelectError}
           movies={movies}
         />
       </DarkModalLayout>

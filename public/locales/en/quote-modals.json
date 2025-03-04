@@ -14,5 +14,6 @@
   "only_georgian": "Only Georgian letters are allowed",
   "required": "Required",
   "select_label": "Choose movie",
-  "select_error": "Please firstly create movie"
+  "select_error": "Please firstly create movie",
+  "create_movie": "Create movie"
 }

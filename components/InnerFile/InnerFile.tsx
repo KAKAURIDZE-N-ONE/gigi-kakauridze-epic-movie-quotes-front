@@ -14,7 +14,7 @@ const InnerFile: React.FC<Props> = ({
 }) => {
   const { imagePreview, t } = useInnerFile({ control });
 
-  const hasImage = imagePreview || savedImage;
+  const hasImage = (imagePreview || savedImage) && !error;
   return (
     <div className="flex flex-col">
       <div

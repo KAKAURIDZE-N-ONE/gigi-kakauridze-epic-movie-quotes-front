@@ -131,7 +131,7 @@ export default function useNewsFeedLayout() {
         dispatch(resetPage());
       }
     }
-  }, [searchValue, dispatch]);
+  }, [searchValue, dispatch, page]);
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
@@ -149,7 +149,7 @@ export default function useNewsFeedLayout() {
     return () => {
       clearTimeout(debounceTimeout);
     };
-  }, [searchValue, searchValidationError]);
+  }, [searchValue, searchValidationError, dispatch]);
 
   useEffect(() => {
     dispatch(resetPage());

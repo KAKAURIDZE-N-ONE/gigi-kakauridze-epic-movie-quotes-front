@@ -38,6 +38,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
     comments,
     likesQuantity,
     currentUserLike,
+    mountTwise,
   } = useViewCreateEditQuoteBody({ type });
 
   return (
@@ -164,7 +165,10 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
               />
             </div>
           )}
-          {type === "view" && quote && (
+          {!mountTwise && type === "view" && quote && (
+            <div className="loader mx-auto mt-10"></div>
+          )}
+          {mountTwise && type === "view" && quote && (
             <CommentsAndLikes
               current_user_like={currentUserLike}
               likes_count={likesQuantity}

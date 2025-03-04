@@ -4,13 +4,21 @@ import Camera from "@/components/icons/Camera";
 import LanguageArrow from "@/components/icons/LanguageArrow";
 import XIcon from "@/components/icons/XIcon";
 import useSelectMovies from "./useSelectMovies";
+import ArrowLeft from "@/components/icons/ArrowLeft";
+import {
+  updateActiveMovieModal,
+  updateActiveQuoteModal,
+} from "@/store/slices/modalSlice";
 
 const SelectMovies: React.FC<Props> = ({
   movies,
   setChoosedMovieId,
   choosedMovieId,
+  error,
+  isSubmitted,
+  setCustomSelectError,
 }) => {
-  const { isOpen, setIsOpen, t } = useSelectMovies();
+  const { isOpen, setIsOpen, t, router, dispatch } = useSelectMovies();
 
   return (
     <div>
@@ -37,7 +45,10 @@ const SelectMovies: React.FC<Props> = ({
       {choosedMovieId && (
         <div className="relative">
           <div
-            onClick={() => setChoosedMovieId(undefined)}
+            onClick={() => {
+              setCustomSelectError(true);
+              setChoosedMovieId(undefined);
+            }}
             className="absolute top-3 right-3 cursor-pointer"
           >
             <XIcon />
@@ -48,13 +59,32 @@ const SelectMovies: React.FC<Props> = ({
           />
         </div>
       )}
-
+      {error && isSubmitted && (
+        <p className="mt-1 text-sm text-[#F04438]">{t("required")}</p>
+      )}
       {isOpen && (
         <>
           {movies?.length === 0 && (
-            <h1 className="text-lg text-center mt-3 text-red">
-              {t("select_error")}
-            </h1>
+            <div className="flex flex-col items-center gap-4">
+              <h1 className="text-lg text-center mt-3 text-red">
+                {t("select_error")}
+              </h1>
+              <div
+                onClick={() => {
+                  router.push("/movies");
+                  dispatch(updateActiveQuoteModal(null));
+                  dispatch(updateActiveMovieModal("add"));
+                }}
+                className="flex items-center gap-2 cursor-pointer group"
+              >
+                <h1 className="group-hover:opacity-80 transition-all duration-300">
+                  {t("create_movie")}
+                </h1>
+                <div className="rotate-180 group-hover:opacity-80 group-hover:translate-x-2 transition-all duration-300">
+                  <ArrowLeft />
+                </div>
+              </div>
+            </div>
           )}
           {movies?.length > 0 && (
             <div className="flex flex-col gap-3 lg:gap-4 მახ-h-[20rem] overflow-auto mt-4">
@@ -64,6 +94,7 @@ const SelectMovies: React.FC<Props> = ({
                     onClick={() => {
                       setChoosedMovieId(movie.id);
                       setIsOpen(false);
+                      setCustomSelectError(false);
                     }}
                     className=" rounded-[0.625rem] cursor-pointer"
                     key={movie.id}

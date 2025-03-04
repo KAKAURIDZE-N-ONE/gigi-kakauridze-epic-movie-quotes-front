@@ -6,8 +6,11 @@ export async function getQuotes({ page, filter }: GetQuotesValues) {
   params.append("page", page.toString());
 
   if (filter !== null) {
-    params.append("filter_by", filter.filterBy);
-    params.append("filter_value", filter.value);
+    if (filter.filterBy === "quoteText") {
+      params.append("filter[quote]", filter.value);
+    } else if (filter.filterBy === "movieName") {
+      params.append("filter[movie_name]", filter.value);
+    }
   }
 
   const response = await authInstace.get(`/api/quotes?${params.toString()}`);

@@ -5,7 +5,7 @@ export async function getMovies(filter?: string) {
   const params = new URLSearchParams();
 
   if (filter) {
-    params.append("filter", filter);
+    params.append("filter[name]", filter);
   }
 
   const response = await authInstace.get(`/api/movies?${params.toString()}`);
