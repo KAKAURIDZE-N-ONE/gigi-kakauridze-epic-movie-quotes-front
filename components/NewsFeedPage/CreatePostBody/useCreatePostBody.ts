@@ -30,12 +30,7 @@ export default function useCreatePostBody() {
 
   useEffect(() => {
     dispatch(updateCreatePostIsPending(createPostIsPending));
-  }, [createPostIsPending]);
-
-  useEffect(() => {
-    if (choosedMovieId) setCustomSelectError(false);
-    else setCustomSelectError(true);
-  }, [choosedMovieId, isSubmitted]);
+  }, [createPostIsPending, dispatch]);
 
   const {
     register,

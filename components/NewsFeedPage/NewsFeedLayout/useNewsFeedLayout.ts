@@ -15,7 +15,6 @@ import {
   updateUserLike,
   resetPage,
   selectSearchIsOpen,
-  selectCreatePostIsPending,
 } from "@/store/slices/newsFeedSlice";
 import { useAppSelector } from "@/store/store";
 import { NewsFeedFilter } from "@/types/requests";
@@ -40,7 +39,6 @@ export default function useNewsFeedLayout() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [filter, setFilter] = useState<NewsFeedFilter>(null);
   const searchIsOpen = useAppSelector(selectSearchIsOpen);
-  const createPostIsPending = useAppSelector(selectCreatePostIsPending);
   const { user } = useAuthentication();
   const dispatch = useDispatch();
 
@@ -133,7 +131,7 @@ export default function useNewsFeedLayout() {
         dispatch(resetPage());
       }
     }
-  }, [searchValue, dispatch]);
+  }, [searchValue, dispatch, page]);
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
@@ -151,7 +149,7 @@ export default function useNewsFeedLayout() {
     return () => {
       clearTimeout(debounceTimeout);
     };
-  }, [searchValue, searchValidationError]);
+  }, [searchValue, searchValidationError, dispatch]);
 
   useEffect(() => {
     dispatch(resetPage());

@@ -85,6 +85,7 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
           error={customSelectError}
           choosedMovieId={choosedMovieId}
           setChoosedMovieId={setChoosedMovieId}
+          setCustomSelectError={setCustomSelectError}
           movies={movies}
         />
       </DarkModalLayout>

@@ -16,6 +16,7 @@ const SelectMovies: React.FC<Props> = ({
   choosedMovieId,
   error,
   isSubmitted,
+  setCustomSelectError,
 }) => {
   const { isOpen, setIsOpen, t, router, dispatch } = useSelectMovies();
 
@@ -44,7 +45,10 @@ const SelectMovies: React.FC<Props> = ({
       {choosedMovieId && (
         <div className="relative">
           <div
-            onClick={() => setChoosedMovieId(undefined)}
+            onClick={() => {
+              setCustomSelectError(true);
+              setChoosedMovieId(undefined);
+            }}
             className="absolute top-3 right-3 cursor-pointer"
           >
             <XIcon />
@@ -90,6 +94,7 @@ const SelectMovies: React.FC<Props> = ({
                     onClick={() => {
                       setChoosedMovieId(movie.id);
                       setIsOpen(false);
+                      setCustomSelectError(false);
                     }}
                     className=" rounded-[0.625rem] cursor-pointer"
                     key={movie.id}

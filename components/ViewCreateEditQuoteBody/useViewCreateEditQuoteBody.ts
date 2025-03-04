@@ -62,7 +62,7 @@ export default function useViewCreateEditQuoteBody({ type }: HookProps) {
       setTimeout(() => setMountTwise(false), 0);
       setTimeout(() => setMountTwise(true), 300);
     }
-  }, [quote, setMountTwise]);
+  }, [quote, setMountTwise, type]);
 
   const { addLike, removeLike } = useListenLike();
 
