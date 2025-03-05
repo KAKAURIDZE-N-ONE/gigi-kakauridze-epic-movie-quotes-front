@@ -1,4 +1,5 @@
 export type FormFieldsSignUp = {
+  lang: string;
   name: string;
   email: string;
   password: string;

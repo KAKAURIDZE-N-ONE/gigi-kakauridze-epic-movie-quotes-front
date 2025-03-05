@@ -6,5 +6,5 @@ export type Props = {
   error?: string;
   register: UseFormRegisterReturn<string>;
   disabled?: boolean;
-  type?: "edit" | "create";
+  type?: "edit" | "view" | "createPost" | "create";
 };

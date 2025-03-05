@@ -58,7 +58,9 @@ const SignUpBody: React.FC = () => {
     >
       <Input
         error={errors.name?.message}
-        serverError={serverErrors?.name?.at(0)}
+        serverError={serverErrors?.name
+          ?.at(0)
+          ?.replace("name", t("name_label"))}
         placeholder={t("name_placeholder")}
         {...register("name", {
           required: t("name_label") + " " + t2("required"),
@@ -72,7 +74,7 @@ const SignUpBody: React.FC = () => {
           },
           pattern: {
             value: /^[a-z0-9ა-ჰ]+$/,
-            message: "Only lowercase letters and numbers are allowed.",
+            message: t2("only_lower_case"),
           },
         })}
       >
@@ -80,7 +82,9 @@ const SignUpBody: React.FC = () => {
       </Input>
       <Input
         error={errors.email?.message}
-        serverError={serverErrors?.email?.at(0)}
+        serverError={serverErrors?.email
+          ?.at(0)
+          ?.replace("email", t("email_label"))}
         placeholder={t("email_placeholder")}
         {...register("email", {
           required: t("email_label") + " " + t2("required"),

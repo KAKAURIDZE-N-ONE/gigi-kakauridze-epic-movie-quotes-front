@@ -109,6 +109,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
           )}
           <div className="mt-2">
             <InnerTextarea
+              type={type}
               disabled={type === "view"}
               error={errors.quote?.en?.message}
               register={register("quote.en", {
@@ -124,6 +125,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
             </InnerTextarea>
           </div>
           <InnerTextarea
+            type={type}
             disabled={type === "view"}
             error={errors.quote?.ka?.message}
             register={register("quote.ka", {

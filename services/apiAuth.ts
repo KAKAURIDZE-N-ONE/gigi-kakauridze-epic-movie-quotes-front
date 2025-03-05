@@ -5,14 +5,18 @@ import {
   FormFieldsSignUp,
   VerifyUser,
 } from "@/types/auth";
-import { authInstace, nonAuthInstace } from "./axios";
+import { authInstace } from "./axios";
 
 export async function getCsrfCookie() {
   await authInstace.get(`/sanctum/csrf-cookie`);
 }
 
 export async function signUp(data: FormFieldsSignUp) {
-  const response = await authInstace.post("/api/sign-up", data);
+  const response = await authInstace.post("/api/sign-up", data, {
+    headers: {
+      lang: data.lang,
+    },
+  });
 
   return response.data;
 }
