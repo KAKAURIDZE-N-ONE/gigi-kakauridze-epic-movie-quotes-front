@@ -3,7 +3,6 @@ import Pusher from "pusher-js";
 import { useEffect } from "react";
 import { getCsrfCookie } from "@/services/apiAuth";
 
-import { authInstace } from "@/services/axios";
 import { authorizePusherUser } from "@/services/apiPusher";
 
 export default function useAddPusher() {

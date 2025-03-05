@@ -7,15 +7,26 @@ const InnerTextarea: React.FC<Props> = ({
   lang,
   register,
   disabled = false,
+  type,
 }) => {
   return (
     <div className="relative">
+      {type === "edit" && (
+        <label
+          className="absolute left-4 top-5 -translate-y-1/2 text-gray"
+          htmlFor={children}
+        >
+          {children}:
+        </label>
+      )}
       <textarea
         disabled={disabled}
         {...register}
         id={children}
-        className="bg-darkerBlue border border-gray w-full rounded-[0.3rem] min-h-[5.375rem] pl-4 pt-[0.625rem] placeholder:text-white"
-        placeholder={children}
+        className={`${
+          type === "edit" ? "pt-[1.8rem]" : ""
+        } bg-darkerBlue border border-gray w-full rounded-[0.3rem] min-h-[5.375rem] pl-4 pt-[0.625rem] placeholder:text-white`}
+        placeholder={type === "edit" ? "" : children}
       />
       {lang && (
         <label

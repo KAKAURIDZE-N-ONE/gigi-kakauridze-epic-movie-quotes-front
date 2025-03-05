@@ -7,7 +7,6 @@ const initialState: NewsFeedState = {
   posts: [],
   page: 1,
   searchIsOpen: false,
-  createPostIsPending: false,
 };
 
 const newsFeedSlice = createSlice({
@@ -59,14 +58,9 @@ const newsFeedSlice = createSlice({
     updateSearchIsOpen(state, action: PayloadAction<boolean>) {
       state.searchIsOpen = action.payload;
     },
-    updateCreatePostIsPending(state, action) {
-      state.createPostIsPending = action.payload;
-    },
   },
 });
 
-export const selectCreatePostIsPending = (state: RootState) =>
-  state.newsFeed.createPostIsPending;
 export const selectPosts = (state: RootState) => state.newsFeed.posts;
 export const selectPage = (state: RootState) => state.newsFeed.page;
 export const selectSearchIsOpen = (state: RootState) =>
@@ -82,7 +76,6 @@ export const {
   removeNewLikeOnPost,
   updateUserLike,
   updateSearchIsOpen,
-  updateCreatePostIsPending,
 } = newsFeedSlice.actions;
 
 export default newsFeedSlice.reducer;
