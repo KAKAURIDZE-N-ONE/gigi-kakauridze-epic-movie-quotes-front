@@ -51,6 +51,8 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
           title={isEditBody ? t("edit_movie") : t("add_movie")}
         >
           <InnerInput
+            type={type}
+            pl="pl-[7.3rem]"
             isEditInput={isEditBody}
             error={errors.name?.en?.message}
             register={register("name.en", {
@@ -65,6 +67,8 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             Movie name
           </InnerInput>
           <InnerInput
+            type={type}
+            pl="pl-[10.3rem]"
             error={errors.name?.ka?.message}
             register={register("name.ka", {
               required: t("required"),
@@ -90,6 +94,8 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             Select categories
           </InnerSelect>
           <InnerInput
+            type={type}
+            pl="pl-[7.1rem]"
             error={errors.year?.message}
             register={register("year", {
               required: t("required"),
@@ -108,6 +114,8 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             წელი/Year
           </InnerInput>
           <InnerInput
+            pl="pl-[5.4rem]"
+            type={type}
             error={errors.director?.en?.message}
             register={register("director.en", {
               required: t("required"),
@@ -121,6 +129,8 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             Director
           </InnerInput>
           <InnerInput
+            pl="pl-[7rem]"
+            type={type}
             error={errors.director?.ka?.message}
             register={register("director.ka", {
               required: t("required"),
@@ -134,6 +144,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             რეჟისორი
           </InnerInput>
           <InnerTextarea
+            type={type}
             error={errors.description?.en?.message}
             register={register("description.en", {
               required: t("required"),
@@ -147,6 +158,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             Movie Description
           </InnerTextarea>
           <InnerTextarea
+            type={type}
             error={errors.description?.ka?.message}
             register={register("description.ka", {
               required: t("required"),

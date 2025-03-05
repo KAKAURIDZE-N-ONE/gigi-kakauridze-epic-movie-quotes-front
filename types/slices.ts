@@ -24,5 +24,4 @@ export type NewsFeedState = {
   posts: PostsListingResponse["data"];
   page: number;
   searchIsOpen: boolean;
-  createPostIsPending: boolean;
 };
