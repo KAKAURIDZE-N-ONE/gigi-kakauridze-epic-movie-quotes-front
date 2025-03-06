@@ -21,6 +21,7 @@ const MobileProfilePage: React.FC = () => {
     openedModal,
     setFormDataPassword,
     t,
+    apiUsernameError,
   } = useMobileProfilePage();
 
   return (
@@ -62,7 +63,13 @@ const MobileProfilePage: React.FC = () => {
                 handleConfirm={handleConfirmUsername}
                 setActiveEdit={setActiveEdit}
               >
-                <EditUsernameBody setFormDataUsername={setFormDataUsername} />
+                <EditUsernameBody
+                  serverError={apiUsernameError?.response?.data?.errors?.name[0]?.replace(
+                    "name",
+                    t("username")
+                  )}
+                  setFormDataUsername={setFormDataUsername}
+                />
               </EditMobileLayout>
             )}
             {activeEdit === "password" && openedModal === null && (

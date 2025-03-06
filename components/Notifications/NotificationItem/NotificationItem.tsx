@@ -5,8 +5,8 @@ import RedHearth from "@/components/icons/RedHearth";
 import timeFormatter from "@/utils/timeFormatter";
 
 const NotificationItem: React.FC<Props> = ({ notification }) => {
-  const { t, moveToViewQuoteModal, markNotificationAsRead } =
-    useNotificationItem();
+  const { t, moveToViewQuoteModal, markNotificationAsRead, avatar } =
+    useNotificationItem({ notification });
 
   return (
     <div
@@ -27,13 +27,7 @@ const NotificationItem: React.FC<Props> = ({ notification }) => {
           <div className="flex flex-col items-center gap-2">
             <div
               style={{
-                backgroundImage: `url(${
-                  "commenter_avatar" in notification.data
-                    ? notification.data.commenter_avatar
-                    : "liker_avatar" in notification.data
-                    ? notification.data.liker_avatar
-                    : ""
-                })`,
+                backgroundImage: `url(${avatar})`,
               }}
               className={`
             ${notification.read_at === null ? "" : "translate-y-1"} 

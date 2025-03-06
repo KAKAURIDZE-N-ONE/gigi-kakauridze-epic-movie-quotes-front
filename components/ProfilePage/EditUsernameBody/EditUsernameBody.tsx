@@ -3,7 +3,10 @@ import useEditUsernameBody from "./useEditUsernameBody";
 import { Props } from "./types";
 import { Input } from "@/components/Input";
 
-const EditUsernameBody: React.FC<Props> = ({ setFormDataUsername }) => {
+const EditUsernameBody: React.FC<Props> = ({
+  setFormDataUsername,
+  serverError,
+}) => {
   const { register, handleSubmit, errors, onSubmit, t, t2 } =
     useEditUsernameBody({
       setFormDataUsername,
@@ -16,6 +19,7 @@ const EditUsernameBody: React.FC<Props> = ({ setFormDataUsername }) => {
           size="big"
           placeholder={t("new_name")}
           error={errors.name?.message}
+          serverError={serverError}
           {...register("name", {
             required: t("name_label") + " " + t2("required"),
             minLength: {

@@ -31,7 +31,6 @@ export default function useCreateQuote({ movieId }: { movieId: number }) {
       }
       if (activeQuoteModal === "createPost") {
         dispatch(updateActiveQuoteModal(null));
-        dispatch(resetPosts());
         dispatch(resetPage());
         dispatch(updateSearchIsOpen(false));
         queryClient.invalidateQueries({ queryKey: [QUOTES] });

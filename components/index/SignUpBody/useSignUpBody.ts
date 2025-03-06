@@ -8,6 +8,9 @@ import { getCsrfCookie, getGoogleVerifyUrl } from "@/services/apiAuth";
 import { useTranslation } from "react-i18next";
 
 export default function useSignUpBody() {
+  const {
+    i18n: { language },
+  } = useTranslation();
   const { t } = useTranslation("sign-up-modal");
   const { t: t2 } = useTranslation("errors");
   const dispatch = useDispatch();
@@ -26,7 +29,7 @@ export default function useSignUpBody() {
 
   const onSubmit: SubmitHandler<FormFieldsSignUp> = async (data) => {
     await getCsrfCookie();
-    mutate(data);
+    mutate({ ...data, lang: language });
   };
 
   async function navigateGoogleAuth() {

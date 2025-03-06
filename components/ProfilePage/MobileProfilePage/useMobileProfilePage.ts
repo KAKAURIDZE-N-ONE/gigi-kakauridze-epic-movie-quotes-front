@@ -12,8 +12,12 @@ import { getCsrfCookie } from "@/services/apiAuth";
 import useChangeUsername from "../hooks/useChangeUsername";
 import useChangePassword from "../hooks/useChangePassword";
 import { useTranslation } from "react-i18next";
+import { ApiError } from "@/types/errors";
 
 export default function useMobileProfilePage() {
+  const {
+    i18n: { language },
+  } = useTranslation();
   const { t } = useTranslation("profile-page");
   const [activeEdit, setActiveEdit] = useState<"username" | "password" | null>(
     null
@@ -27,7 +31,11 @@ export default function useMobileProfilePage() {
 
   const dispatch = useDispatch();
 
-  const { mutate: mutateUsername } = useChangeUsername({ setActiveEdit });
+  const { mutate: mutateUsername, error: errorUsername } = useChangeUsername({
+    setActiveEdit,
+  });
+  const apiUsernameError = errorUsername as ApiError;
+
   const { mutate: mutatePassword } = useChangePassword({ setActiveEdit });
 
   function closeModal() {
@@ -37,7 +45,7 @@ export default function useMobileProfilePage() {
   const handleConfirmUsername = async () => {
     await getCsrfCookie();
     if (formDataUsername) {
-      mutateUsername(formDataUsername);
+      mutateUsername({ ...formDataUsername, language });
     }
 
     closeModal();
@@ -64,5 +72,6 @@ export default function useMobileProfilePage() {
     openedModal,
     setFormDataPassword,
     t,
+    apiUsernameError,
   };
 }

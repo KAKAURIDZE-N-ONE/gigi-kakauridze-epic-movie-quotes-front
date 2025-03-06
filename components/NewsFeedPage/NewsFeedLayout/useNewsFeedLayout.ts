@@ -110,6 +110,7 @@ export default function useNewsFeedLayout() {
   }, [searchRef, searchIsOpen]);
 
   useEffect(() => {
+    if (!searchIsOpen) return;
     if (searchValue) {
       if (!searchValue.startsWith("#") && !searchValue.startsWith("@")) {
         setSearchValidationError(true);
@@ -122,16 +123,8 @@ export default function useNewsFeedLayout() {
           dispatch(resetPage());
         }
       }
-    } else {
-      setSearchValidationError(false);
-      setFilter(null);
-      window.scrollTo({ top: 0 });
-      if (page > 1) {
-        dispatch(resetPosts());
-        dispatch(resetPage());
-      }
-    }
-  }, [searchValue, dispatch, page]);
+    } else return;
+  }, [searchValue, dispatch, page, searchIsOpen]);
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
