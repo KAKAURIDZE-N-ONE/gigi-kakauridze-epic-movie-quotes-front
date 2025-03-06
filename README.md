@@ -1,40 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Redberry Homework III Front-end - Epic Movie Quotes
+
+[Visit My Website](https://epic-movie-quotes.gigi-kakauridze.redberryinternship.ge)
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Resources](#resources)
+
+## Introduction
+This frontend project is a social website for movie quotes, where users can log in, register, restore their password, or change their password. It also includes Google authentication. Once logged in, users can add movies to their personal movie list and create quotes about those movies. These quotes will appear on the news feed page, where any verified user can like or comment on them. The quote owner receives real-time notifications for likes and comments.
+
+Additionally, users can search for both quotes and movies. They can also update their profile picture, username, and password while logged in. The website supports two languages: Georgian and English.
+
+## Prerequisites
+Before you begin, ensure you have met the following requirements:
+- HTML
+- Tailwind CSS
+- JavaScript
+- TypeScript
+- Next.js (Pages Router)
+  
+
+## Tech Stack
+This project uses the following technologies:
+- Vite
+- Tailwind CSS
+- TypeScript
+- Next.js (Pages Router)
+- Redux with Redux Toolkit
+- React Query
+- React Hook Form
+- axios
+- React Toastify
+- i18next
+- laravel-echo (broadcasting)
+
 
 ## Getting Started
+To get started with the project, follow these steps:
 
-First, run the development server:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/RedberryInternship/gigi-kakauridze-epic-movie-quotes-front.git
+2. **Enter the folder directory**:
+   ```bash
+   cd gigi-kakauridze-epic-movie-quotes-front
+3. **Install node modules**:
+   ```bash
+   npm install
+4. **Run Vite**:
+   ```bash
+   npm run dev
+5. **Update .env**:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   
+## Resources
+Here are some useful resources:
+- **Design**: [Figma Link](https://www.figma.com/design/5uMXCg3itJwpzh9cVIK3hA/Movie-Quotes-Bootcamp-assignment?node-id=0-1&t=LqEFUYc6ueNY6iRW-0)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
