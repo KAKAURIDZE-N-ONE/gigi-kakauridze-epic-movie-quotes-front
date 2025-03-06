@@ -16,7 +16,10 @@ const MobileSearchModal: React.FC<Props> = ({
       <div className="h-[5.375rem] bg-darkestBlue px-[2.1875rem] flex items-center border-b border-b-[#EFEFEF4D] pointer-events-auto">
         <div
           className="cursor-pointer"
-          onClick={() => dispatch(updateSearchIsOpen(false))}
+          onClick={() => {
+            dispatch(updateSearchIsOpen(false));
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         >
           <ArrowLeft className="w-5 h-5" />
         </div>
