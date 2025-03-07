@@ -8,5 +8,6 @@
   "search_mobile": "Search",
   "enter": "Enter",
   "validation_movie": "to search movies",
-  "validation_quote": "to search quotes"
+  "validation_quote": "to search quotes",
+  "director": "Director"
 }

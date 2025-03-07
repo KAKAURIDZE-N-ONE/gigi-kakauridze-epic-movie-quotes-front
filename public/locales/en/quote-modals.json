@@ -15,5 +15,6 @@
   "required": "Required",
   "select_label": "Choose movie",
   "select_error": "Please firstly create movie",
-  "create_movie": "Create movie"
+  "create_movie": "Create movie",
+  "create_new_quote": "Create new quote"
 }

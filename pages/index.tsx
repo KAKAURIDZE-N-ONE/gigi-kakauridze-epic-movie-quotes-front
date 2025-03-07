@@ -14,9 +14,28 @@ import { Layout } from "@/components/Layout";
 import { Modal } from "@/components/Modal";
 import { PasswordResetSuccessMessage } from "@/components/ResetPasswordPage";
 import { ResetPasswordBody } from "@/components/ResetPasswordPage";
+import useIsMounted from "@/hooks/useIsMounted";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        "landing-page",
+        "verify-email-modal",
+        "verify-email-success-modal",
+        "password-reset-message",
+        "password-reset-success",
+      ])),
+    },
+  };
+}
 
 export default function Home() {
   const { imagesData, openedModal, turnOfModal } = useIndex();
+
+  const mounted = useIsMounted();
+  if (!mounted) return null;
 
   return (
     <>

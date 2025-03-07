@@ -15,5 +15,6 @@
   "required": "სავალდებულო",
   "select_label": "აირჩიე ფილმი",
   "select_error": "გთხოვთ პირველ რიგში შექმნათ ფილმი",
-  "create_movie": "შექმენი ფილმი"
+  "create_movie": "შექმენი ფილმი",
+  "create_new_quote": "შექმენი ახალი ციტატა"
 }

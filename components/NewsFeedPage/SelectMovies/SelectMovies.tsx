@@ -21,7 +21,7 @@ const SelectMovies: React.FC<Props> = ({
   const { isOpen, setIsOpen, t, router, dispatch } = useSelectMovies();
 
   return (
-    <div>
+    <div className="relative">
       {!choosedMovieId && (
         <div
           onClick={() => setIsOpen((isOpen) => !isOpen)}
@@ -60,7 +60,9 @@ const SelectMovies: React.FC<Props> = ({
         </div>
       )}
       {error && isSubmitted && (
-        <p className="mt-1 text-sm text-[#F04438]">{t("required")}</p>
+        <p className="absolute text-sm text-[#F04438] -bottom-6">
+          {t("required")}
+        </p>
       )}
       {isOpen && (
         <>

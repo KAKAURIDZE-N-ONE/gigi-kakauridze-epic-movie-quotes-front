@@ -50,7 +50,7 @@ const MovieShortDescription: React.FC<Props> = ({
         )}
         {!isMobile && (
           <p className="font-bold text-white2 lg:text-lg">
-            Director:{" "}
+            {t("director")}:{" "}
             <span className="font-medium text-white lg:text-lg">
               {movieShort?.director[language]}
             </span>

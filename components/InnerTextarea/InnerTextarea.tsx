@@ -10,7 +10,7 @@ const InnerTextarea: React.FC<Props> = ({
   type,
 }) => {
   return (
-    <div className="relative">
+    <div className="relative -mb-[0.5rem]">
       {type === "edit" && (
         <label
           className="absolute left-4 top-5 -translate-y-1/2 text-gray"
@@ -36,7 +36,9 @@ const InnerTextarea: React.FC<Props> = ({
           {lang === "en" ? "Eng" : "ქარ"}
         </label>
       )}
-      {error && <p className="text-sm text-[#F04438] -mb-1">{error}</p>}
+      {error && (
+        <p className="text-sm text-[#F04438] absolute -bottom-4">{error}</p>
+      )}
     </div>
   );
 };

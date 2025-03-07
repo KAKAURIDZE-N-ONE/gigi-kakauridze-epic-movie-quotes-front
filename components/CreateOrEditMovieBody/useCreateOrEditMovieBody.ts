@@ -12,7 +12,10 @@ import { HookProps } from "./types";
 import { useTranslation } from "react-i18next";
 
 export default function useCreateOrEditMovieBody({ type }: HookProps) {
-  const { t } = useTranslation("movie-modal");
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation("movie-modal");
   const router = useRouter();
 
   const isEditBody = type === "edit";
@@ -117,5 +120,6 @@ export default function useCreateOrEditMovieBody({ type }: HookProps) {
     isEditBody,
     movieImage: movieData?.image,
     t,
+    language,
   };
 }

@@ -8,5 +8,9 @@
   "at_least_one": "At least one category is required",
   "only_number": "Must be a number",
   "after_1995": "The first film was released in 1895",
-  "not_in_future": "The film could not be released in the future"
+  "not_in_future": "The film could not be released in the future",
+  "select_categories": "Select categories",
+  "movie_name": "Movie name",
+  "director": "Director",
+  "movie_description": "Movie Description"
 }

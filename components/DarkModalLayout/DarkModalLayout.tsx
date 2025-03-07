@@ -70,7 +70,7 @@ const DarkModalLayout: React.FC<Props> = ({
       {type !== "view" && (
         <form
           onSubmit={submitFn}
-          className="flex flex-col gap-4 px-[2.1875rem] mt-8"
+          className="flex flex-col gap-8 px-[2.1875rem] mt-8"
         >
           {children}
 

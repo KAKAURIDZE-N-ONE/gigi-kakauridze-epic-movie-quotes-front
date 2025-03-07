@@ -16,7 +16,7 @@ const InnerFile: React.FC<Props> = ({
 
   const hasImage = (imagePreview || savedImage) && !error;
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col relative">
       <div
         className={`${
           size === "big" ? "rounded-[0.625rem]" : "pl-4 py-4 border border-gray"
@@ -93,7 +93,9 @@ const InnerFile: React.FC<Props> = ({
           </div>
         )}
       </div>
-      {error && <p className="text-sm text-[#F04438] mt-2 -mb-1">{error}</p>}
+      {error && (
+        <p className="text-sm text-[#F04438] absolute -bottom-6">{error}</p>
+      )}
     </div>
   );
 };
