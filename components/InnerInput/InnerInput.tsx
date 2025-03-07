@@ -29,7 +29,11 @@ const InnerInput: React.FC<Props> = ({
           {lang === "en" ? "Eng" : "ქარ"}
         </label>
       )}
-      {error && <p className="text-sm text-[#F04438] mt-1 -mb-1">{error}</p>}
+      {error && (
+        <p className="text-sm text-[#F04438] absolute -bottom-[1.5rem]">
+          {error}
+        </p>
+      )}
     </div>
   );
 };

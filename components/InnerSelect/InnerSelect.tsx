@@ -86,7 +86,9 @@ const InnerSelect: React.FC<Props> = ({
           })}
         </div>
       )}
-      {error && <p className="text-sm text-[#F04438] mt-1 -mb-1">{error}</p>}
+      {error && (
+        <p className="text-sm text-[#F04438] absolute -bottom-6">{error}</p>
+      )}
 
       <input type="hidden" name={selectName} {...rest} />
     </div>

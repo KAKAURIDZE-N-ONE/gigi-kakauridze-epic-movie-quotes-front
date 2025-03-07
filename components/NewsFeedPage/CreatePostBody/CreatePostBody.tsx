@@ -57,7 +57,7 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
             })}
             lang="en"
           >
-            Create new quote
+            {t("create_new_quote")}
           </InnerTextarea>
         </div>
         <InnerTextarea
@@ -71,7 +71,7 @@ const CreatePostBody: React.FC<Props> = ({ turnOfFn }) => {
           })}
           lang="ka"
         >
-          ფილმის აღწერა
+          {t("create_new_quote")}
         </InnerTextarea>
         <InnerFile
           control={control as Control<FormFieldsAddMovie | FormFieldsAddQuote>}

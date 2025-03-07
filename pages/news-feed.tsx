@@ -8,6 +8,21 @@ import {
   useNewsFeedPage,
 } from "@/components/NewsFeedPage";
 import { updateActiveQuoteModal } from "@/store/slices/modalSlice";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        "news-feed-page",
+        "inner-layout",
+        "quote-modals",
+        "landing-page",
+        "notifications",
+      ])),
+    },
+  };
+}
 
 const NewsFeed: React.FC = () => {
   const { isPending, newPostModalIsOpen, dispatch, isMobile } =

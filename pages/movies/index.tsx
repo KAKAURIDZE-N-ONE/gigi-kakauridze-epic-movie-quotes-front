@@ -5,7 +5,23 @@ import Loader from "@/components/Loader";
 import { MoviesLayout } from "@/components/MoviesPage";
 import useMoviesPage from "@/components/MoviesPage/useMoviesPage";
 import { updateActiveMovieModal } from "@/store/slices/modalSlice";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        "movies-page",
+        "inner-layout",
+        "movie-modal",
+        "landing-page",
+        "notifications",
+        "quote-modals",
+      ])),
+    },
+  };
+}
 
 const Movies: React.FC = () => {
   const { isPending, activeMovieModal, isMobile, dispatch } = useMoviesPage();

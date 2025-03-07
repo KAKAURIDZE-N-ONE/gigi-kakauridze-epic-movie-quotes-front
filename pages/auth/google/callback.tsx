@@ -36,7 +36,12 @@ const GoogleAuthCallBack: React.FC = () => {
   }, [router, searchParams]);
 
   return (
-    <div className="w-full h-[100vh] flex items-center justify-center">
+    <div
+      style={{
+        background: "linear-gradient(to bottom, #181623, #191725, #0D0B14)",
+      }}
+      className="w-full h-[100vh] flex items-center justify-center"
+    >
       <div className="loader"></div>
     </div>
   );

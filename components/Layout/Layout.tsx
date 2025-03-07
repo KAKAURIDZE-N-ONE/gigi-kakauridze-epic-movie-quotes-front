@@ -5,12 +5,12 @@ import Head from "next/head";
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <div>
+    <div className="">
       <Head>
         <title>Epic Movie Quotes</title>
       </Head>
       <Header />
-      <div className="mt-[5.375rem]">{children}</div>
+      <div className="mt-[5.375rem] min-h-screen">{children}</div>
     </div>
   );
 };

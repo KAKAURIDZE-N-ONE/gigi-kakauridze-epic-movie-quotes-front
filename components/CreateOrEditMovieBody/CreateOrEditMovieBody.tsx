@@ -32,6 +32,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
     isEditBody,
     movieImage,
     t,
+    language,
   } = useCreateOrEditMovieBody({ type });
 
   return (
@@ -52,7 +53,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
         >
           <InnerInput
             type={type}
-            pl="pl-[7.3rem]"
+            pl={language === "ka" ? "pl-[10rem]" : "pl-[7.3rem]"}
             isEditInput={isEditBody}
             error={errors.name?.en?.message}
             register={register("name.en", {
@@ -64,11 +65,11 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             })}
             lang="en"
           >
-            Movie name
+            {t("movie_name")}
           </InnerInput>
           <InnerInput
             type={type}
-            pl="pl-[10.3rem]"
+            pl={language === "ka" ? "pl-[10rem]" : "pl-[7.3rem]"}
             error={errors.name?.ka?.message}
             register={register("name.ka", {
               required: t("required"),
@@ -79,7 +80,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             })}
             lang="ka"
           >
-            ფილმის სახელი
+            {t("movie_name")}
           </InnerInput>
           <InnerSelect
             selectName="categories"
@@ -91,11 +92,11 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
               validate: (value) => value.length > 0 || t("at_least_one"),
             })}
           >
-            Select categories
+            {t("select_categories")}
           </InnerSelect>
           <InnerInput
             type={type}
-            pl="pl-[7.1rem]"
+            pl={language === "ka" ? "pl-[7rem]" : "pl-[6.8rem]"}
             error={errors.year?.message}
             register={register("year", {
               required: t("required"),
@@ -114,7 +115,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             წელი/Year
           </InnerInput>
           <InnerInput
-            pl="pl-[5.4rem]"
+            pl={language === "ka" ? "pl-[7rem]" : "pl-[5.4rem]"}
             type={type}
             error={errors.director?.en?.message}
             register={register("director.en", {
@@ -126,10 +127,10 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             })}
             lang="en"
           >
-            Director
+            {t("director")}
           </InnerInput>
           <InnerInput
-            pl="pl-[7rem]"
+            pl={language === "ka" ? "pl-[7rem]" : "pl-[5.4rem]"}
             type={type}
             error={errors.director?.ka?.message}
             register={register("director.ka", {
@@ -141,7 +142,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             })}
             lang="ka"
           >
-            რეჟისორი
+            {t("director")}
           </InnerInput>
           <InnerTextarea
             type={type}
@@ -155,7 +156,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             })}
             lang="en"
           >
-            Movie Description
+            {t("movie_description")}
           </InnerTextarea>
           <InnerTextarea
             type={type}
@@ -169,7 +170,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
             })}
             lang="ka"
           >
-            ფილმის აღწერა
+            {t("movie_description")}
           </InnerTextarea>
           <InnerFile
             savedImage={movieImage}

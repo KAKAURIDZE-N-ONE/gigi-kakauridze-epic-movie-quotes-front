@@ -121,7 +121,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
               })}
               lang="en"
             >
-              Create new quote
+              {t("create_new_quote")}
             </InnerTextarea>
           </div>
           <InnerTextarea
@@ -137,7 +137,7 @@ const ViewCreateEditQuoteBody: React.FC<Props> = ({ type, turnOfFn }) => {
             })}
             lang="ka"
           >
-            შექმენი ახალი ციტატა
+            {t("create_new_quote")}
           </InnerTextarea>
           {type === "create" && !isMobile && (
             <div className="mt-3">

@@ -3,14 +3,13 @@ import { Props } from "./types";
 
 const HeroImage: React.FC<Props> = ({ url, quote, description, translate }) => {
   return (
-    <div className="h-[100vh] relative">
+    <div className="h-[100vh] sticky top-0">
       <div className={`max-h-0`}>
         <div
           className="w-full h-[100vh]"
           style={{
             backgroundPosition: `50% 50%`,
             backgroundSize: "cover",
-            backgroundAttachment: "fixed",
             backgroundRepeat: "no-repeat",
             backgroundImage: `url(${url.src})`,
           }}
