@@ -35,7 +35,7 @@ export default function useNotificationItem({ notification }: HookProps) {
     } else {
       return defaultProfileImage.src;
     }
-  }, [notification.data, defaultProfileImage.src]);
+  }, [notification.data, defaultProfileImage]);
 
   const { mutate: markNotificationAsRead } = useMarkNotificationAsRead();
 
