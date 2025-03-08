@@ -117,7 +117,6 @@ export default function useNewsFeedLayout() {
       } else {
         setSearchValidationError(false);
         setFilter(null);
-        window.scrollTo({ top: 0 });
         if (page > 1) {
           dispatch(resetPosts());
           dispatch(resetPage());

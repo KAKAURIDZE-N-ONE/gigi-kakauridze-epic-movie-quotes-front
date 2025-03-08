@@ -1,12 +1,12 @@
 import { DesktopInnerLayout } from "@/components/DesktopInnerLayout";
 import { Layout } from "@/components/Layout";
-import Loader from "@/components/Loader";
 import { Modal } from "@/components/Modal";
 import {
   CreatePostBody,
   NewsFeedLayout,
   useNewsFeedPage,
 } from "@/components/NewsFeedPage";
+import PermissionCheckerLoader from "@/components/PermissionCheckerLoader";
 import { updateActiveQuoteModal } from "@/store/slices/modalSlice";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -28,7 +28,7 @@ const NewsFeed: React.FC = () => {
   const { isPending, newPostModalIsOpen, dispatch, isMobile } =
     useNewsFeedPage();
 
-  if (isPending) return <Loader />;
+  if (isPending) return <PermissionCheckerLoader />;
   else
     return (
       <>

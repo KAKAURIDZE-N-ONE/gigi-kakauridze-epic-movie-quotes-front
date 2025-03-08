@@ -8,18 +8,20 @@ const Post: React.FC<Props> = ({ post }) => {
   const { language } = usePost();
 
   return (
-    <div className="bg-darkerBlue py-6 px-[2.1875rem] lg:px-5">
+    <div className="bg-darkerBlue py-6 px-[2.1875rem] lg:px-5 overflow-hidden">
       <UserShortDescription
         avatar={post?.movie?.user?.avatar}
         name={post?.movie?.user?.name}
       />
-      <p className="text-base mt-4">
-        {post?.quote[language]} -{" "}
-        <span className="text-skin font-bold">
-          {post?.movie.name[language]}
-        </span>
-        , ({post?.movie.year})
-      </p>
+      <div className="w-full overflow-hidden">
+        <p className="text-base mt-4">
+          {post?.quote[language]} -{" "}
+          <span className="text-skin font-bold">
+            {post?.movie.name[language]}
+          </span>
+          , ({post?.movie.year})
+        </p>
+      </div>
       <div
         style={{
           backgroundImage: `url(${post?.image})`,

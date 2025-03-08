@@ -1,8 +1,9 @@
 import { DesktopInnerLayout } from "@/components/DesktopInnerLayout";
 import { Layout } from "@/components/Layout";
+import PermissionCheckerLoader from "@/components/PermissionCheckerLoader";
 import { DesktopProfilePage } from "@/components/ProfilePage";
 import { MobileProfilePage } from "@/components/ProfilePage/MobileProfilePage";
-import useIsMounted from "@/hooks/useIsMounted";
+import useRequireAuth from "@/hooks/useRequireAuth";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getStaticProps({ locale }: { locale: string }) {
@@ -21,8 +22,9 @@ export async function getStaticProps({ locale }: { locale: string }) {
   };
 }
 const Profile: React.FC = () => {
-  const mounted = useIsMounted();
-  if (!mounted) return null;
+  const { isPending } = useRequireAuth();
+
+  if (isPending) return <PermissionCheckerLoader />;
   return (
     <Layout>
       <div className="lg:hidden">

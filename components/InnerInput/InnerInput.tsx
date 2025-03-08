@@ -21,7 +21,9 @@ const InnerInput: React.FC<Props> = ({
         id={children}
         type="text"
         placeholder={type !== "edit" ? children : ""}
-        className={`bg-darkerBlue border border-gray w-full rounded-[0.3rem] h-12 pl-4 
+        className={`bg-darkerBlue border border-gray w-full rounded-[0.3rem] h-12 pl-4 ${
+          lang ? "pr-14" : "pr-4"
+        }
         placeholder:text-white ${pl && type === "edit" ? pl : ""}`}
       />
       {lang && (
