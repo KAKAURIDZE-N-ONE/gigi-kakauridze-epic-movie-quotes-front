@@ -66,8 +66,8 @@ export default function Home() {
               url={dataItem.image}
             />
           ))}
-          <Footer />
         </div>
+        <Footer />
       </Layout>
     </>
   );
