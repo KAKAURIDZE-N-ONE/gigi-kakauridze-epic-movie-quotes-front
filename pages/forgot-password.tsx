@@ -9,6 +9,9 @@ export async function getStaticProps({ locale }: { locale: string }) {
       ...(await serverSideTranslations(locale, [
         "forgot-password-modal",
         "sign-up-modal",
+        "errors",
+        "password-reset-message",
+        "landing-page",
       ])),
     },
   };

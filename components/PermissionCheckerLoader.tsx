@@ -2,7 +2,12 @@ import React from "react";
 
 const PermissionCheckerLoader: React.FC = () => {
   return (
-    <div className="fixed left-0 w-full h-full bg-darkestBlue flex items-center justify-center">
+    <div
+      style={{
+        background: "linear-gradient(to bottom, #181623, #191725, #0d0b14)",
+      }}
+      className="fixed left-0 w-full h-full flex items-center justify-center"
+    >
       <div className="loader"></div>
     </div>
   );

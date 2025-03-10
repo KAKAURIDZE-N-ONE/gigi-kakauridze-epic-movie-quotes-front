@@ -34,7 +34,7 @@ const NewsFeedLayout: React.FC = () => {
           setSearchValue={setSearchValue}
         />
       )}
-      <div className="mt-[7.5rem] lg:mt-2  lg:max-w-[58rem] lg:ml-0 2xl:ml-[7.5rem] lg:pr-[4.375rem]">
+      <div className="lg:pt-[5.375rem] mt-[7.5rem] lg:mt-2  lg:max-w-[58rem] lg:ml-0 2xl:ml-[7.5rem] lg:pr-[4.375rem]">
         <div className="flex items-center justify-between gap-5">
           <div
             onClick={() => dispatch(updateActiveQuoteModal("createPost"))}

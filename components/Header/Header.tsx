@@ -81,12 +81,12 @@ const Header: React.FC = () => {
               <>
                 <div
                   className="
-                 lg:-translate-x-6 w-12 -translate-x-3"
+                 lg:-translate-x-6 w-12 -translate-x-3 relative"
                 >
                   <LanguageSwitcher />
                 </div>
 
-                <div className="cursor-pointer lg:hidden flex items-center gap-2 ">
+                <div className="cursor-pointer lg:hidden flex items-center gap-2 relative z-10">
                   <Button
                     clickFn={() => {
                       router.push("/log-in");
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
           </div>
 
           {!isAuthenticated && (
-            <div className="hidden lg:flex items-center justify-center gap-4">
+            <div className="hidden lg:flex items-center justify-center gap-4 relative z-10">
               <Button
                 clickFn={() => router.push("/sign-up")}
                 size="small"

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Props } from "./types";
 import { Button } from "@/components/Button";
 
@@ -6,6 +7,7 @@ const EditMobileLayout: React.FC<Props> = ({
   activeEdit,
   children,
 }) => {
+  const { t } = useTranslation("profile-page");
   return (
     <div className={`w-full`}>
       <div
@@ -17,7 +19,7 @@ const EditMobileLayout: React.FC<Props> = ({
       </div>
       <div className="flex items-center justify-between  bg-darkerBlue px-[2.1875rem] py-8">
         <button className="text-white2" onClick={() => setActiveEdit(null)}>
-          Cancel
+          {t("cancell")}
         </button>
         <Button
           size="smaller"
@@ -26,7 +28,7 @@ const EditMobileLayout: React.FC<Props> = ({
           type="submit"
           form="form"
         >
-          Edit
+          {t("edit")}
         </Button>
       </div>
     </div>
