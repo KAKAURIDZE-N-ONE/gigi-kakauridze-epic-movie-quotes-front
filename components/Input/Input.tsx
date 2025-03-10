@@ -23,7 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
     const hasError = error || serverError;
 
     return (
-      <div className="flex flex-col gap-[0.375rem]">
+      <div className="flex flex-col gap-[0.375rem] relative">
         <label htmlFor={children} className="text-white">
           {children}
         </label>
@@ -83,7 +83,9 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           )}
         </div>
         {hasError && (
-          <p className="-mb-2 text-sm text-[#F04438]">{error || serverError}</p>
+          <p className="absolute -bottom-6 text-sm text-[#F04438]">
+            {error || serverError}
+          </p>
         )}
       </div>
     );

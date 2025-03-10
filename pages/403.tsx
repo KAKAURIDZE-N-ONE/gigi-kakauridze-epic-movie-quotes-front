@@ -1,5 +1,6 @@
 import { Button } from "@/components/Button";
 import Wizard from "@/components/icons/Wizard";
+import WizardBackground from "@/components/icons/WizardBackground";
 import useIsMounted from "@/hooks/useIsMounted";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -30,7 +31,12 @@ const Forbidden: React.FC = () => {
       className="h-screen flex items-center justify-center"
     >
       <div className="flex flex-col gap-7 lg:gap-8 items-center">
-        <Wizard />
+        <div className="relative mb-6">
+          <div className="absolute -top-[4.3rem] -left-[3.4rem] z-0 ">
+            <Wizard />
+          </div>
+          <WizardBackground />
+        </div>
         <h1 className="text-2xl lg:text-5xl font-bold text-white">
           {t("header")}
         </h1>

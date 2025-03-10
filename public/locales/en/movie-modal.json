@@ -12,5 +12,6 @@
   "select_categories": "Select categories",
   "movie_name": "Movie name",
   "director": "Director",
-  "movie_description": "Movie Description"
+  "movie_description": "Movie Description",
+  "year": "Year"
 }
