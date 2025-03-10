@@ -9,7 +9,7 @@ const toastOptions: ToastOptions = {
   draggable: true,
   progress: undefined,
   style: {
-    paddingRight: "30px",
+    paddingRight: "2rem",
   },
   theme: "colored",
 };
