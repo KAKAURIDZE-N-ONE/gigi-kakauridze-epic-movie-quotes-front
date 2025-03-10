@@ -36,10 +36,14 @@ const Header: React.FC = () => {
       <div
         className={`${
           !isColored ? "bg-normalBlue top-0 h-[5.375rem]" : "top-7 "
-        } flex fixed left-0 w-full  px-[2.1875rem] lg:px-[4.375rem] items-center justify-between z-[70]`}
+        } flex fixed left-0 w-full ${
+          isColored ? "px-[1.7rem]" : "px-[2.1875rem]"
+        } lg:px-[4.375rem] items-center justify-between z-[70]`}
       >
         {isColored ? (
-          <h2 className="font-medium text-skin select-none">{t("header")}</h2>
+          <h2 className="font-medium text-skin select-none text-sm">
+            {t("header")}
+          </h2>
         ) : (
           <h2 className="hidden lg:inline-block font-medium text-skin cursor-pointer select-none">
             {t("header")}
@@ -75,15 +79,34 @@ const Header: React.FC = () => {
 
             {isColored && (
               <>
-                <div className="translate-x-6 lg:translate-x-0">
+                <div
+                  className="
+                 lg:-translate-x-6 w-12 -translate-x-3"
+                >
                   <LanguageSwitcher />
                 </div>
 
-                <div
-                  onClick={toggleBurgerMenuIsOpen}
-                  className="cursor-pointer inline-block lg:hidden"
-                >
-                  <List />
+                <div className="cursor-pointer lg:hidden flex items-center gap-2 ">
+                  <Button
+                    clickFn={() => {
+                      router.push("/log-in");
+                    }}
+                    size="smaller"
+                    color="red"
+                    additionalClasses="w-full px-[0.5rem] py-[0.4rem] text-[0.7rem]"
+                  >
+                    {t("autorization")}
+                  </Button>
+                  <Button
+                    clickFn={() => {
+                      router.push("/sign-up");
+                    }}
+                    size="smaller"
+                    additionalClasses="w-full bg-black text-white border-white 
+                     px-[0.5rem]  py-[0.4rem]  text-[0.7rem]"
+                  >
+                    {t("registration")}
+                  </Button>
                 </div>
               </>
             )}

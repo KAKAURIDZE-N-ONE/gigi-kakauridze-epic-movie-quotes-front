@@ -20,7 +20,7 @@ const LanguageSwitcher: React.FC<Props> = ({ size }) => {
     relative`}
       onClick={() => setIsActive((prev) => !prev)}
     >
-      <h4 className="text-base select-none">
+      <h4 className=" select-none text-sm lg:text-base">
         {locale ? locale.at(0)?.toUpperCase() + locale.slice(1) : "En"}
       </h4>
       <div
@@ -37,7 +37,7 @@ const LanguageSwitcher: React.FC<Props> = ({ size }) => {
         >
           {locales?.map((lng) => (
             <button
-              className="text-white opacityAnime"
+              className="text-white opacityAnime text-sm lg:text-base"
               key={lng}
               onClick={() => handleLanguageChange(lng)}
             >

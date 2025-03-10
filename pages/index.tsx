@@ -54,7 +54,7 @@ export default function Home() {
             )}
           </Modal>
         )}
-        <div className="relative -mt-24">
+        <div className="relative -mt-24 pt-[5.375rem]">
           <Hero />
           {imagesData.map((dataItem) => (
             <HeroImage

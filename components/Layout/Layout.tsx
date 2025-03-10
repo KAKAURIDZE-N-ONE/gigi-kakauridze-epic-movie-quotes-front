@@ -10,7 +10,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         <title>Epic Movie Quotes</title>
       </Head>
       <Header />
-      <div className="mt-[5.375rem] min-h-screen">{children}</div>
+      <div className="min-h-screen">{children}</div>
     </div>
   );
 };
