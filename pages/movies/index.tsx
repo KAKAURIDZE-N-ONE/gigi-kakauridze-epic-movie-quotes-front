@@ -1,9 +1,9 @@
 import { CreateOrEditMovieBody } from "@/components/CreateOrEditMovieBody";
 import { DesktopInnerLayout } from "@/components/DesktopInnerLayout";
 import { Layout } from "@/components/Layout";
-import Loader from "@/components/Loader";
 import { MoviesLayout } from "@/components/MoviesPage";
 import useMoviesPage from "@/components/MoviesPage/useMoviesPage";
+import PermissionCheckerLoader from "@/components/PermissionCheckerLoader";
 import { updateActiveMovieModal } from "@/store/slices/modalSlice";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
@@ -26,7 +26,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 const Movies: React.FC = () => {
   const { isPending, activeMovieModal, isMobile, dispatch } = useMoviesPage();
 
-  if (isPending) return <Loader />;
+  if (isPending) return <PermissionCheckerLoader />;
   else
     return (
       <>
