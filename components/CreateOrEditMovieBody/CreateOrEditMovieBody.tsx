@@ -112,7 +112,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
               validate: (value) => !isNaN(value) || t("only_number"),
             })}
           >
-            წელი/Year
+            {t("year")}
           </InnerInput>
           <InnerInput
             pl={language === "ka" ? "pl-[7rem]" : "pl-[5.4rem]"}

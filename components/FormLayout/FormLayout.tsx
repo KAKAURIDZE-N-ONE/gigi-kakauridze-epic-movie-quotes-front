@@ -36,9 +36,13 @@ const FormLayout: React.FC<Props> = ({
           <h2 className="font-medium text-[2rem] leading-[2.3rem]">{title}</h2>
           <h3 className="text-gray">{subtitle}</h3>
         </div>
-        <form onSubmit={onSubmit} className="flex flex-col gap-5 mt-4">
-          <div className="flex flex-col gap-4">{children}</div>
-          <div className="w-full flex flex-col gap-5">
+        <form onSubmit={onSubmit} className="flex flex-col gap-5 mt-4 mb-3">
+          <div className="flex flex-col gap-7">{children}</div>
+          <div
+            className={`w-full flex flex-col gap-5 ${
+              name !== "log-in" ? "mt-4" : ""
+            }`}
+          >
             {name === "log-in" ? (
               <>
                 {actionBtn}

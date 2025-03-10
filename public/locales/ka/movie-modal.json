@@ -12,5 +12,6 @@
   "select_categories": "აირჩიე კატეგორიები",
   "movie_name": "ფილმის სახელი",
   "director": "რეჟისორი",
-  "movie_description": "ფილმის აღწერა"
+  "movie_description": "ფილმის აღწერა",
+  "year": "წელი"
 }

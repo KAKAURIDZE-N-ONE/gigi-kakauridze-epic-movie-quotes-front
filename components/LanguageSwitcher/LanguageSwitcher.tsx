@@ -6,6 +6,11 @@ const LanguageSwitcher: React.FC<Props> = ({ size }) => {
   const { isActive, setIsActive, locale, locales, asPath, dropDownRef } =
     useLanguageSwitcher();
 
+  const handleLanguageChange = (lng: string) => {
+    localStorage.setItem("language", lng);
+    window.location.href = `/${lng}${asPath}`;
+  };
+
   return (
     <div
       ref={dropDownRef}
@@ -13,7 +18,7 @@ const LanguageSwitcher: React.FC<Props> = ({ size }) => {
         text-white h-[2.375rem] flex 
     items-center justify-center gap-2 cursor-pointer
     relative`}
-      onClick={() => setIsActive((isActive) => !isActive)}
+      onClick={() => setIsActive((prev) => !prev)}
     >
       <h4 className="text-base select-none">
         {locale ? locale.at(0)?.toUpperCase() + locale.slice(1) : "En"}
@@ -23,7 +28,7 @@ const LanguageSwitcher: React.FC<Props> = ({ size }) => {
           isActive ? "rotate-180" : "rotate-0"
         } transition-all duration-300`}
       >
-        <LanguageArrow className="w-4 h-4" />{" "}
+        <LanguageArrow className="w-4 h-4" />
       </div>
       {isActive && (
         <div
@@ -34,7 +39,7 @@ const LanguageSwitcher: React.FC<Props> = ({ size }) => {
             <button
               className="text-white opacityAnime"
               key={lng}
-              onClick={() => (window.location.href = `/${lng}${asPath}`)}
+              onClick={() => handleLanguageChange(lng)}
             >
               {lng !== locale && lng && lng.at(0)?.toUpperCase() + lng.slice(1)}
             </button>
