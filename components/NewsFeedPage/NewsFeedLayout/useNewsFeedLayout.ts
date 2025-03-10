@@ -116,7 +116,6 @@ export default function useNewsFeedLayout() {
         setSearchValidationError(true);
       } else {
         setSearchValidationError(false);
-        setFilter(null);
         if (page > 1) {
           dispatch(resetPosts());
           dispatch(resetPage());

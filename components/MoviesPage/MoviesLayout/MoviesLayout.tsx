@@ -22,8 +22,8 @@ const MoviesLayout: React.FC = () => {
   } = useMoviesLayout();
 
   return (
-    <div className="text-white px-[2.1875rem] lg:pl-0 lg:pr-[4.375rem]">
-      <div className="flex flex-col gap-2">
+    <div className="text-white pt-[5.375rem] px-[2.1875rem] lg:pl-0 lg:pr-[4.375rem]">
+      <div className="flex flex-col gap-2 ">
         <div className="flex items-center justify-between mt-5 lg:mt-0">
           <h1 className="font-medium text-2xl">
             {t("header")}{" "}

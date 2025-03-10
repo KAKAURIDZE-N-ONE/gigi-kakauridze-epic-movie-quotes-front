@@ -25,7 +25,7 @@ const DesktopProfilePage: React.FC = () => {
   } = useDesktopProfilePage();
 
   return (
-    <div className="">
+    <div className="pt-[5.375rem]">
       <div className="flex flex-col gap-10  mr-36">
         <h2 className="ml-8 text-2xl font-medium">{tPage("header")}</h2>
         <div className="w-full max-w-[68rem] bg-darkerBlue mt-20 rounded-xl relative">

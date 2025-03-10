@@ -13,7 +13,7 @@ const EmailVerifySuccessMessage: React.FC = () => {
           <Button
             type="submit"
             size="small"
-            clickFn={() => router.push("/news-feed")}
+            clickFn={() => router.push("/log-in")}
             color="red"
           >
             {t("button")}

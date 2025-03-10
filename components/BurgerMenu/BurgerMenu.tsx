@@ -57,31 +57,6 @@ const BurgerMenu: React.FC<Props> = ({
               </div>
             </div>
           )}
-          {!isAuthenticated && (
-            <div className="flex flex-col lg:hidden items-center justify-center gap-2 ">
-              <Button
-                clickFn={() => {
-                  toggleBurgerMenuIsOpen();
-                  router.push("/log-in");
-                }}
-                size="small"
-                color="red"
-                additionalClasses="w-full"
-              >
-                {t("autorization")}
-              </Button>
-              <Button
-                clickFn={() => {
-                  toggleBurgerMenuIsOpen();
-                  router.push("/sign-up");
-                }}
-                size="small"
-                additionalClasses="w-full bg-black text-white border-white"
-              >
-                {t("registration")}
-              </Button>
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -21,11 +21,15 @@ const GoogleAuthCallBack: React.FC = () => {
 
         const response = await googleVerify(data);
         if (response?.error) {
+          setTimeout(() => {
+            showErrorToast(response?.error);
+          }, 1000);
           router.push("/log-in");
-          showErrorToast(response?.error);
         } else {
           router.push("/news-feed");
-          showSuccessToast(response?.status);
+          setTimeout(() => {
+            showSuccessToast(response?.status);
+          }, 1000);
         }
       } catch (error) {
         console.error(error);

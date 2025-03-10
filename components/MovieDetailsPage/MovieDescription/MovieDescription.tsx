@@ -23,11 +23,11 @@ const MovieDescription: React.FC = () => {
       {(deleteMovieIsPending || isPending) && <Loader />}
 
       {!isPending && (
-        <div className="text-white w-full  h-full lg:pr-[4.375rem]">
+        <div className="text-white w-full  h-full lg:pr-[4.375rem] pt-[5.375rem]">
           <h1 className="text-2xl font-medium hidden lg:inline-block">
             {t("header")}
           </h1>
-          <div className=" flex flex-col lg:flex-row w-full gap-5 mt-9 lg:mt-7 ">
+          <div className=" flex flex-col lg:flex-row w-full gap-5 lg:mt-7 ">
             <div className="w-full lg:w-[55%] px-[2.1875rem] lg:px-0">
               <div
                 style={{

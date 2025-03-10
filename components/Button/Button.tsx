@@ -37,6 +37,7 @@ const Button: React.FC<Props> = ({
     border 
     transition-all
     duration-300
+    text-nowrap
   `}
     >
       <span className="flex items-center justify-center gap-2">

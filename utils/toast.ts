@@ -8,6 +8,9 @@ const toastOptions: ToastOptions = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
+  style: {
+    paddingRight: "2rem",
+  },
   theme: "colored",
 };
 
