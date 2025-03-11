@@ -31,8 +31,6 @@ export default function useNewsFeedLayout() {
     i18n: { language },
   } = useTranslation("news-feed-page");
   const isMobile = useMediaQuery({ maxWidth: 1023 });
-  const [searchValidationError, setSearchValidationError] =
-    useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const posts = useAppSelector(selectPosts);
   const page = useAppSelector(selectPage);
@@ -110,34 +108,30 @@ export default function useNewsFeedLayout() {
   }, [searchRef, searchIsOpen]);
 
   useEffect(() => {
-    if (!searchIsOpen) return;
-    if (searchValue) {
-      if (!searchValue.startsWith("#") && !searchValue.startsWith("@")) {
-        setSearchValidationError(true);
-      } else {
-        setSearchValidationError(false);
-      }
-    } else return;
-  }, [searchValue, dispatch, page, searchIsOpen]);
-
-  useEffect(() => {
     const debounceTimeout = setTimeout(() => {
-      if (searchValue && searchValue.length > 1 && !searchValidationError) {
-        window.scrollTo({ top: 0, behavior: "instant" });
-        const filterBy = searchValue.startsWith("@")
-          ? "movieName"
-          : "quoteText";
-        const value = searchValue.slice(1);
-        dispatch(resetPage());
+      if (searchValue.startsWith("@") || searchValue.startsWith("#")) {
+        if (searchValue && searchValue.length > 1) {
+          window.scrollTo({ top: 0, behavior: "instant" });
+          const filterBy = searchValue.startsWith("@")
+            ? "movieName"
+            : "quoteText";
+          const value = searchValue.slice(1);
+          dispatch(resetPage());
 
-        setFilter({ filterBy, value });
+          setFilter({ filterBy, value });
+        }
+      } else {
+        if (searchValue && searchValue.length > 0) {
+          dispatch(resetPage());
+          setFilter({ filterBy: null, value: searchValue });
+        }
       }
     }, 600);
 
     return () => {
       clearTimeout(debounceTimeout);
     };
-  }, [searchValue, searchValidationError, dispatch]);
+  }, [searchValue, dispatch]);
 
   useEffect(() => {
     dispatch(resetPage());
@@ -159,7 +153,6 @@ export default function useNewsFeedLayout() {
     searchRef,
     t,
     language,
-    searchValidationError,
     isPending,
     isMobile,
     page,
