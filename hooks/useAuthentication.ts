@@ -11,6 +11,7 @@ export const useAuthentication = () => {
   } = useQuery<UserResponse>({
     queryKey: [USER],
     queryFn: getUser,
+    retry: 1,
   });
 
   const isAuthenticated = !!user?.email_verified_at;

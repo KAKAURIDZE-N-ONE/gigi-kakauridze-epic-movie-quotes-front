@@ -19,7 +19,6 @@ const NewsFeedLayout: React.FC = () => {
     searchRef,
     t,
     language,
-    searchValidationError,
     isPending,
     isMobile,
     page,
@@ -29,7 +28,6 @@ const NewsFeedLayout: React.FC = () => {
     <>
       {searchIsOpen && isMobile && (
         <MobileSearchModal
-          searchValidationError={searchValidationError}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
@@ -71,11 +69,6 @@ const NewsFeedLayout: React.FC = () => {
               </div>
               <div className="left-0 w-full -bottom-2 border-b border-b-[#EFEFEF4D] absolute"></div>
               <div className="relative">
-                {searchValidationError && (
-                  <p className="absolute left-8 select-none -top-5 text-red text-lg">
-                    {t("search_validation")}
-                  </p>
-                )}
                 {!searchValue && (
                   <>
                     <h3

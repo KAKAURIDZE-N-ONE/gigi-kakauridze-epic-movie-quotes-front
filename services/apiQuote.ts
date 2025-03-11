@@ -10,6 +10,8 @@ export async function getQuotes({ page, filter }: GetQuotesValues) {
       params.append("filter[quote]", filter.value);
     } else if (filter.filterBy === "movieName") {
       params.append("filter[movie_name]", filter.value);
+    } else {
+      params.append("filter[global]", filter.value);
     }
   }
 

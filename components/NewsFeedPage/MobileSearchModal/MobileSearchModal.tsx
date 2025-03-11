@@ -7,7 +7,6 @@ import useMobileSearchModal from "./useMobileSearchModal";
 const MobileSearchModal: React.FC<Props> = ({
   searchValue,
   setSearchValue,
-  searchValidationError,
 }) => {
   const { dispatch, inputRef, t } = useMobileSearchModal();
 
@@ -31,14 +30,9 @@ const MobileSearchModal: React.FC<Props> = ({
             onChange={(e) => setSearchValue(e.target.value)}
             className="focus:outline-none bg-darkestBlue ml-4 placeholder:text-white w-full py-2"
           />
-          {searchValidationError && (
-            <p className="text-red absolute -bottom-[0.9rem] left-4 text-sm">
-              {t("search_validation")}
-            </p>
-          )}
         </div>
       </div>
-      {(!searchValue || searchValidationError || searchValue.length <= 1) && (
+      {!searchValue && (
         <div className="h-full bg-darkestBlue pointer-events-auto">
           <div className="flex flex-col gap-7 px-[4.35rem] pt-8">
             <h2 className="text-white2">

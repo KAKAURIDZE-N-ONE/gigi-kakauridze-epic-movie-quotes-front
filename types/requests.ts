@@ -42,6 +42,6 @@ export type GetQuotesValues = {
 };
 
 export type NewsFeedFilter = {
-  filterBy: "quoteText" | "movieName";
+  filterBy: "quoteText" | "movieName" | null;
   value: string;
 } | null;
