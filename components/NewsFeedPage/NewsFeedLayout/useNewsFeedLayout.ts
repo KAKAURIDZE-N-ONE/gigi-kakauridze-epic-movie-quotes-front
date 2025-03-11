@@ -116,10 +116,6 @@ export default function useNewsFeedLayout() {
         setSearchValidationError(true);
       } else {
         setSearchValidationError(false);
-        if (page > 1) {
-          dispatch(resetPosts());
-          dispatch(resetPage());
-        }
       }
     } else return;
   }, [searchValue, dispatch, page, searchIsOpen]);
@@ -127,6 +123,7 @@ export default function useNewsFeedLayout() {
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
       if (searchValue && searchValue.length > 1 && !searchValidationError) {
+        window.scrollTo({ top: 0, behavior: "instant" });
         const filterBy = searchValue.startsWith("@")
           ? "movieName"
           : "quoteText";

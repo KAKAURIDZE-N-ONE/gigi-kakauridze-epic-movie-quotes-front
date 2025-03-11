@@ -11,7 +11,7 @@ const EditPasswordBody: React.FC<Props> = ({ setFormDataPassword }) => {
 
   return (
     <form id="form" onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <div className="px-8 flex flex-col gap-6">
+      <div className="px-8 flex flex-col gap-8">
         <input
           type="text"
           name="username"

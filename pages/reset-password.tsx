@@ -7,7 +7,9 @@ export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
+        "landing-page",
         "reset-password-modal",
+        "password-reset-success",
         "errors",
       ])),
     },

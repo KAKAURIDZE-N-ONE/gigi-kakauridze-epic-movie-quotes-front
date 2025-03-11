@@ -40,7 +40,14 @@ const MobileProfilePage: React.FC = () => {
           </ConfirmModalBody>
         </div>
       )}
-      <div className="bg-darkerBlue  pt-[5.375rem]">
+      <div
+        className={`bg-darkerBlue  ${
+          openedModal !== "makeChangesUsername" &&
+          openedModal !== "makeChangesPassword"
+            ? "pt-[5.375rem]"
+            : ""
+        }`}
+      >
         {openedModal === null && (
           <div className="h-[4rem] px-8 flex items-center">
             <div onClick={() => router.push("/news-feed")}>

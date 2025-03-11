@@ -96,7 +96,7 @@ const CreateOrEditMovieBody: React.FC<Props> = ({ turnOfFn, type }) => {
           </InnerSelect>
           <InnerInput
             type={type}
-            pl={language === "ka" ? "pl-[7rem]" : "pl-[6.8rem]"}
+            pl={language === "ka" ? "pl-[4.4rem]" : "pl-[3.8rem]"}
             error={errors.year?.message}
             register={register("year", {
               required: t("required"),
